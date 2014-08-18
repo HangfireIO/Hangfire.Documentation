@@ -9,7 +9,7 @@ Contributing
 
 ### The Easy Way
 
-Just click the `Edit on GitHub` button while observing a page with mistakes as shown below. GitHub will guide you to fork the repository. Don't forget to create a pull request!
+Just click the `Edit on GitHub` button while observing a page with mistakes as shown below. GitHub will guide you to fork the repository. Please don't forget to create a pull request!
 
 ![Contributing via Documentation Site](https://raw.githubusercontent.com/HangfireIO/Hangfire-Documentation/master/contributing.png)
 
