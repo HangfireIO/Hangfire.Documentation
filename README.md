@@ -9,9 +9,11 @@ Contributing
 
 ### The Easy Way
 
-Just click the `Edit on GitHub` button while observing a page with mistakes as shown below – documentation is being automatically deployed to the site after each commit. For small changes just propose a pull request. Thanks to [Read the Docs](https://readthedocs.org) service for help!
+Just click the `Edit on GitHub` button while observing a page with mistakes as shown below.
 
 ![Contributing via Documentation Site](https://raw.githubusercontent.com/HangfireIO/Hangfire-Documentation/master/contributing.png)
+
+Documentation is being automatically deployed to the site after each commit. For small changes just propose a pull request. Thanks to [Read the Docs](https://readthedocs.org) service for help!
 
 ### The Hard Way
 
