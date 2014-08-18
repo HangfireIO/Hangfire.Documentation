@@ -9,7 +9,7 @@ Contributing
 
 ### The Easy Way
 
-Just click the `Edit on GitHub` button while observing a page with mistakes as shown below.
+Just click the `Edit on GitHub` button while observing a page with mistakes as shown below – documentation is being automatically deployed to the site after each commit. For small changes just propose a pull request. Thanks to [Read the Docs](https://readthedocs.org) service for help!
 
 ![Contributing via Documentation Site](https://raw.githubusercontent.com/HangfireIO/Hangfire-Documentation/master/contributing.png)
 
@@ -19,8 +19,6 @@ Just click the `Edit on GitHub` button while observing a page with mistakes as s
 
 [Official installation guide](http://sphinx-doc.org/latest/install.html) describes all steps 
 required to run Sphinx on Windows / Linux / Mac OS X.
-
-**You are not required** to install Sphinx – documentation is being automatically deployed to the site after each commit. For small changes just propose a pull request. Thanks to [Read the Docs](https://readthedocs.org) service for help!
 
 #### Building
 
