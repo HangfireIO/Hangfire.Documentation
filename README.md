@@ -1,8 +1,8 @@
 # Hangfire Documentation
 
-[![Documentation Status](https://readthedocs.org/projects/hangfire/badge/?version=latest)](https://readthedocs.org/projects/hangfire/?badge=latest)
+[![Documentation Status](https://readthedocs.org/projects/hangfire/badge/?version=latest)](https://readthedocs.org/projects/hangfire/?badge=latest) http://docs.hangfire.io
 
-This repository contains [Sphinx-based](http://sphinx-doc.org) documentation for [Hangfire](http://hangfire.io). http://docs.hangfire.io
+This repository contains [Sphinx-based](http://sphinx-doc.org) documentation for [Hangfire](http://hangfire.io).
 
 Contributing
 -------------
