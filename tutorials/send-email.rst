@@ -199,6 +199,10 @@ Now, we need to prepare the ``NotifyNewComment`` method that will be called in t
 
 This is a plain C# static method. We are creating an ``EmailService`` instance, finding the desired comment and sending a mail with Postal. Simple enough, especially when compared to a custom Windows Service solution.
 
+.. warning::
+
+   Emails now are being sent outside of request processing pipeline. As of Postal 1.0.0, there are the following `limitations <http://aboutcode.net/postal/outside-aspnet.html>`_: you can not use layouts for your views, you MUST use ``Model`` and not ``ViewBag``, embedding images is `not supported <https://github.com/andrewdavey/postal/issues/44>`_ either.
+
 That's all! Try to create some comments and see the ``C:\Temp`` path. You also can check your background jobs at ``http://<your-app>/hangfire``. If you have any questions, you are welcome to use the comments form below.
 
 .. note::
