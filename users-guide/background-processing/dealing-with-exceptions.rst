@@ -22,4 +22,8 @@ If you don't want a job to be retried, place an explicit attribute with 0 maximu
    {   
    }
 
-Use the same way to limit the number of attempts to the different value.
+Use the same way to limit the number of attempts to the different value. If you want to change the default global value, add a new global filter:
+
+.. code-block:: c#
+
+   GlobalJobFilters.Filters.Add(new AutomaticRetryAttribute { Attempts = 5 });
