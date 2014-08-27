@@ -5,7 +5,7 @@ Hangfire uses the `Common.Logging <https://github.com/net-commons/common-logging
 
 If your application does not have any logging framework installed, you need to choose and install it first. There are different logging frameworks, such as NLog, log4net, etc., but their description should not be in this article.
 
-Hangfire does not procuce much log messages and uses different logging levels to separate different types of messages. All logger names start with the ``Hangfire`` prefix, so you can use wildcarding feature of your logging framework to make Hangfire logging separate from your application logging.
+Hangfire does not produce many log messages and uses different logging levels to separate different types of messages. All logger names start with the ``Hangfire`` prefix, so you can use wildcarding feature of your logging framework to make Hangfire logging separate from your application logging.
 
 Installing support for NLog
 ----------------------------
