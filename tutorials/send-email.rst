@@ -288,7 +288,7 @@ If you made a mistake in your ``NotifyNewComment`` method, you can fix it and re
    // Break background job by setting null to emailService:
    var emailService = null;
 
-Compile a project, add a comment and go to the web interface by typing ``http://<your-app>/hangfire.axd``. Exceed all automatic attempts, then fix the job, restart the application, and click the ``Retry`` button on the *Failed jobs* page.
+Compile a project, add a comment and go to the web interface by typing ``http://<your-app>/hangfire``. Exceed all automatic attempts, then fix the job, restart the application, and click the ``Retry`` button on the *Failed jobs* page.
 
 Preserving current culture
 ---------------------------
