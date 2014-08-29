@@ -14,7 +14,7 @@ There are a `couple of packages
 Configuration
 --------------
 
-After installing the package, :doc:`add or update <../users-guide/getting-started/owin-bootstrapper>` the OWIN Startup class with the following lines:
+After installing the package, :doc:`add or update <../users-guide/getting-started/owin-bootstrapper>` the OWIN Startup class with the following lines: [#note]_
 
 .. code-block:: c#
 
@@ -81,4 +81,5 @@ Hangfire saves your jobs into persistent storage and processes them in a reliabl
 This is very important for generic hosting environment, such as IIS Server. They can contain different `optimizations, timeouts and error-handling code
 <https://github.com/odinserj/Hangfire/wiki/IIS-Can-Kill-Your-Threads>`_ (that may cause process termination) to prevent bad things to happen. If you are not using the reliable processing and auto-retrying, your job can be lost. And your end user may wait for its email, report, notification, etc. indefinitely.
 
+.. [#] By default only local access is permitted to the Hangfire Dashboard. :doc:`Dashboard authorization <../users-guide/deployment-to-production/configuring-authorization>` must be configured in order to allow remote access.
 .. [#] But when your storage becomes broken, Hangfire can not do anything. Please, use different failover strategies for your storage to guarantee the processing of each job in case of a disaster.
