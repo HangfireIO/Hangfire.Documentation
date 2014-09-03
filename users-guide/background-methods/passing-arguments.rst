@@ -5,14 +5,16 @@ You can pass additional data to your background jobs as a regular method argumen
 
 .. code-block:: c#
 
-   BackgroundJob.Enqueue(() => Console.WriteLine("Hello, world!"));
+   BackgroundJob.Enqueue(() => Console.WriteLine("Hello, {0}!", "world"));
 
-As in a regular method call, its arguments will be available for the ``Console.WriteLine`` method during the background job performance. But since they are used in a expression tree and being serialized, they differ from regular arguments a bit. 
+As in a regular method call, these arguments will be available for the ``Console.WriteLine`` method during the performance of a background job. But since they are being marshaled through the process boundaries, they are being serialized.
 
-Expression-tree based syntax may impose additional restrictions to the argument values, but thanks to ASP.NET MVC team for their ``CachedExpressionCompiler`` class available with Apache 2.0 license, that makes available to use almost all expression types as arguments: constant, unary, binary, method call, conditional, parameter, etc.
+Awesome `Newtonsoft.Json <http://james.newtonking.com/json>`_ package is being used to serialize arguments into JSON strings (since version ``1.1.0``). So you can use almost any type as a parameter type, including arrays, collections and custom objects. Please see `corresponding documentation <http://james.newtonking.com/json/help/index.html>`_ for the details.
 
-Next restrictions apply to parameter modifiers, and you **can not use** output parameters (``out`` keyword) and parameters passed by reference (``ref`` keyword). They do not make sense to methods that are being called in the background.
+.. note::
 
-And the final restrictions apply to the parameter types. Arguments are being serialized to invariant string using the corresponding ``TypeConverter`` class. Most of simple types have their ``TypeConverter`` implementation available out-of-the-box: numeric types, Boolean, String, DateTime, enum types, TimeSpan, etc. See the complete hierarchy `here <http://msdn.microsoft.com/en-us/library/system.componentmodel.typeconverter(v=vs.110).aspx#inheritanceContinued>`_.
+   You can not pass arguments to parameters by reference – ``ref`` and ``out` keywords are **not supported**.
 
-But custom types, arrays, or other collections **can not be converted to string by default**. You should either write `custom type converter <http://www.codeproject.com/Articles/10235/Type-converters-your-friendly-helpers>`_ or use shared storage (for example, SQL Server) to pass identifiers instead.
+Since arguments are being serialized, consider their values carefully as they can blow up your job storage. Most of the time it is more efficient to store concrete values in an application database and pass identifiers only to your background jobs.
+
+Remember that background jobs may be processed even after days or weeks since they were enqueued. If you use data that is subject to change in your arguments, it may become stale – database records may be deleted, text of an article may be changed, etc. Expect these changes and design background jobs according to this feature.
