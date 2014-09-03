@@ -13,7 +13,7 @@ Awesome `Newtonsoft.Json <http://james.newtonking.com/json>`_ package is being u
 
 .. note::
 
-   You can not pass arguments to parameters by reference – ``ref`` and ``out` keywords are **not supported**.
+   You can not pass arguments to parameters by reference – ``ref`` and ``out`` keywords are **not supported**.
 
 Since arguments are being serialized, consider their values carefully as they can blow up your job storage. Most of the time it is more efficient to store concrete values in an application database and pass identifiers only to your background jobs.
 
