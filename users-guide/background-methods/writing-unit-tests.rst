@@ -53,3 +53,7 @@ Simple, yeah. Now you can use any mocking framework, for example, `Moq <https://
             It.Is<Job>(job => job.Method.Name == "CheckForSpam" && job.Arguments[0] == comment.Id.ToString()),
             It.IsAny<EnqueuedState>());
     }
+    
+.. note::
+
+   ``job.Method`` property points only to background job's method information. If you also want to check a type name, use the ``job.Type`` property.
