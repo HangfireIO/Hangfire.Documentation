@@ -477,7 +477,7 @@ And finally a large one:
 
 The lag is increasing when we enlarge our code snippets. Moreover, consider that syntax highlighting web service (that is not under your control) experiences heavy load, or there are latency problems with network on their side. Or consider heavy CPU-intensive task instead of web service call that you can not optimize well. 
 
-Your users will be annoyed with unresponsible application and inadequate delays.
+Your users will be annoyed with un-responsive application and inadequate delays.
 
 Solving a problem
 ------------------
@@ -643,7 +643,7 @@ Or you can also use send a command to users via SignalR channel from your ``High
 
 .. note::
 
-   Please, note that user still waits until its source code will be highlighted. But the application itself became more responsible and he is able to do another things while background job is being processed.
+   Please, note that user still waits until its source code will be highlighted. But the application itself became more responsive and he is able to do another things while background job is being processed.
 
 Conclusion
 -----------
