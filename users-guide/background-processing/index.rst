@@ -6,6 +6,7 @@ Background processing
 
    processing-background-jobs
    processing-jobs-in-web-app
+   placing-processing-into-another-process
    processing-jobs-in-console-app
    processing-jobs-in-windows-service
    dealing-with-exceptions
