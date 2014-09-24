@@ -8,6 +8,9 @@
 
 <script type="text/javascript">
     $('.rst-footer-buttons').css('margin-bottom', '20px');
+    $('<div id="comments-anchor" class="admonition note" style="color: #404040;border: solid 1px #ccc;background: #f9f9f9;margin-bottom: 10px;">
+    <p>Please use <a href="http://discuss.hangfire.io">Hangfire Forum</a> for long questions or questions with source code.</p>
+  </div>').insertAfter('.rst-footer-buttons');
     $('<div id="disqus_thread"></div>').insertAfter('#comments-anchor');
     /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
     var disqus_shortname = '{{ disqus_shortname }}'; // required: replace example with your forum shortname
@@ -28,9 +31,6 @@
   {{ super() }}
 
 {% if disqus_shortname %}
-  <div id="comments-anchor" class="admonition note" style="color: #404040;border: solid 1px #ccc;background: #f9f9f9;margin-bottom: 10px;">
-    <p>Please use <a href="http://discuss.hangfire.io">Hangfire Forum</a> for long questions or questions with source code.</p>
-  </div>
   {{ comments() }}
 {% else %}
 <!-- disqus commenting disabled; set disqus_shortname -->
