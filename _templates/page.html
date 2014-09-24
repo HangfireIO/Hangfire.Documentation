@@ -28,6 +28,9 @@
   {{ super() }}
 
 {% if disqus_shortname %}
+  <div class="admonition note" style="color: #404040;border: solid 1px #ccc;background: #f9f9f9;margin-bottom: 10px;">
+    <p>Please use <a href="http://discuss.hangfire.io">Hangfire Forum</a> for long questions or questions with source code.</p>
+  </div>
   {{ comments() }}
 {% else %}
 <!-- disqus commenting disabled; set disqus_shortname -->
