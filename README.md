@@ -22,6 +22,14 @@ Documentation is being automatically deployed to the site after each commit. For
 [Official installation guide](http://sphinx-doc.org/latest/install.html) describes all steps 
 required to run Sphinx on Windows / Linux / Mac OS X.
 
+#### Installing theme package
+
+Documentation is being hosted on http://readthedocs.org site and uses its theme. So, you should install it first:
+
+```
+pip install sphinx_rtd_theme
+```
+
 #### Building
 
 Clone the repository and run the following command:
