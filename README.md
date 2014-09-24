@@ -38,6 +38,8 @@ Clone the repository and run the following command:
 make html
 ```
 
+After building, generated `*.html` files will be available in the `_build` directory.
+
 License
 --------
 
