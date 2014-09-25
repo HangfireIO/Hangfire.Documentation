@@ -9,6 +9,10 @@ Recurring job registration is pretty simple – you need to write only a single 
 
 This line creates a new entry in the storage. Special component in Hangfire Server (see :doc:`../background-processing/processing-background-jobs`) will check the recurring jobs on a minute-based interval and enqueue them as fire-and-forget jobs, so you can track them as usual.
 
+.. warning::
+
+   Your Hangfire Server instance should be always on to perform scheduling and processing logic. If you perform the processing inside an ASP.NET application, please read also :doc:`../deployment-to-production/making-aspnet-app-always-running` chapter.
+
 The ``Cron`` class contains different methods and overloads to run jobs on a minutely, hourly, daily, weekly, monthly and yearly basis. But you can use `CRON expressions <http://en.wikipedia.org/wiki/Cron#CRON_expression>`_ to specify more complex schedule:
 
 .. code-block:: c#
