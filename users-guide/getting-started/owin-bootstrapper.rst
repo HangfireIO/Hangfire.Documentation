@@ -16,8 +16,8 @@ If you have Visual Studio 2012 or earlier, just create a regular class in the ro
 
 .. code-block:: c#
 
-    using HangFire;
-    using HangFire.SqlServer;
+    using Hangfire;
+    using Hangfire.SqlServer;
     using Microsoft.Owin;
     using Owin;
 
