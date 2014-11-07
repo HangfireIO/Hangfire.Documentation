@@ -136,6 +136,22 @@ This setting does not work for free sites.
 .. image:: always-on.png
    :alt: Always On switch
 
+Amazon Elastic Beanstalk
+--------------------------
+
+To enable always running in IIS automatically, you need to create a configuration folder called ".ebextensions" at the root of the web project.
+Then create a file called "alwaysrunning.config" with this content:
+
+.. code-block:: yaml 
+
+	commands:
+	  alwaysrunning:
+		command: "APPCMD.exe set apppool DefaultAppPool /autoStart:true /startMode:AlwaysRunning"
+		cwd: "C:/windows/system32/inetsrv"		
+		waitForCompletion: 10
+
+May need to change the name of the application pool on file to work.
+
 If nothing works for you…
 --------------------------
 
