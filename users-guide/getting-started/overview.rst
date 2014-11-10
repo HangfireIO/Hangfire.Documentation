@@ -8,6 +8,12 @@ From the 10.000-feet view the library consist of three main components: *client*
 .. image:: hangfire-workflow.png
    :alt: Hangfire Workflow
    :align: center
+   
+   
+Requirements
+-------------
+
+* .NET Framework 4.5
 
 Client
 -------
