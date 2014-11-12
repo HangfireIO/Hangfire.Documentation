@@ -43,7 +43,7 @@ For example, in ASP.NET applications the best place for start/stop method invoca
 
            protected void Application_End(object sender, EventArgs e)
            {
-               _backgroundJobServer.Stop();
+               _backgroundJobServer.Dispose();
            }
        }
    }
