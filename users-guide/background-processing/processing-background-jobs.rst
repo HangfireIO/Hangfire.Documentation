@@ -18,7 +18,7 @@ The Server does not depend on ASP.NET and can be started anywhere, from a consol
    // Send the stop signal to all components.
    server.Stop();
    
-   // Wait for server shutdown.
+   // Wait for graceful server shutdown.
    server.Dispose();
 
 Hangfire Server consist of different components that are doing different work: workers listen to queue and process jobs, recurring scheduler enqueues recurring jobs, schedule poller enqueues delayed jobs, expire manager removes obsolete jobs and keeps the storage as clean as possible, etc.
