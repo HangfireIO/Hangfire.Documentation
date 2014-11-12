@@ -12,13 +12,13 @@ The Server does not depend on ASP.NET and can be started anywhere, from a consol
    // explicit job storage instance.
    var server = new BackgroundJobServer(); 
 
-   // Starting to process background jobs.
+   // Starting to process background jobs (non-blocking).
    server.Start();
 
-   // Send the stop signal to all components.
+   // Initiating server shutdown (non-blocking).
    server.Stop();
    
-   // Wait for graceful server shutdown.
+   // Waiting for graceful server shutdown.
    server.Dispose();
 
 Hangfire Server consist of different components that are doing different work: workers listen to queue and process jobs, recurring scheduler enqueues recurring jobs, schedule poller enqueues delayed jobs, expire manager removes obsolete jobs and keeps the storage as clean as possible, etc.
