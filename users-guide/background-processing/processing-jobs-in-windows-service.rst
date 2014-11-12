@@ -48,7 +48,7 @@ After installing packages, all you need is to create a new *Hangfire Server* ins
 
            protected override void OnStop()
            {
-               _server.Stop();
+               _server.Dispose();
            }
        }
    }
