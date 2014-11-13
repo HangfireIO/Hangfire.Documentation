@@ -129,7 +129,7 @@ To be able to put tasks into the background and not lose them during application
 
    Install-Package Hangfire
 
-Hangfire uses SQL Server or Redis to store information about background jobs. So, let's configure it. Add or update the OWIN Startup class as :doc:`written here <../users-guide/getting-started/owin-bootstrapper>`.
+Hangfire uses SQL Server or Redis to store information about background jobs. So, let's configure it. Add or update the OWIN Startup class as :doc:`written here <../getting-started/owin-bootstrapper>`.
 
 .. code-block:: c#
 

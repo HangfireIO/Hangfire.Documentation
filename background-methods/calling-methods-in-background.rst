@@ -1,7 +1,7 @@
 Calling methods in background
 =============================
 
-Fire-and-forget method invocation has never been simpler. As you can already know from the :doc:`Quick start </quickstart>` guide, you should only pass a lambda expression with the corresponding method and its arguments:
+Fire-and-forget method invocation has never been simpler. As you can already know from the :doc:`Quick start <../getting-started/quick-start>` guide, you should only pass a lambda expression with the corresponding method and its arguments:
 
 .. code-block:: c#
 

@@ -25,11 +25,14 @@ Contents
 ---------
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 2
 
    pages
-   quickstart
-   features
-   advfeatures
    tutorials/index
-   users-guide/index
+   getting-started/index
+   storage-configuration/index
+   background-methods/index
+   background-processing/index
+   best-practices
+   deployment-to-production/index
+   extensibility/index
