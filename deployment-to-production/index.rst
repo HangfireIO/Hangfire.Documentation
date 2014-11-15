@@ -7,3 +7,4 @@ Deployment to production
    configuring-authorization
    adding-logging
    making-aspnet-app-always-running
+   performance-counters
