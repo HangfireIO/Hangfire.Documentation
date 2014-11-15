@@ -1,7 +1,15 @@
 Using Redis
 ============
 
+.. admonition:: Pro Only
+   :class: note
+
+   Starting from Hangfire 1.2, this feature is a part of `Hangfire Pro <http://hangfire.io/pro/>`_ package set
+
 Hangfire with Redis job storage implementation processes jobs much faster than with SQL Server storage. On my development machine I observed more than 4x throughput improvement with empty jobs (method that does not do anything). ``Hangfire.Redis`` leverages the ``BRPOPLPUSH`` command to fetch jobs, so the job processing latency is kept to minimum.
+
+.. image:: storage-compare.png
+   :align: center
 
 Please, see the `downloads page <http://redis.io/download>`_ to obtain latest version of Redis. If you unfamiliar with this great storage, please see its `documentation <http://redis.io/documentation>`_. 
 
@@ -60,6 +68,20 @@ Hangfire leverages connection pool to get connections quickly and shorten their 
    var options = new RedisStorageOptions
    {
        ConnectionPoolSize = 50 // default value
+   };
+
+   app.UseRedisStorage("localhost", 0, options);
+
+Using key prefixes
+-------------------
+
+If you are using a shared Redis server for multiple environments, you can specify unique prefix for each environment:
+
+.. code-block:: c#
+
+   var options = new RedisStorageOptions
+   {
+       Prefix = "hangfire:"; // default value
    };
 
    app.UseRedisStorage("localhost", 0, options);
