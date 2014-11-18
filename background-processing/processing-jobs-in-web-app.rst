@@ -15,13 +15,13 @@ Since Hangfire does not have any specific dependencies and does not depend on ``
 Using ``BackgroundJobServer`` class
 ------------------------------------
 
-The basic way (but not the simplest -- see the next section) to start using Hangfire in a web framework is to use host-agnostic ``BackgroundJobServer`` class that was described in the :doc:`previous chapter <processing-background-jobs>` and call its ``Start`` and ``Stop`` method in corresponding places.
+The basic way (but not the simplest -- see the next section) to start using Hangfire in a web framework is to use host-agnostic ``BackgroundJobServer`` class that was described in the :doc:`previous chapter <processing-background-jobs>` and call its ``Start`` and ``Dispose`` method in corresponding places.
 
 .. note::
 
    In some web application frameworks it may be unclear when to call the ``Dispose`` method. If it is really impossible, you can omit this call as :doc:`described here <processing-background-jobs>` (but you'll loose the *graceful shutdown* feature).
 
-For example, in ASP.NET applications the best place for start/stop method invocations is the ``global.asax.cs`` file:
+For example, in ASP.NET applications the best place for start/dispose method invocations is the ``global.asax.cs`` file:
 
 .. code-block:: c#
 
