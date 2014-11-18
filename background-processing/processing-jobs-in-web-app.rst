@@ -19,7 +19,7 @@ The basic way (but not the simplest -- see the next section) to start using Hang
 
 .. note::
 
-   In some web application frameworks it may be unclear when to call the ``Stop`` method. If it is really impossible, you can omit this call as :doc:`described here <processing-background-jobs>` (but you'll loose the *graceful shutdown* feature).
+   In some web application frameworks it may be unclear when to call the ``Dispose`` method. If it is really impossible, you can omit this call as :doc:`described here <processing-background-jobs>` (but you'll loose the *graceful shutdown* feature).
 
 For example, in ASP.NET applications the best place for start/stop method invocations is the ``global.asax.cs`` file:
 
