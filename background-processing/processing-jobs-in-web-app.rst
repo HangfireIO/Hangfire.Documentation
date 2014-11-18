@@ -37,6 +37,8 @@ For example, in ASP.NET applications the best place for start/stop method invoca
 
            protected void Application_Start(object sender, EventArgs e)
            {
+               // JobStorage.Current = new ...;
+           
                _backgroundJobServer = new BackgroundJobServer();
                _backgroundJobServer.Start();
            }
