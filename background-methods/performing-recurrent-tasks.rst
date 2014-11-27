@@ -49,9 +49,12 @@ The ``RecurringJob`` class is a facade for the ``RecurringJobManager`` class. If
 
    var manager = new RecurringJobManager();
    manager.AddOrUpdate("some-id", Job.FromExpression(() => Method()), Cron.Yearly);
-   
+
+
 Example:
+
 .. code-block:: c#
+   
    public partial class Startup
    {
        public void Configuration(IAppBuilder app)
@@ -62,7 +65,9 @@ Example:
    }
 
 Example HangFire bootstrap class:
+
 .. code-block:: c#
+
    public class Hangfire
    {
        public static void ConfigureHangfire(IAppBuilder app)

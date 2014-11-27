@@ -42,10 +42,10 @@ Job Storage
 
 Hangfire keeps background jobs and other information that relates to the processing inside a *persistent storage*. Persistence helps background jobs to **survive on application restarts**, server reboots, etc. This is the main distinction between performing background jobs using *CLR's Thread Pool* and *Hangfire*. Different storage backends are supported:
 
-* :doc:`SQL Azure, SQL Server 2008 R2 <../storage-configuration/using-sql-server>` (and later of any edition, including Express)
-* :doc:`Redis <../storage-configuration/using-redis>`
+* :doc:`SQL Azure, SQL Server 2008 R2 <../configuration/using-sql-server>` (and later of any edition, including Express)
+* :doc:`Redis <../configuration/using-redis>`
 
-SQL Server storage can be empowered with :doc:`MSMQ <../storage-configuration/using-sql-server-with-msmq>` or RabbitMQ to lower the processing latency.
+SQL Server storage can be empowered with :doc:`MSMQ <../configuration/using-sql-server-with-msmq>` or RabbitMQ to lower the processing latency.
 
 .. code-block:: c#
 

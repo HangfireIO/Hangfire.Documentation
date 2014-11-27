@@ -18,7 +18,7 @@ This package is a dependency of the Hangfire's bootstrapper package ``Hangfire``
 Configuration
 --------------
 
-The package provides an extension method for the Hangfire's :doc:`OWIN bootstrapper <../getting-started/owin-bootstrapper>` method. Choose either a `connection string <https://www.connectionstrings.com/sqlconnection/>`_ to your SQL Server or a connection string name, if you have it.
+The package provides an extension method for the Hangfire's :doc:`OWIN bootstrapper <owin-bootstrapper>` method. Choose either a `connection string <https://www.connectionstrings.com/sqlconnection/>`_ to your SQL Server or a connection string name, if you have it.
 
 .. code-block:: c#
 

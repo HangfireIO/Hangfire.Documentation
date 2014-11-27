@@ -36,7 +36,7 @@ To simplify the initial installation, there are some integration  packages alrea
 * `Hangfire.SimpleInjector <https://www.nuget.org/packages/Hangfire.SimpleInjector/>`_
 * `Hangfire.Windsor <https://www.nuget.org/packages/Hangfire.Windsor/>`_
 
-Some of these activators also provide an extension method for :doc:`OWIN bootstrapper <../getting-started/owin-bootstrapper>`:
+Some of these activators also provide an extension method for :doc:`OWIN bootstrapper <../configuration/owin-bootstrapper>`:
 
 .. code-block:: c#
 

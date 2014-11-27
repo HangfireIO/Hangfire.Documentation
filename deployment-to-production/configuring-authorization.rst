@@ -7,7 +7,7 @@ By default Hangfire allows access to Dashboard pages only for local requests. In
 
    Install-Package Hangfire.Dashboard.Authorization
 
-And configure authorization filters in the :doc:`OWIN bootstrapper's <../getting-started/owin-bootstrapper>` configuration action:
+And configure authorization filters in the :doc:`OWIN bootstrapper's <../configuration/owin-bootstrapper>` configuration action:
 
 .. code-block:: c#
 
