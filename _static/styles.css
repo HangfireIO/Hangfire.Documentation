@@ -91,55 +91,41 @@ table.field-list {
   border-bottom: solid 1px #ddd;
 }
 
-.bs-sidenav > .nav {
+.bs-sidenav > ul {
   margin-bottom: 10px;
 }
 
 /* All levels of nav */
-.bs-sidenav .nav > li > a {
+.bs-sidenav #toctree ul > li > a {
   display: block;
   color: #428bca;
   padding: 5px 20px;
 }
-.bs-sidenav .nav > li > a:hover,
-.bs-sidenav .nav > li > a:focus {
+.bs-sidenav #toctree ul > li > a:hover,
+.bs-sidenav #toctree ul > li > a:focus {
   text-decoration: none;
   background-color: #e5e3e9;
   border-right: 1px solid #dbd8e0;
 }
-.bs-sidenav .nav > .active > a,
-.bs-sidenav .nav > .active:hover > a,
-.bs-sidenav .nav > .active:focus > a {
+.bs-sidenav #toctree ul > .active > a,
+.bs-sidenav #toctree ul > .active:hover > a,
+.bs-sidenav #toctree ul > .active:focus > a {
   font-weight: bold;
   color: #563d7c;
   background-color: transparent;
   border-right: 1px solid #563d7c;
 }
 
-.bs-sidenav .nav .nav > li > a {
+.bs-sidenav #toctree ul ul > li > a {
   padding-top:    5px;
   padding-bottom: 5px;
   padding-left: 40px;
   font-size: 95%;
 }
 
-.bs-sidenav .nav .nav .nav > li > a {
-  padding-top:    3px;
-  padding-bottom: 3px;
-  padding-left: 40px;
-  font-size: 90%;
-}
-
-.bs-sidenav .nav .nav .nav .nav > li > a {
-  padding-top:    3px;
-  padding-bottom: 3px;
-  padding-left: 50px;
-  font-size: 90%;
-}
-
 /* Show and affix the side nav when space allows it */
 @media screen and (min-width: 992px) {
-  .bs-sidenav .nav > .active > ul {
+  .bs-sidenav #toctree ul > .active > ul {
     display: block;
   }
   /* Widen the fixed sidenav */
@@ -327,9 +313,9 @@ div.admonition p.last {
   display: block;
 }
 
-.bs-sidenav li a.current,
-.bs-sidenav li a.current:hover,
-.bs-sidenav li a.current:focus {
+.bs-sidenav #toctree li a.current,
+.bs-sidenav #toctree li a.current:hover,
+.bs-sidenav #toctree li a.current:focus {
   color: #fff;
   background-color: #428bca;
   text-shadow: none;
@@ -394,4 +380,15 @@ a.headerlink {
 
 .copyright {
   color: #999;
+}
+
+#toctree ul {
+  margin-bottom: 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+#toctree ul > li {
+  position: relative;
+  display: block; 
 }
