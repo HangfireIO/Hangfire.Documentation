@@ -137,8 +137,8 @@ Hangfire uses SQL Server or Redis to store information about background jobs. So
    {
        app.UseHangfire(config =>
        {
-           app.UseSqlServerStorage("MailerDb");
-           app.UseServer();
+           config.UseSqlServerStorage("MailerDb");
+           config.UseServer();
        });
    }
 

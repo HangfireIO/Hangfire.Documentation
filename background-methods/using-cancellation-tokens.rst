@@ -22,5 +22,9 @@ When you want to enqueue such method call as a background job, you can pass the 
 .. code-block:: c#
 
    BackgroundJob.Enqueue(() => LongRunningMethod(JobCancellationToken.Null));
+   
+.. note::
 
-You should use the cancellation tokens as much as possible – they greatly lower the application shutdown time and the risk of the appearance of the ``ThreadAbortException``.
+   Hangfire takes care of passing a proper non-null instance of ``IJobCancellationToken`` during the job execution at runtime.
+
+You should use cancellation tokens as much as possible – they greatly lower the application shutdown time and the risk of the appearance of the ``ThreadAbortException``.
