@@ -98,7 +98,7 @@ pygments_style = 'sphinx'
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-html_theme = 'default'
+html_theme = 'basic'
 html_sidebars = {'**': ['toctree.html', 'searchbox.html', 'versions.html']}
 
 # on_rtd is whether we are on readthedocs.org, this line of code grabbed from docs.readthedocs.org
