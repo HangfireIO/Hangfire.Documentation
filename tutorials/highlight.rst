@@ -512,7 +512,7 @@ To install Hangfire, run the following command in the Package Manager Console wi
 
    Install-Package Hangfire
 
-After the package installed, add or update the OWIN Startup class as :doc:`written here <../getting-started/owin-bootstrapper>` with the following lines of code.
+After the package installed, add or update the OWIN Startup class as :doc:`written here <../configuration/owin-bootstrapper>` with the following lines of code.
 
 .. code-block:: c#
 

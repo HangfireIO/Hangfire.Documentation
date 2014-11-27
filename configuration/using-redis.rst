@@ -27,7 +27,7 @@ Redis job storage implementation is available through the `Hangfire.Redis <https
 Configuration
 --------------
 
-If you are using Hangfire in a web application, you can use extension methods for :doc:`OWIN bootstrapper <../getting-started/owin-bootstrapper>`:
+If you are using Hangfire in a web application, you can use extension methods for :doc:`OWIN bootstrapper <owin-bootstrapper>`:
 
 .. code-block:: c#
 

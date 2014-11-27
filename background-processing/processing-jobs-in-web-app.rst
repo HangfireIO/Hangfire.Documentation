@@ -53,7 +53,7 @@ For example, in ASP.NET applications the best place for start/dispose method inv
 Using OWIN extension methods
 -----------------------------
 
-Hangfire also provides a dashboard that is implemented on top of OWIN pipeline to process requests. If you have simple set-up and want to keep Hangfire initialization logic in one place, consider using Hangfire's :doc:`extension methods for OWIN <../getting-started/owin-bootstrapper>`'s ``IAppBuilder`` interface:
+Hangfire also provides a dashboard that is implemented on top of OWIN pipeline to process requests. If you have simple set-up and want to keep Hangfire initialization logic in one place, consider using Hangfire's :doc:`extension methods for OWIN <../configuration/owin-bootstrapper>`'s ``IAppBuilder`` interface:
 
 .. code-block:: c#
 

@@ -1,0 +1,14 @@
+{% if READTHEDOCS %}
+<h4>Versions</h4>
+<ul>
+	{% for slug, url in versions %}
+      <li>
+      	{% if slug == current_version  %}
+      	<a href="{{ url }}">{{ slug }}</a>
+      	{% else %}
+      	<span>{{ slug }}</span>
+      	{% endif %}
+      </li>
+    {% endfor %}
+</ul>
+{% endif %}

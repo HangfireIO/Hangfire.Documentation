@@ -9,7 +9,7 @@ Sometimes you may want to postpone a method invocation, for example, to send an 
        () => Console.WriteLine("Hello, world"),
        TimeSpan.FromDays(1));
 
-:doc:`Hangfire Server <../background-processing/processing-background-jobs>` periodically check the schedule to enqueue scheduled jobs to their queues, allowing workers to perform them. By default, check interval is equal to ``15 seconds``, but you can change it, just pass the corresponding option to the ``BackgroundJobServer`` ctor (also applicable for :doc:`OWIN bootstrapper <../getting-started/owin-bootstrapper>`):
+:doc:`Hangfire Server <../background-processing/processing-background-jobs>` periodically check the schedule to enqueue scheduled jobs to their queues, allowing workers to perform them. By default, check interval is equal to ``15 seconds``, but you can change it, just pass the corresponding option to the ``BackgroundJobServer`` ctor (also applicable for :doc:`OWIN bootstrapper <../configuration/owin-bootstrapper>`):
 
 .. code-block:: c#
 

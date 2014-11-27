@@ -14,7 +14,7 @@ There are a `couple of packages
 Configuration
 --------------
 
-After installing the package, :doc:`add or update <owin-bootstrapper>` the OWIN Startup class with the following lines:
+After installing the package, :doc:`add or update <configuration/owin-bootstrapper>` the OWIN Startup class with the following lines:
 
 .. code-block:: c#
 

@@ -33,7 +33,7 @@ To use MSMQ queues, you should do the following steps:
 1. **Create them manually on each host**. Don't forget to grant appropriate permissions.
 2. Register all MSMQ queues in current ``SqlServerStorage`` instance.
 
-If you are using only default queue, pass the path pattern to the ``UseMsmqQueues`` extension method (it also applicable to the :doc:`OWIN bootstrapper <../getting-started/owin-bootstrapper>`):
+If you are using only default queue, pass the path pattern to the ``UseMsmqQueues`` extension method (it also applicable to the :doc:`OWIN bootstrapper <owin-bootstrapper>`):
 
 .. code-block:: c#
 

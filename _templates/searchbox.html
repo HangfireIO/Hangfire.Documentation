@@ -1,0 +1,10 @@
+{%- if pagename != "search" %}
+<h4>Quick Search</h4>
+<form action="{{ pathto('search') }}" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+{%- endif %}
