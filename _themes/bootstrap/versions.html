@@ -3,7 +3,7 @@
 <ul>
 	{% for slug, url in versions %}
       <li>
-      	{% if slug == current_version  %}
+      	{% if slug != current_version  %}
       	<a href="{{ url }}">{{ slug }}</a>
       	{% else %}
       	<span>{{ slug }}</span>

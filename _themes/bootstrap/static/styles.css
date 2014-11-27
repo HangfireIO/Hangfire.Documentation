@@ -392,3 +392,7 @@ a.headerlink {
   position: relative;
   display: block; 
 }
+
+.injected {
+  display: none;
+}
