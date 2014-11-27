@@ -1,0 +1,20 @@
+<nav>
+  <ul class="pager">
+    {%- if prev %}
+    <li class="previous">
+      <a href="{{ prev.link|e }}" title="{{ _('Previous Chapter: ') + prev.title|striptags }}">
+        <span aria-hidden="true">&larr;</span> 
+        {{ prev.title|striptags|truncate(length=16, killwords=True) }}
+      </a>
+    </li>
+    {%- endif %}
+    {%- if next %}    
+    <li class="next">
+      <a href="{{ next.link|e }}" title="{{ _('Next Chapter: ') + next.title|striptags }}">
+        {{ next.title|striptags|truncate(length=16, killwords=True) }} 
+        <span aria-hidden="true">&rarr;</span>
+      </a>
+    </li>
+    {%- endif %}
+  </ul>
+</nav>

@@ -14,7 +14,6 @@
 
 import sys
 import os
-import sphinx_bootstrap_theme
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
@@ -99,19 +98,8 @@ pygments_style = 'sphinx'
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-html_theme = 'bootstrap'
-html_theme_path = sphinx_bootstrap_theme.get_html_theme_path()
-
-html_theme_options = {
-  'navbar_pagenav': False,
-  'navbar_sidebarrel': True,
-  'bootswatch_theme': None,
-  'globaltoc_depth': 2,
-  'navbar_fixed_top': "false",
-  'navbar_class': 'navbar-hangfire'
-}
-
-html_sidebars = {'**': ['sidebar.html', 'searchbox.html', 'versions.html']}
+html_theme = 'basic'
+html_sidebars = {'**': ['toctree.html', 'searchbox.html', 'versions.html']}
 
 # on_rtd is whether we are on readthedocs.org, this line of code grabbed from docs.readthedocs.org
 on_rtd = os.environ.get('READTHEDOCS', None) == 'True'

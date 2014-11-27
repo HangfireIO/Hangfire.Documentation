@@ -1,0 +1,18 @@
+{% if pathto(master_doc) != "#" %}
+<ol class="breadcrumb">
+  <li><a href="{{ pathto(master_doc) }}">Documentation</a></li>
+    {% for doc in parents %}
+        <li><a href="{{ doc.link|e }}">{{ doc.title }}</a></li>
+    {% endfor %}
+  <li>{{ title }}</li>
+    <li class="breadcrumb-aside">
+      {% if display_github %}
+        <a href="https://github.com/{{ github_user }}/{{ github_repo }}/blob/{{ github_version }}{{ conf_py_path }}{{ pagename }}{{ source_suffix }}"><i class="fa fa-github"></i> Edit on GitHub</a>
+      {% elif display_bitbucket %}
+        <a href="https://bitbucket.org/{{ bitbucket_user }}/{{ bitbucket_repo }}/src/{{ bitbucket_version}}{{ conf_py_path }}{{ pagename }}{{ source_suffix }}"><i class="fa fa-bitbucket"></i> Edit on Bitbucket</a>
+      {% elif show_source and has_source and sourcename %}
+        <a href="{{ pathto('_sources/' + sourcename, true)|e }}" rel="nofollow">View page source</a>
+      {% endif %}
+    </li>
+</ol>
+{% endif %}
