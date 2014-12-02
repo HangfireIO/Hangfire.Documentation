@@ -9,7 +9,8 @@ Recurring job registration is pretty simple – you need to write only a single 
 
 This line creates a new entry in the storage. Special component in Hangfire Server (see :doc:`../background-processing/processing-background-jobs`) will check the recurring jobs on a minute-based interval and enqueue them as fire-and-forget jobs, so you can track them as usual.
 
-.. warning::
+.. admonition:: Make your app always running
+   :class: warning
 
    Your Hangfire Server instance should be always on to perform scheduling and processing logic. If you perform the processing inside an ASP.NET application, please read also :doc:`../deployment-to-production/making-aspnet-app-always-running` chapter.
 
@@ -19,6 +20,9 @@ The ``Cron`` class contains different methods and overloads to run jobs on a min
 
    RecurringJob.AddOrUpdate(() => Console.Write("Powerful!"), "0 12 * */2");
 
+Specifying identifiers
+-----------------------
+
 Each recurring job has its own unique identifier. In previous examples it is being generated implicitly, using the type name and method name of the given method call expression (resulting in ``"Console.Write"``). The ``RecurringJob`` class contains other methods that take the recurring job identifier, so you can use define it explicitly to be able to use it later.
 
 .. code-block:: c#
@@ -27,9 +31,18 @@ Each recurring job has its own unique identifier. In previous examples it is bei
 
 The call to ``AddOrUpdate`` method will create a new recurring job or update existing job with the same identifier.
 
-.. note::
+.. admonition:: Identifiers should be unique
+   :class: warning
+
+   Use unique identifiers for each recurring job, otherwise you'll end with a single job.
+
+.. admonition:: Identifiers may be case sensitive
+   :class: note
 
    Recurring job identifier is **case sensitive** in some storage implementations.
+
+Manipulating recurring jobs
+----------------------------
 
 You can remove existing recurring job by calling the ``RemoveIfExists`` method. It does not throw an exception, when there is no such recurring job.
 
@@ -50,6 +63,8 @@ The ``RecurringJob`` class is a facade for the ``RecurringJobManager`` class. If
    var manager = new RecurringJobManager();
    manager.AddOrUpdate("some-id", Job.FromExpression(() => Method()), Cron.Yearly);
 
+Registering recurring jobs
+---------------------------
 
 Example:
 
