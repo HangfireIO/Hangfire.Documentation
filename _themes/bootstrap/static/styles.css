@@ -376,7 +376,23 @@ footer {
 }
 
 a.headerlink {
-  margin-left: 10px;
+    margin-left: 10px;
+    -webkit-transition: all 0.25s;
+    -moz-transition: all 0.25s;
+    -o-transition: all 0.25s;
+    transition: all 0.25s;
+    opacity:0;
+    visibility: visible;
+}
+
+h1:hover > a.headerlink, 
+h2:hover > a.headerlink, 
+h3:hover > a.headerlink, 
+h4:hover > a.headerlink, 
+h5:hover > a.headerlink, 
+h6:hover > a.headerlink, 
+dt:hover > a.headerlink {
+    opacity: 1;
 }
 
 .copyright {
