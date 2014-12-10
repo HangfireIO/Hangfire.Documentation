@@ -29,7 +29,7 @@ After installing the package, :doc:`add or update <configuration/owin-bootstrapp
 
 .. note::
 
-   By default only local access is permitted to the Hangfire Dashboard. :doc:`Dashboard authorization <../deployment-to-production/configuring-authorization>` must be configured in order to allow remote access.
+   By default only local access is permitted to the Hangfire Dashboard. :doc:`Dashboard authorization <configuration/configuring-authorization>` must be configured in order to allow remote access.
 
 Then open the Hangfire Dashboard to test your configuration. Please, build the project and open the following URL in a browser:
 

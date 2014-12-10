@@ -37,7 +37,7 @@ If you have Visual Studio 2012 or earlier, just create a regular class in the ro
 Configuring Hangfire
 ---------------------
 
-Hangfire provides an extension method for the ``IAppBuilder`` interface called ``UseHangfire`` – an entry point to the configuration. :doc:`Storage <../configuration/index>`, :doc:`Job activator <../background-methods/using-ioc-containers>`, :doc:`Authorization filters <../deployment-to-production/configuring-authorization>`, :doc:`Job filters <../extensibility/using-job-filters>` can be configured here, check the available methods through the intellisence. Job storage is the only required configuration option, all others are optional.
+Hangfire provides an extension method for the ``IAppBuilder`` interface called ``UseHangfire`` – an entry point to the configuration. :doc:`Storage <../configuration/index>`, :doc:`Job activator <../background-methods/using-ioc-containers>`, :doc:`Authorization filters <configuring-authorization>`, :doc:`Job filters <../extensibility/using-job-filters>` can be configured here, check the available methods through the intellisence. Job storage is the only required configuration option, all others are optional.
 
 .. note::
 

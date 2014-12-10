@@ -9,7 +9,7 @@ From the 10.000-feet view the library consist of three main components: *client*
    :alt: Hangfire Workflow
    :align: center
    
-   
+
 Requirements
 -------------
 
@@ -17,7 +17,6 @@ Hangfire is not tied to the specific .NET application type. You can use it in AS
 
 * .NET Framework 4.5
 * Persistent storage (listed below)
-* `Common.Logging <https://www.nuget.org/packages/Common.Logging/>`_ ≥ 2.0 and ≤ 2.2
 * `Newtonsoft.Json <https://www.nuget.org/packages/Newtonsoft.Json/>`_ library ≥ 5.0.1
 
 Client

@@ -8,3 +8,5 @@ Configuration
    using-sql-server
    using-sql-server-with-msmq
    using-redis
+   configuring-authorization
+   configuring-logging
