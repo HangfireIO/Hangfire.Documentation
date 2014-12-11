@@ -37,6 +37,11 @@ If you want to use Hangfire outside of web application, where OWIN Startup class
 
    JobStorage.Current = new SqlServerStorage("connection string or its name");
 
+.. admonition:: Ensure your jobs are running no longer 30 minutes
+   :class: warning
+   
+   Otherwise please see the section :ref:`invisibility-timeout`.
+
 Installing objects
 ~~~~~~~~~~~~~~~~~~~
 
@@ -74,6 +79,8 @@ One of the main disadvantage of raw SQL Server job storage implementation – it
    var storage = new SqlServerStorage("<name or connection string>", options);
 
 If you want to remove the polling technique, consider using the MSMQ extensions or Redis storage implementation.
+
+.. _invisibility-timeout:
 
 Configuring the Invisibility Timeout
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
