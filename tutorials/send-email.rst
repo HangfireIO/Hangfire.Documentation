@@ -242,14 +242,14 @@ You can log cases when the maximum number of retry attempts has been exceeded. T
 
     public class LogFailureAttribute : JobFilterAttribute, IApplyStateFilter
     {
-        private static readonly ILog Logger = LogManager.GetCurrentClassLogger();
+        private static readonly ILog Logger = LogProvider.GetCurrentClassLogger();
 
         public void OnStateApplied(ApplyStateContext context, IWriteOnlyTransaction transaction)
         {
             var failedState = context.NewState as FailedState;
             if (failedState != null)
             {
-                Logger.Error(
+                Logger.ErrorException(
                     String.Format("Background job #{0} was failed with an exception.", context.JobId), 
                     failedState.Exception);
             }
