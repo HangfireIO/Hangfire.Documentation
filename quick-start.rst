@@ -27,7 +27,8 @@ After installing the package, :doc:`add or update <configuration/owin-bootstrapp
        });
    }
 
-.. note::
+.. admonition:: Authorization configuration required
+   :class: note
 
    By default only local access is permitted to the Hangfire Dashboard. :doc:`Dashboard authorization <configuration/configuring-authorization>` must be configured in order to allow remote access.
 

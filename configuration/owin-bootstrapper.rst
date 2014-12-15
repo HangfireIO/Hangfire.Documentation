@@ -6,7 +6,8 @@ In OWIN based web application frameworks, such as `ASP.NET MVC <http://www.asp.n
 Adding OWIN Startup class
 --------------------------
 
-.. note::
+.. admonition:: Already have OWIN startup? Skip this section
+   :class: note
 
    If your project already have the OWIN Startup class (for example if you have SignalR installed), go to the next section.
 
@@ -39,7 +40,8 @@ Configuring Hangfire
 
 Hangfire provides an extension method for the ``IAppBuilder`` interface called ``UseHangfire`` – an entry point to the configuration. :doc:`Storage <../configuration/index>`, :doc:`Job activator <../background-methods/using-ioc-containers>`, :doc:`Authorization filters <configuring-authorization>`, :doc:`Job filters <../extensibility/using-job-filters>` can be configured here, check the available methods through the intellisence. Job storage is the only required configuration option, all others are optional.
 
-.. note::
+.. admonition:: Graceful shutdown note
+   :class: note
 
    Prefer to use the ``UseServer`` method over manual ``BackgroundJobServer`` instantiation to process background jobs inside a web application. The method registers a handler of the application's shutdown event to perform the :doc:`graceful shutdown <../background-methods/using-cancellation-tokens>` for your jobs. 
 

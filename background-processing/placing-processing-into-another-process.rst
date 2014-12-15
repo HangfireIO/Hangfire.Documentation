@@ -17,7 +17,8 @@ After accomplishing the first step, you need to enable processing in another pro
 * :doc:`Using Console applications <processing-jobs-in-console-app>`
 * :doc:`Using Windows Services <processing-jobs-in-windows-service>`
 
-.. note::
+.. admonition:: Same storage requires the same code base
+   :class: note
 
    Ensure that all of your Client/Servers use **the same job storage** and **have the same code base**. If client enqueues a job based on the ``SomeClass`` that is absent in server's code, the latter will simply throw a performance exception.
 

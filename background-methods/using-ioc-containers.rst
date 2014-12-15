@@ -45,7 +45,8 @@ Some of these activators also provide an extension method for :doc:`OWIN bootstr
        config.UseNinjectActivator(kernel)
    });
 
-.. warning::
+.. admonition:: ``HttpContext`` is not available
+   :class: warning
    
    Request information is not available during the instantiation of a target type. If you register your dependencies in a request scope (``InstancePerHttpRequest`` in Autofac, ``InRequestScope`` in Ninject and so on), an exception will be thrown during the job activation process.
 

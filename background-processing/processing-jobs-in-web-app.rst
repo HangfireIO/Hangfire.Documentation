@@ -17,7 +17,8 @@ Using ``BackgroundJobServer`` class
 
 The basic way (but not the simplest -- see the next section) to start using Hangfire in a web framework is to use host-agnostic ``BackgroundJobServer`` class that was described in the :doc:`previous chapter <processing-background-jobs>` and call its ``Start`` and ``Dispose`` method in corresponding places.
 
-.. note::
+.. admonition:: Dispose the server instance when possible
+   :class: note
 
    In some web application frameworks it may be unclear when to call the ``Dispose`` method. If it is really impossible, you can omit this call as :doc:`described here <processing-background-jobs>` (but you'll loose the *graceful shutdown* feature).
 
@@ -65,7 +66,8 @@ Hangfire also provides a dashboard that is implemented on top of OWIN pipeline t
 
 This line creates a new instance of the ``BackgroundJobServer`` class automatically, calls the ``Start`` method and registers method ``Stop`` invocation on application shutdown. The latter is implemented using a ``CancellationToken`` instance stored in the ``host.OnAppDisposing`` environment key.
 
-.. warning::
+.. admonition:: Install ``Microsoft.Owin.Host.SystemWeb`` for ASP.NET + IIS
+   :class: warning
 
    If you are using OWIN extension methods for ASP.NET application hosted in IIS, ensure you have ``Microsoft.Owin.Host.SystemWeb`` package installed. Otherwise some features like `graceful shutdown <processing-background-jobs>`_ feature will not work for you.
    

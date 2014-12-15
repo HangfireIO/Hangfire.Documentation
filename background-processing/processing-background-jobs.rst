@@ -23,7 +23,8 @@ The Server does not depend on ASP.NET and can be started anywhere, from a consol
 
 Hangfire Server consist of different components that are doing different work: workers listen to queue and process jobs, recurring scheduler enqueues recurring jobs, schedule poller enqueues delayed jobs, expire manager removes obsolete jobs and keeps the storage as clean as possible, etc.
 
-.. note::
+.. admonition:: You can turn off the processing
+   :class: note
 
    If you don't want to process background jobs in a specific application instance, just don't create an instance of the ``BackgroundJobServer`` class or simply don't call the ``Start`` method in that instance.
 
@@ -31,7 +32,8 @@ Its ``Start`` and ``Stop`` methods are working in a **non-blocking manner** and 
 
 The ``Dispose`` method is a **blocking** one, it waits until all the components prepare for shutdown (for example, workers will place back interrupted jobs to their queues). So, we can talk about graceful shutdown only after waiting for all the components.
 
-.. note::
+.. admonition:: Always dispose your background server
+   :class: note
 
    Try to call the ``Dispose`` method where possible to have graceful shutdown features working.
 

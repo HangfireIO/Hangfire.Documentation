@@ -13,7 +13,8 @@ Then, install the needed package for your job storage. For example, you need to 
 
    PM> Install-Package Hangfire.SqlServer
 
-.. note::
+.. admonition:: ``Hangfire.Core`` package is enough
+   :class: note
 
    Please don't install the ``Hangfire`` package for console applications as it is a quick-start package only and contain dependencies you may not need (for example, ``Microsoft.Owin.Host.SystemWeb``).
 

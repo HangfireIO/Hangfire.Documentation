@@ -94,7 +94,8 @@ Enabling Service Auto-start
 
 After creating above classes, you should edit the global ``applicationHost.config`` file (``%WINDIR%\System32\inetsrv\config\applicationHost.config``). First, you need to change the start mode of your application pool to ``AlwaysRunning``, and then enable Service AutoStart Providers.
 
-.. note::
+.. admonition:: Save only after all modifications
+   :class: note
 
    After making these changes, the corresponding application pool will be restarted automatically. Make sure to save changes **only after** modifying all elements.
 

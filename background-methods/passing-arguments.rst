@@ -11,7 +11,8 @@ As in a regular method call, these arguments will be available for the ``Console
 
 Awesome `Newtonsoft.Json <http://james.newtonking.com/json>`_ package is being used to serialize arguments into JSON strings (since version ``1.1.0``). So you can use almost any type as a parameter type, including arrays, collections and custom objects. Please see `corresponding documentation <http://james.newtonking.com/json/help/index.html>`_ for the details.
 
-.. note::
+.. admonition:: Reference parameters are not supported
+   :class: note
 
    You can not pass arguments to parameters by reference – ``ref`` and ``out`` keywords are **not supported**.
 
