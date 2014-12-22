@@ -25,7 +25,7 @@ First, you'll need a special class that implements the ``IProcessHostPreloadClie
    {
        public void Preload(string[] parameters)
        {
-           HangfireBootstrapper.Start();
+           HangfireBootstrapper.Instance.Start();
        }
    }
 
@@ -33,44 +33,66 @@ Then, update your ``global.asax.cs`` file as described below. :doc:`It is import
 
 .. code-block:: c#
 
-   public class Global : HttpApplication
-   {
-       protected void Application_Start(object sender, EventArgs e)
-       {
-           HangfireBootstrapper.Start();
-       }
-
-       protected void Application_End(object sender, EventArgs e)
-       {
-           HangfireBootstrapper.Stop();
-       }
-   }
+    public class Global : HttpApplication
+    {
+        protected void Application_Start(object sender, EventArgs e)
+        {
+            HangfireBootstrapper.Instance.Start();
+        }
+ 
+        protected void Application_End(object sender, EventArgs e)
+        {
+            HangfireBootstrapper.Instance.Stop();
+        }
+    }
 
 Then, create the ``HangfireBootstrapper`` class as follows. Since both ``Application_Start`` and ``Preload`` methods will be called in environments with auto-start enabled, we need to ensure that the initialization logic will be called exactly once.
 
 .. code-block:: c#
 
-   public static class HangfireBootstrapper
-   {
-       private static BackgroundJobServer _backgroundJobServer;
-       private static bool _started;
+    public class HangfireBootstrapper : IRegisteredObject
+    {
+        public static readonly HangfireBootstrapper Instance = new HangfireBootstrapper();
 
-       public static void Start()
-       {
-           if (_started) return;
-           _started = true;
+        private readonly object _lockObject = new object();
+        private bool _started;
 
-           JobStorage.Current = new SqlServerStorage("connection_string");
+        private BackgroundJobServer _backgroundJobServer;
+        
+        public void Start()
+        {
+            lock (_lockObject)
+            {
+                if (_started) return;
+                _started = true;
 
-           _backgroundJobServer = new BackgroundJobServer();
-           _backgroundJobServer.Start();
-       }
+                HostingEnvironment.RegisterObject(this);
 
-       public static void Stop()
-       {
-           _backgroundJobServer.Stop();
-       }
-   }
+                JobStorage.Current = new RedisStorage();
+
+                _backgroundJobServer = new BackgroundJobServer();
+                _backgroundJobServer.Start();
+            }
+        }
+
+        public void Stop()
+        {
+            lock (_lockObject)
+            {
+                if (_backgroundJobServer != null)
+                {
+                    _backgroundJobServer.Dispose();
+                }
+
+                HostingEnvironment.UnregisterObject(this);
+            }
+        }
+
+        void IRegisteredObject.Stop(bool immediate)
+        {
+            Stop();
+        }
+    }
 
 And optionally, if you want to map Hangfire Dashboard UI, create an OWIN startup class:
 
@@ -124,6 +146,11 @@ There is no need to set IdleTimeout to zero -- when Application pool's start mod
 
 Ensuring auto-start feature is working
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. admonition:: If something went wrong...
+   :class: note
+
+   If your app won't load after these changes made, check your Windows Event Log by opening **Control Panel → Administrative Tools → Event Viewer**. Then open *Windows Logs → Application* and look for a recent error records.
 
 The simplest method - recycle your Application pool, wait for 5 minutes, then go to the Hangfire Dashboard UI and check that current Hangfire Server instance was started 5 minutes ago. If you have problems -- don't hesitate to ask them on `forum <http://discuss.hangfire.io>`_.
 
