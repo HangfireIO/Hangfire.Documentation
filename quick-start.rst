@@ -18,7 +18,7 @@ After installing the package, :doc:`add or update <configuration/owin-bootstrapp
 
 .. code-block:: c#
 
-   public void Configure(IAppBuilder app)
+   public void Configuration(IAppBuilder app)
    {
        app.UseHangfire(config =>
        {
