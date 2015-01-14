@@ -27,7 +27,7 @@ The package provides an extension method for the Hangfire's :doc:`OWIN bootstrap
        // Connection string defined in web.config
        config.UseSqlServerStorage("db_connection");
 
-       // Define the conenction string
+       // Define the connection string
        config.UseSqlServerStorage("Server=.\\sqlexpress; Database=Hangfire; Integrated Security=SSPI;");
    });
 
