@@ -1,7 +1,7 @@
 Configuring logging
 ====================
 
-Starting from Hangfire 1.3.0, you are **not required to do anything**, if your application already uses one of the following libraries through the reflection (so there Hangfire itself does not depend on any of them). Logging implementation is being **choosed automatically** by checking the presence of corresponding types in the order shown below.
+Starting from Hangfire 1.3.0, you are **not required to do anything**, if your application already uses one of the following libraries through the reflection (so there Hangfire itself does not depend on any of them). Logging implementation is being **automatically chosen** by checking the presence of corresponding types in the order shown below.
 
 1. `Serilog <http://serilog.net/>`_ 
 2. `NLog <http://nlog-project.org/>`_
