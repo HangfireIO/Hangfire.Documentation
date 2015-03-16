@@ -39,6 +39,8 @@ Or implement your own authorization filter:
          {
              // In case you need an OWIN context, use the next line.
              var context = new OwinContext(owinEnvironment);
-             return false;
+             
+             // Allow all authenticated users to see the Dashboard (potentially dangerous).
+             return context.Authentication.User.Identity.IsAuthenticated;
          }
     }
