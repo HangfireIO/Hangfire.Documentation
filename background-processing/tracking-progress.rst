@@ -90,7 +90,7 @@ And second, you need to make a small change to your background job method:
 
 .. code-block:: c#
 
-    public void Highlight(int snippetId)
+    public void HighlightSnippet(int snippetId)
     {
         ...
         _dbContext.SaveChanges();
