@@ -35,10 +35,9 @@ After installing packages, all you need is to create a new *Hangfire Server* ins
        {
            static void Main()
            {
-               var storage = new SqlServerStorage("connection_string");
-               var options = new BackgroundJobServerOptions();
+               JobStorage.Current = new SqlServerStorage("connection_string");
 
-               using (var server = new BackgroundJobServer(options, storage))
+               using (var server = new BackgroundJobServer())
                {
                    server.Start();
 
