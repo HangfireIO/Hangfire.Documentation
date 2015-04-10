@@ -18,17 +18,21 @@ After installing the package, :doc:`add or update <configuration/owin-bootstrapp
 
 .. code-block:: c#
 
+   using Hangfire;
+
+   // ...
+
    public void Configuration(IAppBuilder app)
    {
-       app.UseHangfire(config =>
-       {
-           config.UseSqlServerStorage("<connection string or its name>");
-           config.UseServer();
-       });
+       GlobalConfiguration.Configuration
+           .UseSqlServerStorage("<connection string or its name>");
+
+       app.UseHangfireDashboard();
+       app.UseHangfireServer();
    }
 
 .. admonition:: Authorization configuration required
-   :class: note
+   :class: warning
 
    By default only local access is permitted to the Hangfire Dashboard. :doc:`Dashboard authorization <configuration/configuring-authorization>` must be configured in order to allow remote access.
 
@@ -60,8 +64,8 @@ This is the main background job type, persistent message queues are used to hand
    
    BackgroundJob.Enqueue(() => Console.WriteLine("Fire-and-forget"));
 
-Delayed method invocation
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+Delayed
+^^^^^^^^
 
 If you want to delay the method invocation for a certain type, call the following method. After the given delay the job will be put to its queue and invoked as a regular fire-and-forget job.
 
@@ -69,14 +73,14 @@ If you want to delay the method invocation for a certain type, call the followin
 
    BackgroundJob.Schedule(() => Console.WriteLine("Delayed"), TimeSpan.FromDays(1));
 
-Recurring tasks
-^^^^^^^^^^^^^^^^
+Recurring
+^^^^^^^^^^
 
 To call a method on a recurrent basis (hourly, daily, etc), use the ``RecurringJob`` class. You are able to specify the schedule using `CRON expressions <http://en.wikipedia.org/wiki/Cron#CRON_expression>`_ to handle more complex scenarios.
 
 .. code-block:: c#
 
-   RecurringJob.AddOrUpdate(() => Console.Write("Recurring"), Cron.Daily);
+   RecurringJob.AddOrUpdate(() => Console.WriteLine("Daily Job"), Cron.Daily);
 
 … and relax
 ~~~~~~~~~~~~
