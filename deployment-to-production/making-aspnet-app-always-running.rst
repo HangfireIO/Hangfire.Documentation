@@ -68,7 +68,9 @@ Then, create the ``HangfireBootstrapper`` class as follows. Since both ``Applica
 
                 HostingEnvironment.RegisterObject(this);
 
-                JobStorage.Current = new RedisStorage();
+                GlobalConfiguration.Configuration
+                    .UseSqlServerStorage("connection string");
+                    // Specify other options here
 
                 _backgroundJobServer = new BackgroundJobServer();
                 _backgroundJobServer.Start();

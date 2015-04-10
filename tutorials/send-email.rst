@@ -129,17 +129,16 @@ To be able to put tasks into the background and not lose them during application
 
    Install-Package Hangfire
 
-Hangfire uses SQL Server or Redis to store information about background jobs. So, let's configure it. Add or update the OWIN Startup class as :doc:`written here <../configuration/owin-bootstrapper>`.
+Hangfire uses SQL Server or Redis to store information about background jobs. So, let's configure it. Add or update the OWIN Startup class:
 
 .. code-block:: c#
 
    public void Configure(IAppBuilder app)
    {
-       app.UseHangfire(config =>
-       {
-           config.UseSqlServerStorage("MailerDb");
-           config.UseServer();
-       });
+       GlobalConfiguration.Configuration.UseSqlServerStorage("MailerDb");
+
+       app.UseHangfireDashboard();
+       app.UseHangfireServer();
    }
 
 The ``SqlServerStorage`` class will install all database tables automatically on application start-up (but you are able to do it manually).

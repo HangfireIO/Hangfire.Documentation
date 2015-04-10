@@ -36,13 +36,12 @@ After installing packages, all you need is to create a new *Hangfire Server* ins
            {
                InitializeComponent();
 
-               JobStorage.Current = new SqlServerStorage("connection_string");
-               _server = new BackgroundJobServer();
+               GlobalConfiguration.Configuration.UseSqlServerStorage("connection_string");
            }
 
            protected override void OnStart(string[] args)
            {
-               _server.Start();
+               _server = new BackgroundJobServer();
            }
 
            protected override void OnStop()

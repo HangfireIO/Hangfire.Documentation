@@ -1,10 +1,6 @@
 Using SQL Server
 =================
 
-.. note::
-
-   Supported database engines: **Microsoft SQL Server 2008R2** (any edition) and later, **Microsoft SQL Azure**.
-
 SQL Server is the default storage for Hangfire – it is well known to many .NET developers and being used in many project environments. It may be interesting that in the early stage of Hangfire development, Redis was used to store information about jobs, and SQL Server storage implementation was inspired by that NoSql solution. But back to the SQL Server…
 
 SQL Server storage implementation is available through the ``Hangfire.SqlServer`` NuGet package. To install it, type the following command in your NuGet Package Console window:
@@ -15,27 +11,23 @@ SQL Server storage implementation is available through the ``Hangfire.SqlServer`
 
 This package is a dependency of the Hangfire's bootstrapper package ``Hangfire``, so if you installed it, you don't need to install the ``Hangfire.SqlServer`` separately – it was already added to your project.
 
+.. admonition:: Supported database engines
+   :class: note
+
+   **Microsoft SQL Server 2008R2** (any edition, including LocalDB) and later, **Microsoft SQL Azure**.
+
 Configuration
 --------------
 
-The package provides an extension method for the Hangfire's :doc:`OWIN bootstrapper <owin-bootstrapper>` method. Choose either a `connection string <https://www.connectionstrings.com/sqlconnection/>`_ to your SQL Server or a connection string name, if you have it.
+The package provides extension methods for ``GlobalConfiguration`` class. Choose either a `connection string <https://www.connectionstrings.com/sqlconnection/>`_ to your SQL Server or a connection string name, if you have it.
 
 .. code-block:: c#
 
-   app.UseHangfire(config =>
-   {
-       // Connection string defined in web.config
-       config.UseSqlServerStorage("db_connection");
-
-       // Define the connection string
-       config.UseSqlServerStorage("Server=.\\sqlexpress; Database=Hangfire; Integrated Security=SSPI;");
-   });
-
-If you want to use Hangfire outside of web application, where OWIN Startup class is not applicable, create an instance of the ``SqlServerStorage`` manually and pass it to the ``JobStorage.Current`` static property. Parameters are the same.
-
-.. code-block:: c#
-
-   JobStorage.Current = new SqlServerStorage("connection string or its name");
+   GlobalConfiguration.Configuration
+       // Use connection string name defined in `web.config` or `app.config`
+       .UseSqlServerStorage("db_connection")
+       // Use custom connection string
+       .UseSqlServerStorage(@"Server=.\sqlexpress; Database=Hangfire; Integrated Security=SSPI;");
 
 .. admonition:: Ensure your jobs are running no longer 30 minutes
    :class: warning
@@ -62,7 +54,7 @@ If you want to install objects manually, or integrate it with your existing migr
        PrepareSchemaIfNecessary = false
    };
 
-   var storage = new SqlServerStorage("<name or connection string>", options);
+   GlobalConfiguration.Configuration.UseSqlServerStorage("<name or connection string>", options);
 
 Configuring the Polling Interval
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -76,7 +68,7 @@ One of the main disadvantage of raw SQL Server job storage implementation – it
        QueuePollInterval = TimeSpan.FromSeconds(15) // Default value
    };
 
-   var storage = new SqlServerStorage("<name or connection string>", options);
+   GlobalConfiguration.Configuration.UseSqlServerStorage("<name or connection string>", options);
 
 If you want to remove the polling technique, consider using the MSMQ extensions or Redis storage implementation.
 
@@ -106,6 +98,6 @@ So, if you have long-running jobs, it is better to configure the invisibility ti
        InvisibilityTimeout = TimeSpan.FromMinutes(30) // default value
    };
 
-   var storage = new SqlServerStorage("<name or connection string>", options);
+   GlobalConfiguration.Configuration.UseSqlServerStorage("<name or connection string>", options);
 
 If you want to forget about invisibility interval, take a look at :doc:`MSMQ extension <using-sql-server-with-msmq>`, it uses transactional queues that return a job to its queue immediately upon a process termination.

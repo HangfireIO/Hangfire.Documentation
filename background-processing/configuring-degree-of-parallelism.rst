@@ -1,14 +1,12 @@
 Configuring the degree of parallelism
 ======================================
 
-Background jobs are being processed by a dedicated pool of worker threads that run inside Hangfire Server subsystem. When you start the background job server, it initializes the pool and starts the fixed amount of workers. You can specify their number by passing the value through the :doc:`OWIN bootstrapper <../configuration/owin-bootstrapper>`:
+Background jobs are being processed by a dedicated pool of worker threads that run inside Hangfire Server subsystem. When you start the background job server, it initializes the pool and starts the fixed amount of workers. You can specify their number by passing the value to the ``UseHangfireServer`` method.
 
 .. code-block:: c#
 
-   app.UseHangfire(config =>
-   {
-       config.UseServer(Environment.ProcessorCount * 5);
-   });
+   var options = new BackgroundJobServerOptions { WorkerCount = Environment.ProcessorCount * 5 };
+   app.UseHangfireServer(options);
    
 If you use Hangfire inside a Windows service or console app, just do the following:
 
