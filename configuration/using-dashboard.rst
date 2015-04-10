@@ -85,6 +85,19 @@ The second step is to pass it to the ``UseHangfireDashboard`` method. You can pa
         AuthorizationFilters = new[] { new MyRestrictiveAuthorizationFilter() }
     });
 
+.. admonition:: Method call order is important
+   :class: warning
+
+   Place a call to the ``UseHangfireDashboard`` method **after other authentication methods** in your OWIN Startup class. Otherwise authentication may not work for you.
+
+   .. code-block:: c#
+
+        public void Configuration(IAppBuilder app)
+        {            
+            app.UseCookieAuthentication(...); // Authentication - first
+            app.UseHangfireDashboard();       // Hangfire - last
+        }
+
 Change URL Mapping
 -------------------
 
