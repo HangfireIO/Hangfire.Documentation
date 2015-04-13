@@ -81,6 +81,16 @@ To call a method on a recurrent basis (hourly, daily, etc), use the ``RecurringJ
 
    RecurringJob.AddOrUpdate(() => Console.WriteLine("Daily Job"), Cron.Daily);
 
+Continuations
+^^^^^^^^^^^^^^
+
+Continuations allow you to define complex workflows by chaining multiple background jobs together.
+
+.. code-block:: c#
+
+   var id = BackgroundJob.Enqueue(() => Console.WriteLine("Hello, "));
+   BackgroundJob.ContinueWith(id, () => Console.WriteLine("world!"));
+
 … and relax
 ~~~~~~~~~~~~
 
