@@ -38,10 +38,10 @@ For example, in ASP.NET applications the best place for start/dispose method inv
 
            protected void Application_Start(object sender, EventArgs e)
            {
-               // JobStorage.Current = new ...;
+               GlobalConfiguration.Configuration
+                   .UseSqlServerStorage("DbConnection");
            
                _backgroundJobServer = new BackgroundJobServer();
-               _backgroundJobServer.Start();
            }
 
            protected void Application_End(object sender, EventArgs e)
@@ -54,17 +54,7 @@ For example, in ASP.NET applications the best place for start/dispose method inv
 Using OWIN extension methods
 -----------------------------
 
-Hangfire also provides a dashboard that is implemented on top of OWIN pipeline to process requests. If you have simple set-up and want to keep Hangfire initialization logic in one place, consider using Hangfire's :doc:`extension methods for OWIN <../configuration/owin-bootstrapper>`'s ``IAppBuilder`` interface:
-
-.. code-block:: c#
-
-   app.UseHangfire(config =>
-   {
-       /* other configuration options */
-       config.UseServer();
-   });
-
-This line creates a new instance of the ``BackgroundJobServer`` class automatically, calls the ``Start`` method and registers method ``Stop`` invocation on application shutdown. The latter is implemented using a ``CancellationToken`` instance stored in the ``host.OnAppDisposing`` environment key.
+Hangfire also provides a dashboard that is implemented on top of OWIN pipeline to process requests. If you have simple set-up and want to keep Hangfire initialization logic in one place, consider using Hangfire's extension methods for OWIN's ``IAppBuilder`` interface:
 
 .. admonition:: Install ``Microsoft.Owin.Host.SystemWeb`` for ASP.NET + IIS
    :class: warning
@@ -72,3 +62,15 @@ This line creates a new instance of the ``BackgroundJobServer`` class automatica
    If you are using OWIN extension methods for ASP.NET application hosted in IIS, ensure you have ``Microsoft.Owin.Host.SystemWeb`` package installed. Otherwise some features like `graceful shutdown <processing-background-jobs>`_ feature will not work for you.
    
    If you installed Hangfire through the ``Hangfire`` package, this dependency is already installed.
+
+.. code-block:: c#
+
+    public class Startup
+    {
+        public void Configuration(IAppBuilder app)
+        {
+            app.UseHangfireServer();
+        }
+    }
+
+This line creates a new instance of the ``BackgroundJobServer`` class automatically, calls the ``Start`` method and registers method ``Dispose`` invocation on application shutdown. The latter is implemented using a ``CancellationToken`` instance stored in the ``host.OnAppDisposing`` environment key.

@@ -6,24 +6,24 @@
 */
 
 .navbar-inverse .brand {
-  color: #FFF;
+    color: #FFF;
 }
 
 .page-top {
-  top: 0px;
+    top: 0px;
 }
 
 .navbar {
-  margin-bottom: 30px;
-  border-bottom: solid 2px #ccc;
+    margin-bottom: 30px;
+    border-bottom: solid 2px #ccc;
 }
 
 .navbar-default {
-  background-color: #eee;
+    background-color: #eee;
 }
 
 table {
-  border: 0;
+    border: 0;
 }
 
 .highlighttable .code pre {
@@ -36,77 +36,77 @@ table {
 }
 
 div.highlight {
-  background: none;
+    background: none;
 }
 
 a.footnote-reference {
-  vertical-align: super;
-  font-size: 75%;
+    vertical-align: super;
+    font-size: 75%;
 }
 
 table.footnote td.label {
-  font-size: 100%;
-  display: block;
-  line-height: normal;
-  background: inherit;
+    font-size: 100%;
+    display: block;
+    line-height: normal;
+    background: inherit;
 }
 
 table.footnote {
-  width: auto;
-  margin-bottom: 0px;
+    width: auto;
+    margin-bottom: 0px;
 }
 
 table.field-list {
-  width: auto;
+    width: auto;
 }
 
 .footer {
-  width: 100%;
-  border-top: 1px solid #ccc;
-  padding-top: 10px;
+    width: 100%;
+    border-top: 1px solid #ccc;
+    padding-top: 10px;
 }
 
 .bs-sidenav form, .bs-sidenav #sourcelink {
-  padding: 5px 20px;
+    padding: 5px 20px;
 }
 
 .bs-sidenav.affix {
-  position: static;
+    position: static;
 }
 
 /* First level of nav */
 .bs-sidenav {
-  padding-top:    10px;
-  padding-bottom: 10px;
-  text-shadow: 0 1px 0 #fff;
-  background-color: #f5f5f5;
-  border-radius: 5px;
-  margin-bottom: 20px;
+    padding-top:    10px;
+    padding-bottom: 10px;
+    text-shadow: 0 1px 0 #fff;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+    margin-bottom: 20px;
 }
 
 .bs-sidenav h4 {
-  margin: 5px 20px 7px;
-  color: #888;
-  font-size: 20px;
-  padding-bottom: 7px;
-  border-bottom: solid 1px #ddd;
+    margin: 5px 20px 7px;
+    color: #888;
+    font-size: 20px;
+    padding-bottom: 7px;
+    border-bottom: solid 1px #ddd;
 }
 
 .bs-sidenav > ul {
-  margin-bottom: 10px;
+    margin-bottom: 10px;
 }
 
 /* All levels of nav */
 .bs-sidenav #toctree ul > li > a {
-  display: block;
-  color: #428bca;
-  padding: 5px 20px;
+    display: block;
+    color: #428bca;
+    padding: 5px 20px;
 }
 .bs-sidenav #toctree ul > li > a:hover,
 .bs-sidenav #toctree ul > li > a:focus {
-  text-decoration: none;
-  background-color: #e5e3e9;
-  border-right: 1px solid #dbd8e0;
+    text-decoration: none;
+    background-color: #e5e3e9;
+    border-right: 1px solid #dbd8e0;
 }
 .bs-sidenav #toctree ul > .active > a,
 .bs-sidenav #toctree ul > .active:hover > a,
@@ -401,21 +401,29 @@ dt:hover > a.headerlink {
 }
 
 .copyright {
-  margin-top: 20px;
-  color: #999;
+    margin-top: 20px;
+    color: #999;
 }
 
 #toctree ul {
-  margin-bottom: 0;
-  padding-left: 0;
-  list-style: none;
+    margin-bottom: 0;
+    padding-left: 0;
+    list-style: none;
 }
 
 #toctree ul > li {
-  position: relative;
-  display: block; 
+    position: relative;
+    display: block; 
 }
 
 .injected {
-  display: none;
+    display: none;
+}
+
+img {
+    margin-bottom: 10px;
+}
+
+div.topic {
+    border: none;
 }

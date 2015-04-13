@@ -26,8 +26,7 @@ Then, you need to register it as a current job activator:
 
    // Somewhere in bootstrap logic, for example in the Global.asax.cs file
    var container = new Container();
-
-   JobActivator.Current = new ContainerJobActivator(container);
+   GlobalConfiguration.Configuration.UseActivator(new ContainerJobActivator(container));
 
 To simplify the initial installation, there are some integration  packages already available on NuGet:
 
@@ -36,14 +35,11 @@ To simplify the initial installation, there are some integration  packages alrea
 * `Hangfire.SimpleInjector <https://www.nuget.org/packages/Hangfire.SimpleInjector/>`_
 * `Hangfire.Windsor <https://www.nuget.org/packages/Hangfire.Windsor/>`_
 
-Some of these activators also provide an extension method for :doc:`OWIN bootstrapper <../configuration/owin-bootstrapper>`:
+Some of these activators also provide an extension method for the ``GlobalConfiguration`` class:
 
 .. code-block:: c#
 
-   app.UseHangfire(config =>
-   {
-       config.UseNinjectActivator(kernel)
-   });
+   GlobalConfiguration.Configuration.UseNinjectActivator(kernel);
 
 .. admonition:: ``HttpContext`` is not available
    :class: warning

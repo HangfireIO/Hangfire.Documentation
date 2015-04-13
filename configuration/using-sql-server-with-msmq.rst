@@ -23,7 +23,7 @@ MSMQ support for SQL Server job storage implementation, like other Hangfire exte
 
 .. code-block:: powershell
 
-   PM> Install-Package Hangfire.SqlServer.MSMQ
+   PM> Install-Package Hangfire.SqlServer.Msmq
 
 Configuration
 --------------
@@ -33,44 +33,27 @@ To use MSMQ queues, you should do the following steps:
 1. **Create them manually on each host**. Don't forget to grant appropriate permissions.
 2. Register all MSMQ queues in current ``SqlServerStorage`` instance.
 
-If you are using only default queue, pass the path pattern to the ``UseMsmqQueues`` extension method (it also applicable to the :doc:`OWIN bootstrapper <owin-bootstrapper>`):
+If you are using **only default queue**, call the ``UseMsmqQueues`` method just after ``UseSqlServerStorage`` method call and pass the path pattern as an argument.
 
 .. code-block:: c#
 
-   app.UseHangfire(config =>
-   {
-       config.UseSqlServerStorage("<connection string or its name>")
-             .UseMsmqQueues(@".\hangfire-{0}");
-   });
+    GlobalConfiguration.Configuration
+        .UseSqlServerStorage("<connection string or its name>")
+        .UseMsmqQueues(@".\hangfire-{0}");
 
 To use multiple queues, you should pass them explicitly:
 
 .. code-block:: c#
 
-   config.UseSqlServerStorage("<connection string or its name>")
-         .UseMsmqQueues(@".\hangfire-{0}", "critical", "default");
-
-If you are running Hangfire outside of web application, and OWIN context is not accessible, call the extension method on an instance of the ``SqlServerStorage`` class (parameters are the same):
-
-.. code-block:: c#
-
-   var storage = new SqlServerStorage("<connection string or its name>");
-   storage.UseMsmqQueues(@".\hangfire-{0}");
+    GlobalConfiguration.Configuration
+        .UseSqlServerStorage("<connection string or its name>")
+        .UseMsmqQueues(@".\hangfire-{0}", "critical", "default");
 
 Limitations
 ------------
 
 * Only transactional MSMQ queues supported for reability reasons inside ASP.NET.
 * You can not use both SQL Server Job Queue and MSMQ Job Queue implementations in the same server (see below). This limitation relates to Hangfire Server only. You can still enqueue jobs to whatever queues and watch them both in Hangfire Dashboard.
-
-The following case will not work: the ``critical`` queue uses MSMQ, and the ``default`` queue uses SQL Server to store job queue. In this case job fetcher can not make the right decision.
-
-.. code-block:: c#
-
-   config.UseSqlServerStorage("<name or connection string>")
-         .UseMsmqQueues(@"hangfire-{0}", "critical");
-
-   config.UseServer("critical", "default");
 
 Transition to MSMQ queues
 --------------------------
@@ -88,13 +71,14 @@ If you are using default queue only, do this:
         ServerName = "OldQueueServer" // Pass this to differentiate this server from the next one
     };
 
-    config.UseServer(oldStorage, oldOptions);
+    app.UseHangfireServer(oldOptions, oldStorage);
 
     /* This server will process only MSMQ queues, i.e. new jobs */
-    config.UseSqlServerStorage("<connection string or its name>")
-          .UseMsmqQueues(@".\hangfire-{0}");
+    GlobalConfiguration.Configuration
+        .UseSqlServerStorage("<connection string or its name>")
+        .UseMsmqQueues(@".\hangfire-{0}");
 
-    config.UseServer();
+    app.UseHangfireServer();
 
 If you use multiple queues, do this:
 
@@ -108,10 +92,11 @@ If you use multiple queues, do this:
         ServerName = "OldQueueServer" // Pass this to differentiate this server from the next one
     };
 
-    config.UseServer(oldStorage, oldOptions);
+    app.UseHangfireServer(oldOptions, oldStorage);
 
     /* This server will process only MSMQ queues, i.e. new jobs */
-    config.UseSqlServerStorage("<connection string or its name>")
-          .UseMsmqQueues(@".\hangfire-{0}", "critical", "default");
+    GlobalConfiguration.Configuration
+        .UseSqlServerStorage("<connection string or its name>")
+        .UseMsmqQueues(@".\hangfire-{0}", "critical", "default");
 
-    config.UseServer("critical", "default");
+    app.UseHangfireServer();
