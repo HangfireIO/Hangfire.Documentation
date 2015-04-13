@@ -19,7 +19,6 @@ For example, in ASP.NET applications, you can place initialization logic to the 
                 .UseSqlServerStorage("<name or connection string>");
                 //.UseActivator(...)
                 //.UseLogProvider(...)
-                //.UseContinuations()
         }
     }
 
