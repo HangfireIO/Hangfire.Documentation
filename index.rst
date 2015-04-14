@@ -53,7 +53,7 @@ SQL Server storage can be empowered with :doc:`MSMQ <../configuration/using-sql-
 
 .. code-block:: c#
 
-   JobStorage.Current = new SqlServerStorage("db_connection");
+   GlobalConfiguration.Configuration.UseSqlServerStorage("db_connection");
 
 Server
 -------
@@ -64,8 +64,11 @@ All you need is to create an instance of the ``BackgroundJobServer`` class and s
 
 .. code-block:: c#
 
-   var server = new BackgroundJobServer();
-   server.Start();
+   using (new BackgroundJobServer())
+   {
+       Console.WriteLine("Hangfire Server started. Press ENTER to exit...");
+       Console.ReadLine();
+   }
 
 Hangfire uses reliable fetching algorithm for each storage backend, so you can start the processing inside a web application without a risk of losing background jobs on application restarts, process termination and so on.
 
