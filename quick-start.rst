@@ -44,7 +44,7 @@ Then open the Hangfire Dashboard to test your configuration. Please, build the p
    </div>
 
 
-.. image:: http://hangfire.io/img/succeeded-jobs-sm.png
+.. image:: http://hangfire.io/img/ui/dashboard-sm.png
 
 Usage
 ------
