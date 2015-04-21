@@ -73,7 +73,6 @@ Then, create the ``HangfireBootstrapper`` class as follows. Since both ``Applica
                     // Specify other options here
 
                 _backgroundJobServer = new BackgroundJobServer();
-                _backgroundJobServer.Start();
             }
         }
 
