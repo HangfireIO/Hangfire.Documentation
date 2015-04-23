@@ -9,7 +9,7 @@ Sometimes you may want to postpone a method invocation, for example, to send an 
        () => Console.WriteLine("Hello, world"),
        TimeSpan.FromDays(1));
 
-:doc:`Hangfire Server <../background-processing/processing-background-jobs>` will periodically check the various job queues.  The default intreval for this check is ``15 seconds``, but you can change it.  To do this pass the corresponding option to the ``BackgroundJobServer`` ctor.
+Delayed jobs are placed in a separate set than message jobs. The :doc:`Hangfire Server <../background-processing/processing-background-jobs>` periodically checks this set to see if their are any jobs to be placed onto a message queue. If their are, the Server removes the job from the set and sends it to the appropriate queue. The default interval for this periodic check is ``15 seconds``, but you can change it.  To do this pass the corresponding option to the ``BackgroundJobServer`` ctor.
 
 .. code-block:: c#
 
