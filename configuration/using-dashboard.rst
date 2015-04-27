@@ -122,6 +122,8 @@ By default, *Back to site* link (top-right corner of Dashboard) leads you to the
    var options = new DashboardOptions { AppPath = "http://your-app.net" };
    // Make `Back to site` link working for subfolder applications
    var options = new DashboardOptions { AppPath = VirtualPathUtility.ToAbsolute("~") };
+   // Hide the `Back to site` link (useful for tabbed UIs)
+   var options = new DashboardOptions { AppPath = null };
 
    app.UseHangfireDashboard("/hangfire", options);
 
