@@ -39,7 +39,7 @@ If you are using **only default queue**, call the ``UseMsmqQueues`` method just 
 
     GlobalConfiguration.Configuration
         .UseSqlServerStorage("<connection string or its name>")
-        .UseMsmqQueues(@".\hangfire-{0}");
+        .UseMsmqQueues(@".\hangfire-{0}", "default");
 
 To use multiple queues, you should pass them explicitly:
 
