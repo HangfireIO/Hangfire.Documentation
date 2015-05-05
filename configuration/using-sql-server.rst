@@ -59,7 +59,9 @@ If you want to install objects manually, or integrate it with your existing migr
 Configuring the Polling Interval
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-One of the main disadvantage of raw SQL Server job storage implementation – it uses the polling technique to fetch new jobs. You can adjust the polling interval, but, as always, lower intervals can harm your SQL Server, and higher interval produce too much latency, so be careful. Please note that **millisecond-based intervals aren't supported**, you can only use intervals starting from *1 second*.
+One of the main disadvantage of raw SQL Server job storage implementation – it uses the polling technique to fetch new jobs. You can adjust the polling interval, but, as always, lower intervals can harm your SQL Server, and higher interval produce too much latency, so be careful. 
+
+Please note that **millisecond-based intervals aren't supported**, you can only use intervals starting from *1 second*.
 
 .. code-block:: c#
 
