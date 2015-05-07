@@ -13,3 +13,4 @@ Background processing
    configuring-degree-of-parallelism
    placing-processing-into-another-process
    running-multiple-server-instances
+   configuring-queues
