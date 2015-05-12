@@ -59,6 +59,10 @@ Then, create the ``HangfireBootstrapper`` class as follows. Since both ``Applica
 
         private BackgroundJobServer _backgroundJobServer;
         
+        private HangfireBootstrapper()
+        {
+        }
+        
         public void Start()
         {
             lock (_lockObject)
