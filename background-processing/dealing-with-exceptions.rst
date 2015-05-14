@@ -1,7 +1,7 @@
 Dealing with exceptions
 ========================
 
-Bad things happen. Every methods can throw exception of different types. These exceptions can be caused either by programming errors that require you to re-deploy the application, or transient errors, that can be fixed without additional deployment.
+Bad things happen. Any method can throw different types of exceptions. These exceptions can be caused either by programming errors that require you to re-deploy the application, or transient errors, that can be fixed without additional deployment.
 
 Hangfire handles all exceptions occured both in internal (belonging to Hangfire itself), and external methods (jobs, filters and so on), so it will not bring down the whole application. All internal exceptions are being logged (so, don't forget to :doc:`enable logging <../configuration/configuring-logging>`) and the worst case they can lead – background processing will be stopped after ``10`` retry attempts with increasing delay modifier.
 
