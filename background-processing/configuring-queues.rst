@@ -7,32 +7,28 @@ Hangfire can process multiple queues. If you want to prioritize your jobs or spl
 To place a job into a different queue, use the QueueAttribute class on your method:
 
 .. code-block:: c#
-  [Queue("critical")]
-  public void SomeMethod() { }
 
-  BackgroundJob.Enqueue(() => SomeMethod());
+   [Queue("critical")]
+   public void SomeMethod() { }
+
+   BackgroundJob.Enqueue(() => SomeMethod());
   
 .. admonition:: Queue name argument formatting 
- :class: warning
+   :class: warning
 
- The Queue name argument must consist of lowercase letters, digits and underscore characters only.
+   The Queue name argument must consist of lowercase letters, digits and underscore characters only.
   
-To start to process multiple queues, you need to update your BackgroundJobServer configuration.
-
-For ASP.NET-based applications:
+To start to process multiple queues, you need to update your ``BackgroundJobServer`` configuration.
 
 .. code-block:: c#
-  var options = new BackgroundJobServerOptions {
-    Queues = new[] { "Default", "Critical" }
-  }
-  backgroundJobServer = new BackgroundJobServer(options);
 
-For OWIN-based applications:
+   var options = new BackgroundJobServerOptions 
+   {
+       Queues = new[] { "critical", "default" }
+   };
+   
+   app.UseHangfireServer(options);
+   // or
+   using (new BackgroundJobServer(options)) { /* ... */ }
 
-.. code-block:: c#
-  app.UseHangfire(config =>
-  {
-    config.UseServer("critical", "default");
-  });
-  
 The order is important, workers will fetch jobs from the critical queue first, and then from the default queue.
