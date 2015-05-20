@@ -12,3 +12,4 @@ Background methods
    using-ioc-containers
    using-cancellation-tokens
    writing-unit-tests
+   using-batches
