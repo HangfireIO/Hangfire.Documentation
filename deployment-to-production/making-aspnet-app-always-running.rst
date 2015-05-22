@@ -107,12 +107,15 @@ And optionally, if you want to map Hangfire Dashboard UI, create an OWIN startup
    {
        public void Configuration(IAppBuilder app)
        {
-           var authorizationFilters = new[]
-           {
-               new LocalRequestsOnlyAuthorizationFilter()
-           };
+	       var options = new DashboardOptions
+		   {
+               AuthorizationFilters = new[]
+               {
+                   new LocalRequestsOnlyAuthorizationFilter()
+               }
+		   };
 
-           app.MapHangfireDashboard("/hangfire", authorizationFilters);
+           app.UseHangfireDashboard("/hangfire", options);
        }
    }
 
