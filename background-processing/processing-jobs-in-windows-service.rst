@@ -51,7 +51,7 @@ After installing packages, all you need is to create a new *Hangfire Server* ins
        }
    }
 
-If you are new to Windows Services in .NET projects, it is always better to goole about them first, but for quick-start scenario you'll need only to add an installer and optionally configure it. To perform this step just go back to the design view of the service class, right click on it and choose the ``Add Installer`` menu item.
+If you are new to Windows Services in .NET projects, it is always better to google about them first, but for quick-start scenario you'll need only to add an installer and optionally configure it. To perform this step just go back to the design view of the service class, right click on it and choose the ``Add Installer`` menu item.
 
 .. image:: add-installer.png
    :alt: Adding installer to Windows Service project
