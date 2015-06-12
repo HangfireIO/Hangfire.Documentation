@@ -30,6 +30,8 @@ After installing the package, add or update the OWIN Startup class with the foll
        app.UseHangfireServer();
    }
 
+The ``UseSqlServerStorage()`` extention method comes from the `SQL Server <http://hangfire.readthedocs.org/en/latest/configuration/using-sql-server.html>`_ nuget package. 
+
 .. admonition:: Authorization configuration required
    :class: warning
 
