@@ -30,7 +30,7 @@ After installing packages, all you need is to create a new *Hangfire Server* ins
    {
        public partial class Service1 : ServiceBase
        {
-           private readonly BackgroundJobServer _server;
+           private BackgroundJobServer _server;
 
            public Service1()
            {
