@@ -52,7 +52,7 @@ To use multiple queues, you should pass them explicitly:
 Limitations
 ------------
 
-* Only transactional MSMQ queues supported for reability reasons inside ASP.NET.
+* Only transactional MSMQ queues supported for reliability reasons inside ASP.NET.
 * You can not use both SQL Server Job Queue and MSMQ Job Queue implementations in the same server (see below). This limitation relates to Hangfire Server only. You can still enqueue jobs to whatever queues and watch them both in Hangfire Dashboard.
 
 Transition to MSMQ queues
