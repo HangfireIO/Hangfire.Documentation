@@ -5,7 +5,7 @@ I will not tell you anything related to unit testing background methods, because
 
 All the code examples use the static ``BackgroundJob`` class to tell you how to do this or that stuff, because it is simple for demonstrational purposes. But when you want to test a method that invokes static methods, it becomes a pain.
 
-But don't worry – the ``BackgroundJob`` class is just a facade for the ``IBackgroundJobClient`` interface and its default implementation – ``BackgroundJobClient`` class. If you want to write unit tests, use them. For example, consider the following controller that is being used to enqueue background jobs:
+But don't worry – the ``BackgroundJob`` class is just a facade for the ``IBackgroundJobClient`` interface and its default implementation – ``BackgroundJobClient`` class. If you want to write unit tests, use them. For example, consider the following controller that is used to enqueue background jobs:
 
 .. code-block:: c#
 

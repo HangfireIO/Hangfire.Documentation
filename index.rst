@@ -1,7 +1,7 @@
 Documentation
 ==============
 
-Hangfire allows you to kick off method calls outside of the request processing pipeline in a very easy, but reliable way. These method invocations are being performed in a *background thread* and called *background jobs*.
+Hangfire allows you to kick off method calls outside of the request processing pipeline in a very easy, but reliable way. These method invocations are performed in a *background thread* and called *background jobs*.
 
 From the 10.000-feet view the library consist of three main components: *client*, *storage* and *server*. Here is a small diagram that describes the main processes in Hangfire:
 
@@ -39,7 +39,7 @@ There is also more easy way to create background jobs – the ``BackgroundJob`` 
 
    BackgroundJob.Enqueue(() => Console.WriteLine("Hello!"));
 
-The control is being returned to a caller just after Hangfire serializes the given information and saves it to the *storage*.
+The control is returned to a caller just after Hangfire serializes the given information and saves it to the *storage*.
 
 Job Storage
 ------------
@@ -58,7 +58,7 @@ SQL Server storage can be empowered with :doc:`MSMQ <../configuration/using-sql-
 Server
 -------
 
-Background jobs are being processed by :doc:`Hangfire Server <../background-processing/processing-background-jobs>`. It is implemented as a set of dedicated (not thread pool's) background threads that fetch jobs from a storage and process them. Server is also responsible to keep the storage clean and remove old data automatically.
+Background jobs are processed by :doc:`Hangfire Server <../background-processing/processing-background-jobs>`. It is implemented as a set of dedicated (not thread pool's) background threads that fetch jobs from a storage and process them. Server is also responsible to keep the storage clean and remove old data automatically.
 
 All you need is to create an instance of the ``BackgroundJobServer`` class and start the processing:
 

@@ -495,7 +495,7 @@ The latter way solves this problem, but brings another ones. Should the queue be
 
    **DO NOT** run long-running processes inside of your ASP.NET application, unless they are prepared to **die at any instruction** and there is mechanism that can re-run them.
 
-   They will be simple aborted on application shutdown, and can be aborted even if the ``IRegisteredObject`` interface is being used due to time out.
+   They will be simple aborted on application shutdown, and can be aborted even if the ``IRegisteredObject`` interface is used due to time out.
 
 Too many questions? Relax, you can use `Hangfire <http://hangfire.io>`_. It is based on *persistent queues* to survive on application restarts, uses *reliable fetching* to handle unexpected thread aborts and contains *coordination logic* to allow multiple worker threads. And it is simple enough to use it.
 
@@ -586,7 +586,7 @@ That's all. Try to create some snippets and see the timings (don't worry if you 
 
 .. image:: highlighter/jobprof.png
 
-Good, 6ms vs ~2s. But there is another problem. Did you notice that sometimes you are being redirected to the page with no source code at all? This happens because our view contains the following line:
+Good, 6ms vs ~2s. But there is another problem. Did you notice that sometimes you are redirected to the page with no source code at all? This happens because our view contains the following line:
 
 .. code-block:: html
   
@@ -642,7 +642,7 @@ Or you can also use send a command to users via SignalR channel from your ``High
 
 .. note::
 
-   Please, note that user still waits until its source code will be highlighted. But the application itself became more responsive and he is able to do another things while background job is being processed.
+   Please, note that user still waits until its source code will be highlighted. But the application itself became more responsive and he is able to do another things while background job is processed.
 
 Conclusion
 -----------

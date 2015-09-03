@@ -23,7 +23,7 @@ When you want to enqueue such method call as a background job, you can pass the 
 
    BackgroundJob.Enqueue(() => LongRunningMethod(JobCancellationToken.Null));
    
-.. admonition:: The implementation is being resolved automatically
+.. admonition:: The implementation is resolved automatically
    :class: note
 
    Hangfire takes care of passing a proper non-null instance of ``IJobCancellationToken`` during the job execution at runtime.

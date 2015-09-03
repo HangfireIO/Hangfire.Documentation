@@ -28,7 +28,7 @@ To uninstall performance counters, use the ``upc`` command:
 Configuration
 --------------
 
-Performance counters are being exposed through the ``Hangfire.Pro.PerformanceCounters`` package. After adding it to your project, you need only to initialize them by invoking the following method:
+Performance counters are exposed through the ``Hangfire.Pro.PerformanceCounters`` package. After adding it to your project, you need only to initialize them by invoking the following method:
 
 .. code-block:: csharp
 

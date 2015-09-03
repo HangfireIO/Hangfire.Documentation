@@ -21,7 +21,7 @@ Then, install the needed package for your job storage. For example, you need to 
 After installing packages, all you need is to create a new *Hangfire Server* instance and start it as written in the :doc:`previous <processing-background-jobs>` chapter. However, there are some details here:
 
 * Since the ``Start`` method is **non-blocking**, we insert a ``Console.ReadKey`` call to prevent instant shutdown of an application.
-* The call to ``Stop`` method is implicit -- it is being made through the ``using`` statement.
+* The call to ``Stop`` method is implicit -- it is made through the ``using`` statement.
 
 .. code-block:: c#
 

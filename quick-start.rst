@@ -57,7 +57,7 @@ Hangfire handles different types of background jobs, and all of them are invoked
 Fire-and-forget
 ^^^^^^^^^^^^^^^^
 
-This is the main background job type, persistent message queues are used to handle it. Once you create a fire-and-forget job, it is being saved to its queue (``"default"`` by default, but multiple queues supported). The queue is listened by a couple of dedicated workers that fetch a job and perform it.
+This is the main background job type, persistent message queues are used to handle it. Once you create a fire-and-forget job, it is saved to its queue (``"default"`` by default, but multiple queues supported). The queue is listened by a couple of dedicated workers that fetch a job and perform it.
 
 .. code-block:: c#
    

@@ -27,5 +27,5 @@ So, the job is removed only after processing succeeds. Even if a process was ter
 Each storage has its own implementation for each of these steps and compensation logic mechanisms:
 
 * **SQL Server** implementation uses periodical checks to fetch next jobs. If a process was terminated, the job will be re-queued only after ``InvisibilityTimeout`` expiration (30 minutes by default).
-* **MSMQ** implementation uses transactional queues, so there is no need for periodic checks. Jobs are being fetched almost immediately after enqueueing.
-* **Redis** implementation uses blocking ``BRPOPLPUSH`` command, so jobs are being fetched immediately, as with MSMQ. But in case of process termination, they are re-enqueued only after timeout expiration (15 minutes by default).
+* **MSMQ** implementation uses transactional queues, so there is no need for periodic checks. Jobs are fetched almost immediately after enqueueing.
+* **Redis** implementation uses blocking ``BRPOPLPUSH`` command, so jobs are fetched immediately, as with MSMQ. But in case of process termination, they are re-enqueued only after timeout expiration (15 minutes by default).

@@ -1,7 +1,7 @@
 Using SQL Server
 =================
 
-SQL Server is the default storage for Hangfire – it is well known to many .NET developers and being used in many project environments. It may be interesting that in the early stage of Hangfire development, Redis was used to store information about jobs, and SQL Server storage implementation was inspired by that NoSql solution. But back to the SQL Server…
+SQL Server is the default storage for Hangfire – it is well known to many .NET developers and used in many project environments. It may be interesting that in the early stage of Hangfire development, Redis was used to store information about jobs, and SQL Server storage implementation was inspired by that NoSql solution. But back to the SQL Server…
 
 SQL Server storage implementation is available through the ``Hangfire.SqlServer`` NuGet package. To install it, type the following command in your NuGet Package Console window:
 
@@ -41,9 +41,9 @@ Hangfire leverages a couple of tables and indexes to persist background jobs and
 
 .. image:: sql-schema.png
 
-Some of these tables are used for the core functionality, others fulfill the extensibility needs (making possible to write extensions without changing the underlying schema). Advanced objects like stored procedures, triggers and so on are not being used to keep things as simple as possible and allow the library to be used with SQL Azure.
+Some of these tables are used for the core functionality, others fulfill the extensibility needs (making possible to write extensions without changing the underlying schema). Advanced objects like stored procedures, triggers and so on are not used to keep things as simple as possible and allow the library to be used with SQL Azure.
 
-SQL Server objects are being **installed automatically** from the ``SqlServerStorage`` constructor by executing statements described in the ``Install.sql`` file (which is located under the ``tools`` folder in the NuGet package). Which contains the migration script, so new versions of Hangfire with schema changes can be installed seamlessly, without your intervention.
+SQL Server objects are **installed automatically** from the ``SqlServerStorage`` constructor by executing statements described in the ``Install.sql`` file (which is located under the ``tools`` folder in the NuGet package). Which contains the migration script, so new versions of Hangfire with schema changes can be installed seamlessly, without your intervention.
 
 If you want to install objects manually, or integrate it with your existing migration subsystem, pass your decision through the SQL Server storage options:
 
@@ -79,9 +79,9 @@ If you want to remove the polling technique, consider using the MSMQ extensions 
 Configuring the Invisibility Timeout
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Default SQL Server job storage implementation uses a regular table as a job queue. To be sure that a job will not be lost in case of unexpected process termination, it is being deleted only from a queue only upon a successful completion. 
+Default SQL Server job storage implementation uses a regular table as a job queue. To be sure that a job will not be lost in case of unexpected process termination, it is deleted only from a queue only upon a successful completion. 
 
-To make it invisible from other workers, the ``UPDATE`` statement with ``OUTPUT`` clause is being used to fetch a queued job and update the ``FetchedAt`` value (that signals for other workers that it was fetched) in an atomic way. Other workers see the fetched timestamp and ignore a job. But to handle the process termination, they will ignore a job only during a specified amount of time (defaults to 30 minutes).
+To make it invisible from other workers, the ``UPDATE`` statement with ``OUTPUT`` clause is used to fetch a queued job and update the ``FetchedAt`` value (that signals for other workers that it was fetched) in an atomic way. Other workers see the fetched timestamp and ignore a job. But to handle the process termination, they will ignore a job only during a specified amount of time (defaults to 30 minutes).
 
 Although this mechanism ensures that every job will be processed, sometimes it may cause either long retry latency or lead to multiple job execution. Consider the following scenario:
 
