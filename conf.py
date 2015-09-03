@@ -180,7 +180,7 @@ html_static_path = ['_static']
 #html_file_suffix = None
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'HangFiredoc'
+htmlhelp_basename = 'Hangfiredoc'
 
 if on_rtd: 
   html_context = {
@@ -204,7 +204,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-  ('index', 'HangFire.tex', u'HangFire Documentation',
+  ('index', 'HangFire.tex', u'Hangfire Documentation',
    u'Sergey Odinokov', 'manual'),
 ]
 
