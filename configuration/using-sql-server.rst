@@ -29,11 +29,6 @@ The package provides extension methods for ``GlobalConfiguration`` class. Choose
        // Use custom connection string
        .UseSqlServerStorage(@"Server=.\sqlexpress; Database=Hangfire; Integrated Security=SSPI;");
 
-.. admonition:: Ensure your jobs are running no longer 30 minutes
-   :class: warning
-   
-   Otherwise please see the section :ref:`invisibility-timeout`.
-
 Installing objects
 ~~~~~~~~~~~~~~~~~~~
 
@@ -74,32 +69,3 @@ Please note that **millisecond-based intervals aren't supported**, you can only 
 
 If you want to remove the polling technique, consider using the MSMQ extensions or Redis storage implementation.
 
-.. _invisibility-timeout:
-
-Configuring the Invisibility Timeout
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Default SQL Server job storage implementation uses a regular table as a job queue. To be sure that a job will not be lost in case of unexpected process termination, it is deleted only from a queue only upon a successful completion. 
-
-To make it invisible from other workers, the ``UPDATE`` statement with ``OUTPUT`` clause is used to fetch a queued job and update the ``FetchedAt`` value (that signals for other workers that it was fetched) in an atomic way. Other workers see the fetched timestamp and ignore a job. But to handle the process termination, they will ignore a job only during a specified amount of time (defaults to 30 minutes).
-
-Although this mechanism ensures that every job will be processed, sometimes it may cause either long retry latency or lead to multiple job execution. Consider the following scenario:
-
-1. Worker A fetched a job (runs for a hour) and started it at 12:00.
-2. Worker B fetched the same job at 12:30, because the default invisibility timeout was expired.
-3. Worker C fetched the same job at 13:00, because 
-
-If you are using :doc:`cancellation tokens <../background-methods/using-cancellation-tokens>`, it will be set for Worker A at 12:30, and at 13:00 for Worker B. This may lead to the fact that your long-running job will never be executed. If you aren't using cancellation tokens, it will be concurrently executed by WorkerA and Worker B (since 12:30), but Worker C will not fetch it, because it will be deleted after successful performance.
-
-So, if you have long-running jobs, it is better to configure the invisibility timeout interval:
-
-.. code-block:: c#
-
-   var options = new SqlServerStorageOptions
-   {
-       InvisibilityTimeout = TimeSpan.FromMinutes(30) // default value
-   };
-
-   GlobalConfiguration.Configuration.UseSqlServerStorage("<name or connection string>", options);
-
-If you want to forget about invisibility interval, take a look at :doc:`MSMQ extension <using-sql-server-with-msmq>`, it uses transactional queues that return a job to its queue immediately upon a process termination.

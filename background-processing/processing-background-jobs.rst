@@ -27,4 +27,4 @@ Hangfire Server consist of different components that are doing different work: w
 
 The ``Dispose`` method is a **blocking** one, it waits until all the components prepare for shutdown (for example, workers will place back interrupted jobs to their queues). So, we can talk about graceful shutdown only after waiting for all the components.
 
-Strictly saying, *you are not required* to invoke the ``Dispose`` method. Hangfire can handle even unexpected process terminations almost fine, and will retry interrupted jobs automatically. However, if you are not calling the ``Dispose`` method, some things like :doc:`cancellation tokens <../background-methods/using-cancellation-tokens>` or automatic job re-queueing on shutdown (instead of waiting for a job invisibility timeout) -- in other words graceful shutdown -- **will not work**.
+Strictly saying, you aren't required to invoke the ``Dispose`` method. Hangfire can handle even unexpected process terminations, and will retry interrupted jobs automatically. However it is better to control the exit points in your methods by using :doc:`cancellation tokens <../background-methods/using-cancellation-tokens>`.

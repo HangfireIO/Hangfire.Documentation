@@ -6,9 +6,8 @@ Using SQL Server with MSMQ
 ================================ ================= =================
 Feature                          Raw SQL Server    SQL Server + MSMQ
 ================================ ================= =================
-Retry after process termination  Timeout           Immediate after
-                                 (30 minutes by    restart
-                                 default)
+Retry after process termination  Immediate after   Immediate after
+                                 restart           restart
 Worst job fetch time             Polling Interval  Immediate
                                  (15 seconds by
                                  default)
