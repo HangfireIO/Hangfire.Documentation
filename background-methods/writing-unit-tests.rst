@@ -50,7 +50,7 @@ Simple, yeah. Now you can use any mocking framework, for example, `Moq <https://
 
         // Assert
         client.Verify(x => x.Create(
-            It.Is<Job>(job => job.Method.Name == "CheckForSpam" && job.Arguments[0] == comment.Id.ToString()),
+            It.Is<Job>(job => job.Method.Name == "CheckForSpam" && job.Args[0] == comment.Id.ToString()),
             It.IsAny<EnqueuedState>());
     }
     
