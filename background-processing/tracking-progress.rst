@@ -49,7 +49,7 @@ But there is a better way.
 Using server push with SignalR
 -------------------------------
 
-Why we need to poll our server? It can say when the snippet become highlighted himself. And `SignalR <http://signalr.net>`_, an awesome library to perform server push, will help us. If you don't know about this library, look at it, and you'll love it. Really.
+Why we need to poll our server? It can say when the snippet becomes highlighted himself. And `SignalR <http://signalr.net>`_, an awesome library to perform server push, will help us. If you don't know about this library, look at it, and you'll love it. Really.
 
 I don't want to include all the code snippets here (you can look at the sources of this sample). I'll show you only the two changes that you need, and they are incredibly simple.
 
@@ -104,4 +104,4 @@ And second, you need to make a small change to your background job method:
 
 And that's all! When user opens a page that contains unhighlighted code snippet, his browser connects to the server, subscribes for code snippet notification and waits for update notifications. When background job is about to be done, it sends the highlighted code to all subscribed users.
 
-If you want to add a progress tracking, just add it. No additional tables and columns required, only JavaScript function. This is example of real and reliable asynchrony for ASP.NET applications without taking much effort to it.
+If you want to add progress tracking, just add it. No additional tables and columns required, only JavaScript function. This is an example of real and reliable asynchrony for ASP.NET applications without taking much effort to it.
