@@ -276,6 +276,10 @@ div.admonition p.last {
     border-bottom: 1px solid #eee;
 }
 
+.section h2 {
+    font-size: 28px;
+}
+
 .breadcrumb-aside {
   float: right;
 }
