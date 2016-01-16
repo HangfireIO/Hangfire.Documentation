@@ -4,12 +4,7 @@ Documentation
 .. raw:: html
 
     <div class="jumbotron" style="padding: 20px 30px; background-color: #f5f5f5;">
-        <div class="input-group">
-            <input type="text" class="form-control input-lg st-default-search-input" placeholder="What can we help you with?">
-                <span class="input-group-btn">
-                    <button class="btn btn-primary input-lg" type="button">Search</button>
-                </span>
-        </div>
+        <input type="text" class="form-control st-default-search-input" placeholder="What can we help you with?">
     </div>
     
     <script type="text/javascript">
