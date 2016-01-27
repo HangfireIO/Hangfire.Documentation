@@ -222,7 +222,7 @@ That's all! Try to create some comments and see the ``C:\Temp`` path. You also c
 Automatic retries
 ------------------
 
-When the ``emailService.Send`` method throws an exception, HangFire will retry it automatically after a delay (that is increased with each attempt). The retry attempt count is limited (10 by default), but you can increase it. Just apply the ``AutomaticRetryAttribute`` to the ``NotifyNewComment`` method:
+When the ``emailService.Send`` method throws an exception, Hangfire will retry it automatically after a delay (that is increased with each attempt). The retry attempt count is limited (10 by default), but you can increase it. Just apply the ``AutomaticRetryAttribute`` to the ``NotifyNewComment`` method:
 
 .. code-block:: c#
 
