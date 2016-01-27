@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# HangFire documentation build configuration file, created by
+# Hangfire documentation build configuration file, created by
 # sphinx-quickstart on Mon Mar 31 20:50:35 2014.
 #
 # This file is execfile()d with the current directory set to its
@@ -204,7 +204,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-  ('index', 'HangFire.tex', u'Hangfire Documentation',
+  ('index', 'Hangfire.tex', u'Hangfire Documentation',
    u'Sergey Odinokov', 'manual'),
 ]
 
@@ -248,7 +248,7 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  ('index', 'HangFire', u'Hangfire Documentation',
+  ('index', 'Hangfire', u'Hangfire Documentation',
    u'Sergey Odinokov', 'Hangfire', 'Incredibly easy way to perform fire-and-forget, delayed and recurring tasks inside ASP.NET applications',
    'Miscellaneous'),
 ]
