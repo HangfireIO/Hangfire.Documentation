@@ -114,7 +114,7 @@ Further considerations
 
 But why should a user  wait until the notification was sent? There should be some way to send emails asynchronously, in the background, and return a response to the user as soon as possible. 
 
-Unfortunately, `asynchronous <http://www.asp.net/mvc/tutorials/mvc-4/using-asynchronous-methods-in-aspnet-mvc-4>`_ controller actions `does not help <http://blog.stephencleary.com/2012/08/async-doesnt-change-http-protocol.html>`_ in this scenario, because they do not yield response to the user while waiting for the asynchronous operation to complete. They only solve internal issues related to thread pooling and application capacity.
+Unfortunately, `asynchronous <http://www.asp.net/mvc/tutorials/mvc-4/using-asynchronous-methods-in-aspnet-mvc-4>`_ controller actions `do not help <http://blog.stephencleary.com/2012/08/async-doesnt-change-http-protocol.html>`_ in this scenario, because they do not yield response to the user while waiting for the asynchronous operation to complete. They only solve internal issues related to thread pooling and application capacity.
 
 There are `great problems <http://blog.stephencleary.com/2012/12/returning-early-from-aspnet-requests.html>`_ with background threads also. You should use Thread Pool threads or custom ones that are running inside ASP.NET application with care – you can simply lose your emails during the application recycle process (even if you register an implementation of the ``IRegisteredObject`` interface in ASP.NET).
 
