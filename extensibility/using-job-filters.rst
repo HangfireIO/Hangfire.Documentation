@@ -41,7 +41,7 @@ All processes are implemented with Chain-of-responsibility pattern and can be in
             if (failedState != null)
             {
                 Logger.WarnFormat(
-                    "Job `{0}` has been failed due to exception `{1}` but will be retried automatically until retry attempts exceeded",
+                    "Job `{0}` has been failed due to an exception `{1}`",
                     context.BackgroundJob.Id,
                     failedState.Exception);
             }
@@ -58,7 +58,10 @@ All processes are implemented with Chain-of-responsibility pattern and can be in
 
         public void OnStateUnapplied(ApplyStateContext context, IWriteOnlyTransaction transaction)
         {
-            Logger.InfoFormat("Job `{0}` state `{1}` was unapplied.", context.BackgroundJob.Id, context.OldStateName);
+            Logger.InfoFormat(
+                "Job `{0}` state `{1}` was unapplied.", 
+                context.BackgroundJob.Id, 
+                context.OldStateName);
         }
     }
 
