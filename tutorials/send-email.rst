@@ -226,7 +226,7 @@ When the ``emailService.Send`` method throws an exception, Hangfire will retry i
 
 .. code-block:: c#
 
-   [AutomaticRetry(20)]
+   [AutomaticRetry( Attempts = 20 )
    public static void NotifyNewComment(int commentId)
    {
        /* ... */
