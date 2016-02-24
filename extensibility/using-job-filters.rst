@@ -8,37 +8,31 @@ All processes are implemented with Chain-of-responsibility pattern and can be in
 .. code-block:: c#
 
     public class LogEverythingAttribute : JobFilterAttribute,
-            IClientFilter, IServerFilter, IElectStateFilter, IApplyStateFilter
+        IClientFilter, IServerFilter, IElectStateFilter, IApplyStateFilter
     {
-        private static readonly ILog Logger = LogManager.GetCurrentClassLogger();
+        private static readonly ILog Logger = LogProvider.GetCurrentClassLogger();
 
-        public void OnCreating(CreatingContext filterContext)
+        public void OnCreating(CreatingContext context)
         {
-            Logger.InfoFormat(
-                "Creating a job based on method `{0}`...", 
-                filterContext.Job.MethodData.MethodInfo.Name);
+            Logger.InfoFormat("Creating a job based on method `{0}`...", context.Job.Method.Name);
         }
 
-        public void OnCreated(CreatedContext filterContext)
+        public void OnCreated(CreatedContext context)
         {
             Logger.InfoFormat(
-                "Job that is based on method `{0}` has been created with id `{1}`", 
-                filterContext.Job.MethodData.MethodInfo.Name, 
-                filterContext.JobId);
+                "Job that is based on method `{0}` has been created with id `{1}`",
+                context.Job.Method.Name,
+                context.BackgroundJob?.Id);
         }
 
-        public void OnPerforming(PerformingContext filterContext)
+        public void OnPerforming(PerformingContext context)
         {
-            Logger.InfoFormat(
-                "Starting to perform job `{0}`",
-                filterContext.JobId);
+            Logger.InfoFormat("Starting to perform job `{0}`", context.BackgroundJob.Id);
         }
 
-        public void OnPerformed(PerformedContext filterContext)
+        public void OnPerformed(PerformedContext context)
         {
-            Logger.InfoFormat(
-                "Job `{0}` has been performed",
-                filterContext.JobId);
+            Logger.InfoFormat("Job `{0}` has been performed", context.BackgroundJob.Id);
         }
 
         public void OnStateElection(ElectStateContext context)
@@ -48,7 +42,7 @@ All processes are implemented with Chain-of-responsibility pattern and can be in
             {
                 Logger.WarnFormat(
                     "Job `{0}` has been failed due to exception `{1}` but will be retried automatically until retry attempts exceeded",
-                    context.JobId,
+                    context.BackgroundJob.Id,
                     failedState.Exception);
             }
         }
@@ -57,17 +51,14 @@ All processes are implemented with Chain-of-responsibility pattern and can be in
         {
             Logger.InfoFormat(
                 "Job `{0}` state was changed from `{1}` to `{2}`",
-                context.JobId,
+                context.BackgroundJob.Id,
                 context.OldStateName,
                 context.NewState.Name);
         }
 
         public void OnStateUnapplied(ApplyStateContext context, IWriteOnlyTransaction transaction)
         {
-            Logger.InfoFormat(
-                "Job `{0}` state `{1}` was unapplied.",
-                context.JobId,
-                context.OldStateName);
+            Logger.InfoFormat("Job `{0}` state `{1}` was unapplied.", context.BackgroundJob.Id, context.OldStateName);
         }
     }
 
