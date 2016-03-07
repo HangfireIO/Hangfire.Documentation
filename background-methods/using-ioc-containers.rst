@@ -20,13 +20,15 @@ As I said in the :doc:`previous section <passing-dependencies>` Hangfire uses th
        }
    }
 
-Then, you need to register it as a current job activator:
+Then, you need to register it as a current job activator before starting the Hangfire server:
 
 .. code-block:: c#
 
    // Somewhere in bootstrap logic, for example in the Global.asax.cs file
    var container = new Container();
    GlobalConfiguration.Configuration.UseActivator(new ContainerJobActivator(container));
+   ...
+   app.UseHangfireServer();
 
 To simplify the initial installation, there are some integration  packages already available on NuGet:
 
