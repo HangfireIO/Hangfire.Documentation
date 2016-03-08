@@ -38,7 +38,7 @@ If you are using **only default queue**, call the ``UseMsmqQueues`` method just 
 
     GlobalConfiguration.Configuration
         .UseSqlServerStorage("<connection string or its name>")
-        .UseMsmqQueues(@".\hangfire-{0}");
+        .UseMsmqQueues(@"FormatName:Direct=OS:localhost\hangfire-{0}");
 
 To use multiple queues, you should pass them explicitly:
 
@@ -46,7 +46,7 @@ To use multiple queues, you should pass them explicitly:
 
     GlobalConfiguration.Configuration
         .UseSqlServerStorage("<connection string or its name>")
-        .UseMsmqQueues(@".\hangfire-{0}", "critical", "default");
+        .UseMsmqQueues(@"FormatName:Direct=OS:localhost\hangfire-{0}", "critical", "default");
 
 Limitations
 ------------
@@ -75,7 +75,7 @@ If you are using default queue only, do this:
     /* This server will process only MSMQ queues, i.e. new jobs */
     GlobalConfiguration.Configuration
         .UseSqlServerStorage("<connection string or its name>")
-        .UseMsmqQueues(@".\hangfire-{0}");
+        .UseMsmqQueues(@"FormatName:Direct=OS:localhost\hangfire-{0}");
 
     app.UseHangfireServer();
 
@@ -96,6 +96,6 @@ If you use multiple queues, do this:
     /* This server will process only MSMQ queues, i.e. new jobs */
     GlobalConfiguration.Configuration
         .UseSqlServerStorage("<connection string or its name>")
-        .UseMsmqQueues(@".\hangfire-{0}", "critical", "default");
+        .UseMsmqQueues(@"FormatName:Direct=OS:localhost\hangfire-{0}", "critical", "default");
 
     app.UseHangfireServer();
