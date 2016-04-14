@@ -129,17 +129,27 @@ To be able to put tasks into the background and not lose them during application
 
    Install-Package Hangfire
 
-Hangfire uses SQL Server or Redis to store information about background jobs. So, let's configure it. Add or update the OWIN Startup class:
+Hangfire uses SQL Server or Redis to store information about background jobs. So, let's configure it. Add a new class Startup into the root of the project:
 
 .. code-block:: c#
 
-   public void Configure(IAppBuilder app)
-   {
-       GlobalConfiguration.Configuration.UseSqlServerStorage("MailerDb");
+       public class Startup
+    {
+        public void Configuration(IAppBuilder app)
+        {
+            GlobalConfiguration.Configuration
+                .UseSqlServerStorage(
+                    "MailerDb",
+                    new SqlServerStorageOptions { QueuePollInterval = TimeSpan.FromSeconds(1) });
 
-       app.UseHangfireDashboard();
-       app.UseHangfireServer();
-   }
+
+            app.UseHangfireDashboard();
+            app.UseHangfireServer();
+
+
+        }
+
+    }
 
 The ``SqlServerStorage`` class will install all database tables automatically on application start-up (but you are able to do it manually).
 
@@ -163,11 +173,11 @@ Now we are ready to use Hangfire. It asks us to wrap a piece of code that should
 
 Note, that we are passing a comment identifier instead of a full comment – Hangfire should be able to serialize all method call arguments to string values. The default serializer does not know anything about our ``Comment`` class. Furthermore, the integer identifier takes less space in serialized form than the full comment text.
 
-Now, we need to prepare the ``NotifyNewComment`` method that will be called in the background. Note that ``HttpContext.Current`` is not available in this situation, but Postal library can work even `outside of ASP.NET request <http://aboutcode.net/postal/outside-aspnet.html>`_. But first install another package (that is needed for Postal 0.9.2, see `the issue <https://github.com/andrewdavey/postal/issues/68>`_).
+Now, we need to prepare the ``NotifyNewComment`` method that will be called in the background. Note that ``HttpContext.Current`` is not available in this situation, but Postal library can work even `outside of ASP.NET request <http://aboutcode.net/postal/outside-aspnet.html>`_. But first install another package (that is needed for Postal 0.9.2, see `the issue <https://github.com/andrewdavey/postal/issues/68>`_). Let's update package and bring in the RazorEngine
 
 .. code-block:: powershell
 
-   Install-Package RazorEngine
+   Update-Package -save
 
 .. code-block:: c#
 
@@ -226,7 +236,7 @@ When the ``emailService.Send`` method throws an exception, Hangfire will retry i
 
 .. code-block:: c#
 
-   [AutomaticRetry( Attempts = 20 )
+   [AutomaticRetry( Attempts = 20 )]
    public static void NotifyNewComment(int commentId)
    {
        /* ... */
@@ -265,7 +275,17 @@ Either globally by calling the following method at application start:
 
 .. code-block:: c#
 
-   GlobalJobFilters.Filters.Add(new LogFailureAttribute());
+        public void Configuration(IAppBuilder app)
+        {
+            GlobalConfiguration.Configuration
+                .UseSqlServerStorage(
+                    "MailerDb",
+                    new SqlServerStorageOptions { QueuePollInterval = TimeSpan.FromSeconds(1) })
+                    .UseFilter(new LogFailureAttribute());
+
+            app.UseHangfireDashboard();
+            app.UseHangfireServer();
+        }
 
 Or locally by applying the attribute to a method:
 
@@ -276,6 +296,52 @@ Or locally by applying the attribute to a method:
    {
        /* ... */
    }
+   
+You can see the logging is working when you add a new breakpoint in LogFailureAttribute class inside method  OnStateApplied
+
+If you like to use any of common logger and you do not need to do anything. Let's take NLog as an example.
+Install NLog (current version: 4.2.3)
+
+.. code-block:: powershell
+
+   Install-Package NLog
+
+Add a new Nlog.config file into the root of the project.
+ 
+.. code-block:: xml
+
+<?xml version="1.0" encoding="utf-8" ?>
+<nlog xmlns="http://www.nlog-project.org/schemas/NLog.xsd"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      autoReload="true"
+      throwExceptions="false">
+
+  <variable name="appName" value="HangFire.Mailer" />
+
+  <targets async="true">
+    <target xsi:type="File"
+            name="default"
+            layout="${longdate} - ${level:uppercase=true}: ${message}${onexception:${newline}EXCEPTION\: ${exception:format=ToString}}"
+            fileName="${specialfolder:ApplicationData}\${appName}\Debug.log"
+            keepFileOpen="false"
+            archiveFileName="${specialfolder:ApplicationData}\${appName}\Debug_${shortdate}.{##}.log"
+            archiveNumbering="Sequence"
+            archiveEvery="Day"
+            maxArchiveFiles="30"
+            />
+
+    <target xsi:type="EventLog"
+            name="eventlog"
+            source="${appName}"
+            layout="${message}${newline}${exception:format=ToString}"/>
+  </targets>
+  <rules>
+    <logger name="*" writeTo="default" minlevel="Info" />
+    <logger name="*" writeTo="eventlog" minlevel="Error" />
+  </rules>
+</nlog>
+
+run application and new log file could be find on cd %appdata%\HangFire.Mailer\Debug.log 
 
 Fix-deploy-retry
 -----------------
@@ -285,7 +351,7 @@ If you made a mistake in your ``NotifyNewComment`` method, you can fix it and re
 .. code-block:: c#
 
    // Break background job by setting null to emailService:
-   var emailService = null;
+   EmailService emailService = null;
 
 Compile a project, add a comment and go to the web interface by typing ``http://<your-app>/hangfire``. Exceed all automatic attempts, then fix the job, restart the application, and click the ``Retry`` button on the *Failed jobs* page.
 
