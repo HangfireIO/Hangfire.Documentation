@@ -36,7 +36,7 @@ First, install the ``Postal`` NuGet package:
 
 .. code-block:: powershell
 
-   Install-Package Postal
+   Install-Package Postal.Mvc5
 
 Then, create ``~/Models/NewCommentEmail.cs`` file with the following contents:
 
