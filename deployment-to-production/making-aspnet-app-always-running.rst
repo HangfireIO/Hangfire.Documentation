@@ -149,6 +149,7 @@ After creating above classes, you should edit the global ``applicationHost.confi
        <add name="ApplicationPreload" type="WebApplication1.ApplicationPreload, WebApplication1" />
    </serviceAutoStartProviders>
 
+Note that for the last entry, ``WebApplication1.ApplicationPreload`` is the full name of a class in your application that implements ``IProcessHostPreloadClient`` and ``WebApplication1`` is the name of your application's library. You can read more about this `here <http://www.asp.net/whitepapers/aspnet4#0.2__Toc253429241>`_.
  
 There is no need to set IdleTimeout to zero -- when Application pool's start mode is set to ``AlwaysRunning``, idle timeout does not working anymore.
 
