@@ -15,6 +15,26 @@ Please, see the `downloads page <http://redis.io/download>`_ to obtain latest ve
 
 Redis also supports Windows platform, but this is unofficial fork made by clever Microsoft guys. Here are GitHub repository branches for versions: `2.6 <https://github.com/MSOpenTech/redis/tree/2.6>`_, `2.8 <https://github.com/MSOpenTech/redis/tree/2.8>`_. Redis binaries are available through NuGet (`32-bit <https://www.nuget.org/packages/Redis-32/>`_, `64-bit <https://www.nuget.org/packages/Redis-64/>`_) and Chocolate galleries (`64-bit <http://chocolatey.org/packages/redis-64>`_ only). To install it as a Windows Service, check the `rgl/redis <https://github.com/rgl/redis>`_ repository, install it and update with binaries given above. *Don't use Redis 2.4 for Windows version for production environments (it is slow)*.
 
+Redis Configuration
+--------------------
+
+Please read official Redis `documentation <http://redis.io/documentation>`_ to learn how to configure it, especially `Redis Persistence <http://redis.io/topics/persistence>`_ and `Redis Administration <http://redis.io/topics/admin>`_ sections to get started with fundamentals. The following options should be configured to run your background jobs smoothly. 
+
+.. admonition:: Ensure the following options are configured
+   :class: warning
+
+   These values are default for on-premise Redis installations, but other environments may have different defaults, for example **Azure Redis Cache** and **AWS ElastiCache** **use non-compatible settings** by default.  
+
+.. code-block:: shell
+
+   # Non-zero value cause long-running background jobs to be 
+   # processed multiple times due to connection was closed.
+   timeout 0
+
+   # Hangfire neither expect that non-expired keys are deleted,
+   # nor expiring keys are evicted before the expiration time.
+   maxmemory-policy noeviction
+
 Configuration
 --------------
 
