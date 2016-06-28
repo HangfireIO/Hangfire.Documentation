@@ -16,6 +16,11 @@ This package is a dependency of the Hangfire's bootstrapper package ``Hangfire``
 
    **Microsoft SQL Server 2008R2** (any edition, including LocalDB) and later, **Microsoft SQL Azure**.
 
+.. admonition:: Snapshot isolation is not supported!
+   :class: warning
+
+   Ensure your database doesn't use the snapshot isolation level, and the ``READ_COMMITTED_SNAPSHOT`` option (another name is *Is Read Committed Snapshot On*) **is disabled**. Otherwise some of your background jobs will not be processed, when MSMQ or RabbitMQ extensions are used. 
+
 Configuration
 --------------
 
