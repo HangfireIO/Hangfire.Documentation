@@ -23,7 +23,7 @@ Hangfire.Pro.Redis package contains some extension methods for the ``GlobalConfi
 .. code-block:: c#
 
    GlobalConfiguration.Configuration
-       // Use localhost:6370
+       // Use localhost:6379
        .UseRedisStorage();
        // Using hostname only and default port 6379
        .UseRedisStorage("localhost");
