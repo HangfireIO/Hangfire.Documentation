@@ -334,7 +334,7 @@ footer {
 .navbar-hangfire {
     margin-bottom: 30px;
     background-color: #eee;
-    border-bottom: none;
+    border: none;
 }
 
 .navbar-hangfire .icon-bar {
