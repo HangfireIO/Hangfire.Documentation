@@ -15,7 +15,7 @@
 
 .navbar {
     margin-bottom: 30px;
-    border-bottom: solid 2px #ccc;
+    border: none;
 }
 
 .navbar-default {
