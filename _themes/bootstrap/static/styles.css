@@ -13,11 +13,6 @@
     top: 0px;
 }
 
-.navbar {
-    margin-bottom: 30px;
-    border: none;
-}
-
 .navbar-default {
     background-color: #eee;
 }
@@ -339,7 +334,7 @@ footer {
 .navbar-hangfire {
     margin-bottom: 30px;
     background-color: #eee;
-    border-bottom: solid 2px #ccc;
+    border-bottom: none;
 }
 
 .navbar-hangfire .icon-bar {
