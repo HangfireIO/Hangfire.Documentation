@@ -29,7 +29,7 @@ Configuration
 
 To use MSMQ queues, you should do the following steps:
 
-1. **Create them manually on each host**. Don't forget to grant appropriate permissions.
+1. **Create them manually on each host**. Don't forget to grant appropriate permissions. Please note that queue storage is limited to 1048576 KB by default (approximately 2 millions enqueued jobs), you can increase it through the MSMQ properties window. 
 2. Register all MSMQ queues in current ``SqlServerStorage`` instance.
 
 If you are using **only default queue**, call the ``UseMsmqQueues`` method just after ``UseSqlServerStorage`` method call and pass the path pattern as an argument.
