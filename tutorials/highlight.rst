@@ -516,7 +516,7 @@ After the package installed, add or update the OWIN Startup class with the follo
 
 .. code-block:: c#
 
-   public void Configure(IAppBuilder app)
+   public void Configuration(IAppBuilder app)
    {
        GlobalConfiguration.Configuration.UseSqlServerStorage("HighlighterDb");
 
