@@ -168,13 +168,20 @@ table.field-list {
 }
 
 .section pre {
-  padding: 16px;
+  padding: 10px 15px;
   overflow: auto;
   font-size: 85%;
   line-height: 1.45;
   background-color: #f7f7f7;
   border-radius: 3px;
-  border: solid 1px #eee;
+  border: none;
+}
+
+.section pre .hll {
+    background-color: #f7f774!important;
+    margin: 0 -15px;
+    padding: 0 15px;
+    display: block;
 }
 
 div.admonition {
