@@ -5,7 +5,7 @@ Documentation
    
    <div class="jumbotron" style="padding: 25px 36px;">
     <div class="row">
-      <div class="col-md-7">
+      <div class="col-md-7 hidden-sm hidden-xs">
         <h3 style="margin-top: 0;">Search</h3>
         <input type="text" class="st-default-search-input" placeholder="What can we help you with?" style="width: 100%!important;display: block;box-sizing: border-box;height: auto;">
         <script type="text/javascript">
