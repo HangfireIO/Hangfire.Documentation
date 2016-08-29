@@ -19,7 +19,7 @@ This package is a dependency of the Hangfire's bootstrapper package ``Hangfire``
 .. admonition:: Snapshot isolation is not supported!
    :class: warning
 
-   Ensure your database doesn't use the snapshot isolation level, and the ``READ_COMMITTED_SNAPSHOT`` option (another name is *Is Read Committed Snapshot On*) **is disabled**. Otherwise some of your background jobs will not be processed.
+   **Applies only to Hangfire < 1.5.9**: Ensure your database doesn't use the snapshot isolation level, and the ``READ_COMMITTED_SNAPSHOT`` option (another name is *Is Read Committed Snapshot On*) **is disabled**. Otherwise some of your background jobs will not be processed.
 
 Configuration
 --------------
