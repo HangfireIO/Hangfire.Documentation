@@ -50,12 +50,12 @@ Ensure that you have configured the private Hangfire Pro NuGet feed as `written 
 
    PM> Install-Package Hangfire.Pro.Redis
 
-If your project targets .NET Core, please use the ``2.0.0-netcore`` version, since no release version of the StackExchange.Redis package available for .NET Core yet.
+If your project targets .NET Core, just add a dependency in your ``project.json`` file:
 
 .. code-block:: json
 
    "dependencies": {
-       "Hangfire.Pro.Redis": "2.0.0-netcore"
+       "Hangfire.Pro.Redis": "2.0.2"
    }
 
 Configuration
