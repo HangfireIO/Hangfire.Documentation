@@ -11,8 +11,8 @@ On-Premise applications
 For web applications running on servers under your control, either physical or virtual, you can use the auto-start feature of IIS ≥ 7.5 shipped with Windows Server ≥ 2008 R2. Full setup requires the following steps to be done:
 
 1. Enable automatic start-up for Windows Process Activation (WAS) and World Wide Web Publishing (W3SVC) services (enabled by default).
-2. `Configure Automatic Startup <http://technet.microsoft.com/en-us/library/cc772112(v=ws.10).aspx>`_ for an Application pool (enabled by default).
-3. Enable Always Running Mode for Application pool and configure Auto-start feature as written below.
+2. `Configure Automatic Startup <http://technet.microsoft.com/en-us/library/cc772112(v=ws.10).aspx>`_ for an Application pool (enabled by default.).
+3. Enable Always Running Mode for Application pool (IIS 7.5 needs `Application Initialization Module <https://www.iis.net/downloads/microsoft/application-initialization#additionalDownloads>`_. Application Initialization is built-in for IIS 8.0.) and configure Auto-start feature as written below.
 
 Creating classes
 ~~~~~~~~~~~~~~~~~
