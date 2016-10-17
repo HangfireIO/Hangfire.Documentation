@@ -10,7 +10,7 @@ It is possible to run multiple server instances inside a process, machine, or on
 
 Each Hangfire Server has a unique identifier that consist of two parts to provide default values for the cases written above. The last part is a process id to handle multiple servers on the same machine. The former part is the *server name*, that defaults to a machine name, to handle unqueness for different machines. Examples: ``server1:9853``, ``server1:4531``, ``server2:6742``.
 
-Since the defaults values provide uniqueness only on a process level, you should to handle it manually, if you want to run different server instances inside the same process:
+Since the defaults values provide uniqueness only on a process level, you should handle it manually if you want to run different server instances inside the same process:
 
 .. code-block:: c#
 
