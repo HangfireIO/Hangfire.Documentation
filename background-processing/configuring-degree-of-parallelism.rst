@@ -20,4 +20,4 @@ If you use Hangfire inside a Windows service or console app, just do the followi
 
     var server = new BackgroundJobServer(options);
 
-Worker pool uses dedicated threads to process jobs separatly from requests to let you to process either CPU intensive or I/O intensive tasks as well and configure the degree of parallelism manually.
+Worker pool uses dedicated threads to process jobs separately from requests to let you to process either CPU intensive or I/O intensive tasks as well and configure the degree of parallelism manually.
