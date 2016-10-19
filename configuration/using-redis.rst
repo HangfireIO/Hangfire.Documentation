@@ -13,6 +13,13 @@ Hangfire with Redis job storage implementation processes jobs much faster than w
 
 Please, see the `downloads page <http://redis.io/download>`_ to obtain latest version of Redis. If you unfamiliar with this great storage, please see its `documentation <http://redis.io/documentation>`_. Binaries for Windows are available through NuGet (`32-bit <https://www.nuget.org/packages/Redis-32/>`_, `64-bit <https://www.nuget.org/packages/Redis-64/>`_) and Chocolatey galleries (`64-bit <http://chocolatey.org/packages/redis-64>`_ only).
 
+Limitations
+------------
+
+Despite of StackExchange.Redis library does support some of the following features, we can’t use them immediately. For example, to support high availability via master/slave replication, we should first implement the `Redlock <http://redis.io/topics/distlock>`_ algorithm to ensure that distributed locks are working correctly in corner cases. For Cluster support, together with Redlock, we should ensure that subscriptions are working properly all the time.
+
+**So, multiple endpoints, Redis Cluster and Redis Sentinel aren’t supported yet.**
+
 Redis Configuration
 --------------------
 
