@@ -61,4 +61,4 @@ The ``RecurringJob`` class is a facade for the ``RecurringJobManager`` class. If
 .. code-block:: c#
 
    var manager = new RecurringJobManager();
-   manager.AddOrUpdate("some-id", Job.FromExpression(() => Method()), Cron.Yearly);
+   manager.AddOrUpdate("some-id", Job.FromExpression(() => Method()), Cron.Yearly());
