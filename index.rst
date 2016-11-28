@@ -2,36 +2,7 @@ Documentation
 ==============
 
 .. raw:: html
-   
-   <div class="jumbotron" style="padding: 25px 36px;">
-    <div class="row">
-      <div class="col-md-7 hidden-sm hidden-xs">
-        <h3 style="margin-top: 0;">Search</h3>
-        <input type="text" class="st-default-search-input" placeholder="What can we help you with?" style="width: 100%!important;display: block;box-sizing: border-box;height: auto;">
-        <script type="text/javascript">
-    (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
-    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
-    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
-    })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
-
-    _st('install','uw-kGG9HheayspSiUHYw','2.0.0');</script>
-         <h3>Getting Started</h3>
-         <ul>
-           <li><a href="http://docs.hangfire.io/en/latest/quick-start.html">Quickstart</a></li>
-           <li><a href="http://docs.hangfire.io/en/latest/tutorials/index.html">Tutorials</a></li>
-           <li><a href="http://codeopinion.com/background-tasks/" target="_blank">Background Tasks in .NET</a> by Derek Comartin</li>
-         </ul>
-      </div>
-      <div class="col-md-5">
-        <h3 style="margin-top: 0;">Pluralsight Course</h3>
-        <div class="div-thumbnail">
-          <div class="embed-responsive embed-responsive-16by9">
-            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/FIhpte9UVHM?rel=0&amp;showinfo=0" allowfullscreen></iframe>
-          </div>
-        </div>
-      </div>
-    </div>
-   </div>
+   :file: jumbotron.html
 
 Overview
 ---------

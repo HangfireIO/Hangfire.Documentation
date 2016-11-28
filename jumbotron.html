@@ -1,0 +1,34 @@
+<div class="jumbotron" style="padding: 25px 36px;">
+  <div class="row">
+    <div class="col-md-7 hidden-sm hidden-xs">
+    <h3 style="margin-top: 0;">Search</h3>
+    <form id="jumbotron-search" action="{{ pathto('search') }}" method="get">
+        <div class="form-group">
+        <input type="text" name="q" class="form-control" placeholder="Search" />
+        </div>
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+    </form>
+    <h3>Getting Started</h3>
+    <ul>
+        <li><a href="http://docs.hangfire.io/en/latest/quick-start.html">Quickstart</a></li>
+        <li><a href="http://docs.hangfire.io/en/latest/tutorials/index.html">Tutorials</a></li>
+        <li><a href="http://codeopinion.com/background-tasks/" target="_blank">Background Tasks in .NET</a> by Derek Comartin</li>
+    </ul>
+    </div>
+    <div class="col-md-5">
+    <h3 style="margin-top: 0;">Pluralsight Course</h3>
+    <div class="div-thumbnail">
+        <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/FIhpte9UVHM?rel=0&amp;showinfo=0" allowfullscreen></iframe>
+        </div>
+    </div>
+    </div>
+  </div>
+</div>
+
+<script>
+    $(function () {
+        $('#jumbotron-search').attr('action', $('#sidebar-search').attr('action'));
+    });
+</script>

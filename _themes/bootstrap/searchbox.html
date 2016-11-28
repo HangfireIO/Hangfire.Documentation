@@ -1,13 +1,9 @@
-<h4>Quick Search</h4>
-<div style="padding: 5px 20px;margin-bottom:15px;">
-  <input type="text" class="st-default-search-input" placeholder="What can we help you with?" style="width: 182px;">
-</div>
-
-<script type="text/javascript">
-(function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
-(w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
-e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
-})(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
-
-_st('install','uw-kGG9HheayspSiUHYw','2.0.0');
-</script>
+{%- if pagename != "search" %}
+<form id="sidebar-search" action="{{ pathto('search') }}" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+{%- endif %}
