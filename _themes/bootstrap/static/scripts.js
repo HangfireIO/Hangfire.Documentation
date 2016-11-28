@@ -19,5 +19,7 @@
           return $("<code />").html($(this).html());
         });
       }});
+
+    Search.init();
   });
 }(window.$jqTheme || window.jQuery));
