@@ -7,7 +7,7 @@ All the code examples use the static ``BackgroundJob`` class to tell you how to 
 
 But don't worry – the ``BackgroundJob`` class is just a facade for the ``IBackgroundJobClient`` interface and its default implementation – ``BackgroundJobClient`` class. If you want to write unit tests, use them. For example, consider the following controller that is used to enqueue background jobs:
 
-.. code-block:: c#
+```c#
 
     public class HomeController : Controller
     {
@@ -34,8 +34,7 @@ But don't worry – the ``BackgroundJob`` class is just a facade for the ``IBack
     }
 
 Simple, yeah. Now you can use any mocking framework, for example, `Moq <https://github.com/Moq/moq4>`_ to provide mocks and check the invocations. The ``IBackgroundJobClient`` interface provides only one method for creating a background job – the ``Create`` method, that takes a ``Job`` class instance, that represents the information about the invocation, and a ``IState`` interface implementation to know the creating job's state.
-
-.. code-block:: c#
+. code-block:: c#
 
     [TestMethod]
     public void CheckForSpamJob_ShouldBeEnqueued()
@@ -53,7 +52,63 @@ Simple, yeah. Now you can use any mocking framework, for example, `Moq <https://
             It.Is<Job>(job => job.Method.Name == "CheckForSpam" && job.Args[0] == comment.Id),
             It.IsAny<EnqueuedState>());
     }
+
+
+Example using NSubstitute.
+
+The Database is Injected into the Home Controller so we can use a mocked/substituted object
+.. code-block:: c#
+   public class HomeController : Controller
+    {
+        private readonly IBackgroundJobClient _jobClient;
+        private readonly MailerDbContext _db;
+
+		//for injecting mocks for Unit Testing
+        public HomeController(IBackgroundJobClient jobClient, MailerDbContext DbContext) 
+       
+        {
+            _jobClient = jobClient;
+            _db = DbContext;
+        }
+
+        public HomeController():this(new BackgroundJobClient(), new MailerDbContext())
+        {
+        }
+
+
+The Test class for NSubstitute is:
+::
+``` c#
+     internal class HomeControllerTests
+        {
+        	[TestMethod]
+            public void CheckForSpamJob_ShouldBeEnqueued()
+            {
+                // Arrange
     
+                var mockSet = Substitute.For<DbSet<Comment>>();
+                var context = Substitute.For<MailerDbContext>();
+                context.Comments.Returns(mockSet);
+    
+                var client = Substitute.For<IBackgroundJobClient>();
+                var controller = new HomeController(client, context);
+    
+                // Act
+                controller.Create(new Comment());
+    
+               // Assert
+    
+                client.Received().Create(Arg.Any<Job>(), Arg.Any<EnqueuedState>());
+               
+            }
+    
+        }
+        
+```
+   
 .. note::
 
    ``job.Method`` property points only to background job's method information. If you also want to check a type name, use the ``job.Type`` property.
+   
+   
+
