@@ -159,6 +159,7 @@ table.field-list {
   font-weight: inherit;
   background-color: rgba(0,0,0,0.04);
   border-radius: 3px;
+  color: inherit;
 }
 
 .section code:before, .section code:after, .section tt:before, .section tt:after {
