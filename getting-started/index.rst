@@ -8,6 +8,11 @@ Getting Started
 
 In this article I'll describe a common aproach to start using the library, and give an overview of all the main Hangfire components – Client, Storage and Server. If you want to see more user-friendly approach in common environments, see the subsections.
 
+Requirements
+-------------
+
+Hangfire works with the majority of .NET platforms: .NET Framework 4.5 or later, .NET Core 1.0 or later, any platform compatible with .NET Standard 1.3. You can integrate it with almost any application framework, including ASP.NET, ASP.NET Core, Console applications, Windows Services, WCF, as well as community-based like Nancy or ServiceStack.
+
 Storage
 --------
 
@@ -50,11 +55,6 @@ You can place background job server in any process you want, including `dangerou
    }
 
 Please see the :doc:`/processing-jobs/index` article for more details.
-
-Requirements
--------------
-
-Hangfire works with the majority of .NET platforms: .NET Framework 4.5 or later, .NET Core 1.0 or later, any platform compatible with .NET Standard 1.3. You can integrate it with almost any application framework, including ASP.NET, ASP.NET Core, Console applications, Windows Services, WCF, as well as community-based like Nancy or ServiceStack.
 
 Installation
 -------------
@@ -117,7 +117,7 @@ Here are all the Hangfire components in action. You can think that's too few lin
    :maxdepth: 1
    :hidden:
 
-   aspnet-mvc-applications
+   aspnet-applications
    aspnet-core-applications
    console-applications
    windows-services
