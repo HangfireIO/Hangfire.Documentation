@@ -68,6 +68,21 @@ After release of Visual Studio 2017, a completely new way of installing NuGet pa
    Install-Package Hangfire.Core
    Install-Package Hangfire.SqlServer
 
+Configuration
+--------------
+
+Configuration is performed using the ``GlobalConfiguration`` class, its ``Configuration`` property provides a lot of extension method, both provided by Hangfire.Core, as well as other packages. If you install a new package, don't hesitate to check whether a new method is appeared. 
+
+.. code-block:: c#
+
+   GlobalConfiguration.Configuration
+       .UseColouredConsoleLogProvider()
+       .UseSqlServerStorage("Database=Hangfire.Sample; Integrated Security=True")
+       .UseBatches()
+       .UsePerformanceCounters();
+
+Method calls can be chained, so there's no need to use the class name again and again. Global configuration is made for simplicity, almost each class of Hangfire also allows you to specify overrides for storage, filters, etc. In ASP.NET Core environments global configuration class is hidden inside the ``AddHangfire`` method.
+
 Usage
 ------
 
