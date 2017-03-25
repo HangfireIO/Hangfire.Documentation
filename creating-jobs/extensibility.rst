@@ -1,5 +1,5 @@
-Customizing
-============
+Extensibility
+==============
 
 .. admonition:: Under construction
    :class: warning
