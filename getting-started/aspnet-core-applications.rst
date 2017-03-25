@@ -37,9 +37,9 @@ Hangfire is available as a set of NuGet packages, so you need to add them to the
      <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="1.0.2" />
      <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="1.0.2" />
      <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="1.0.1" />
-     <PackageReference Include="Hangfire.Core" Version="1.6.12" />
-     <PackageReference Include="Hangfire.SqlServer" Version="1.6.12" />
-     <PackageReference Include="Hangfire.AspNetCore" Version="1.6.12" />
+     <PackageReference Include="Hangfire.Core" Version="1.6.*" />
+     <PackageReference Include="Hangfire.SqlServer" Version="1.6.*" />
+     <PackageReference Include="Hangfire.AspNetCore" Version="1.6.*" />
    </ItemGroup>
 
 After updating dependencies and saving a file, you need to restore the packages in order to get them installed. In Visual Studio Code, the informational popup will appear just after saving, so click the ``Restore`` button, or run the following command in the terminal.
