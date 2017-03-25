@@ -50,6 +50,3 @@ After installing packages, all you need is to create a new *Hangfire Server* ins
            }
        }
    }
-
-Using Dashboard
-----------------
