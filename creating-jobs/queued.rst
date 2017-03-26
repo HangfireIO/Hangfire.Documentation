@@ -1,5 +1,5 @@
-Fire-and-Forget Jobs
-=====================
+Queued Jobs
+============
 
 .. admonition:: Under construction
    :class: warning

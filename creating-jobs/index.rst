@@ -100,10 +100,10 @@ Low-level creation
    :maxdepth: 1
    :hidden:
 
-   fire-and-forget
+   queued
    delayed
-   continuations
+   continuation
    recurring
    batches
-   processes
+   continuous
    extensibility

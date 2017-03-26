@@ -1,4 +1,4 @@
-Background Processes
+Continuous Processes
 =====================
 
 .. admonition:: Under construction
