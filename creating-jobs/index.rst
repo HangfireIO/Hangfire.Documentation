@@ -8,20 +8,49 @@ Creating Jobs
 
 Hangfire provides a really simply programming interface to create background jobs. No special classes or interfaces needed, all you need is to specify what method to call and what arguments to use. Please note this is not delegates, it's expression trees. There are a couple of classes that provide methods for creating different types of background jobs, we call them Hangfire Client API for simplicity.
 
+The following line of code will create a :doc:`queued job <queued>` based on a call to the ``Console.WriteLine`` method:
+
 .. code-block:: c#
 
    BackgroundJob.Enqueue(() => Console.WriteLine("Hello, world!"));
 
+How background job is created
+------------------------------
+
 Instead of calling a method, the following steps are performed:
 
-1. Serialize type and method information to uniquely identift what method to call.
-2. Serialize all the given arguments.
-3. Call the client filters.
-4. Persist a background jobs to a storage, and background job id is returned.
+1. Compile the given `expression tree <https://docs.microsoft.com/en-us/dotnet/articles/csharp/expression-trees>`_ and calculate arguments.
+2. Invoke the registered :doc:`client filters <extensibility>`.
+3. Serialize the payload and save it to a storage.
+4. Apply the given state to a job.
 
 If all of these steps are performed without any exception, and non-null job id is returned, your background job is successfully created, and will be performed with the *at least once* guarantee (please note that retries are possible to satisfy this guarantee), and it will not be lost even after an unexpected process termination.
 
-**Classes**
+Serialization
+--------------
+
+To be persisted in a job storage, we are serializing all the information required to perform a method passed to the background job during its creation. Moreover, we should have an information that points to exactly that method in that assembly, that used when background job was created.
+
+.. code-block:: json
+
+   {
+       "Type": "System.Console, mscorlib",
+       "Method": "WriteLine",
+       "Arguments": [ "Hello, world!" ]
+   }
+
+States
+-------
+
+State define how and when a background job will be performed. There are a couple of built-in states in Hangfire, but you can create your own. You can think of Hangfire as a state machine, and background processing as moving a job from one state to another.
+
+For example, if you create a background job in Enqueued state, it will be performed as soon as possible. If you create a background job in a scheduled state, it will be performed only at the given time. After calling a method, background job is moved to the Succeeded state, or Failed one, depending on the execution details. You can find more details in the :doc:`/processing-jobs/index` article.
+
+Client API
+-----------
+
+Classes
+~~~~~~~~
 
 .. code-block:: c#
 
