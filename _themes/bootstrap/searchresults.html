@@ -29,7 +29,7 @@
   {%- if search_results %}
   <ul class="search">
     {% for href, caption, context in search_results %}
-    <li><a href="{{ docroot }}{{ href }}/?highlight={{ q }}">{{ caption }}</a>
+    <li><a href="{{ pathto(item.href) }}/?highlight={{ q }}">{{ caption }}</a>
       <div class="context">{{ context|e }}</div>
     </li>
     {% endfor %}
