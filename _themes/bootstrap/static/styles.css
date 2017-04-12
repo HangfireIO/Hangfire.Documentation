@@ -453,3 +453,10 @@ div.topic {
     -o-transition: all .2s ease-in-out;
     transition: all .2s ease-in-out;
 }
+
+dt:target, .highlighted {
+    background: #F1C40F;
+    display: inline-block;
+    font-weight: bold;
+    padding: 0 6px;
+}
