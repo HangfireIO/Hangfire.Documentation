@@ -100,7 +100,7 @@ Dependency Injection is one of the primary techniques introduced in ASP.NET Core
 After registering Hangfire types, you can now choose features you need to add to your application. The following snippet shows you how to add the Dashboard UI, and the background job server, to use all the Hangfire features now. The following lines are fully optional, and you can remove them completely, if your application will only create background jobs, while separate application will process them.
 
 .. code-block:: csharp
-   :emphasize-lines: 6-7
+   :emphasize-lines: 6-7,9
 
    public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
    {
