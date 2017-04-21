@@ -30,12 +30,7 @@ Then, you need to register it as a current job activator before starting the Han
    ...
    app.UseHangfireServer();
 
-To simplify the initial installation, there are some integration  packages already available on NuGet:
-
-* `Hangfire.Autofac <https://www.nuget.org/packages/Hangfire.Autofac/>`_
-* `Hangfire.Ninject <https://www.nuget.org/packages/Hangfire.Ninject/>`_
-* `Hangfire.SimpleInjector <https://www.nuget.org/packages/Hangfire.SimpleInjector/>`_
-* `Hangfire.Windsor <https://www.nuget.org/packages/Hangfire.Windsor/>`_
+To simplify the initial installation, there are some integration  packages already available on NuGet. Please see the Extensions page on the official site to get the list of all available extension packages: https://www.hangfire.io/extensions.html#ioc-containers.
 
 Some of these activators also provide an extension method for the ``GlobalConfiguration`` class:
 
