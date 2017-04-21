@@ -56,6 +56,23 @@ If you want to install objects manually, or integrate it with your existing migr
 
    GlobalConfiguration.Configuration.UseSqlServerStorage("<name or connection string>", options);
 
+You can isolate HangFire database access to just the HangFire schema.  You need to create a separate HangFire user and grant the user access only to the HangFire schema. The HangFire user will only be able to alter the HangFire schema. Below is an example of using a `contained database user <https://msdn.microsoft.com/en-us/library/ff929188.aspx/>`_ for HangFire. The HangFire user has least privileges required but still allows it to upgrade the schema correctly in the future.
+
+.. code-block:: sql
+
+   CREATE USER [HangFire] WITH PASSWORD = 'strong_password_for_hangfire'
+   GO
+   
+   IF NOT EXISTS (SELECT 1 FROM sys.schemas WHERE [name] = 'HangFire') EXEC ('CREATE SCHEMA [HangFire]')
+   GO
+   
+   ALTER AUTHORIZATION ON SCHEMA::[HangFire] TO [HangFire]
+   GO
+   
+   GRANT CREATE TABLE TO [HangFire]
+   GO
+
+
 Configuring the Polling Interval
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -73,4 +90,3 @@ Please note that **millisecond-based intervals aren't supported**, you can only 
    GlobalConfiguration.Configuration.UseSqlServerStorage("<name or connection string>", options);
 
 If you want to remove the polling technique, consider using the MSMQ extensions or Redis storage implementation.
-
