@@ -80,9 +80,14 @@ The second step is to pass it to the ``UseHangfireDashboard`` method. You can pa
 
 .. code-block:: c#
 
+    /* Deprecated
     app.UseHangfireDashboard("/hangfire", new DashboardOptions
     {
         AuthorizationFilters = new[] { new MyRestrictiveAuthorizationFilter() }
+    });*/
+    app.UseHangfireDashboard("/hangfire", new DashboardOptions
+    {
+        Authorization = (IEnumerable<IDashboardAuthorizationFilter>)new[] { new MyRestrictiveAuthorizationFilter() }
     });
 
 .. admonition:: Method call order is important
