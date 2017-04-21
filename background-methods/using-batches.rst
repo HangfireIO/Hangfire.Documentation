@@ -60,7 +60,7 @@ Continuations allow you to chain multiple batches together. They will be execute
 .. code-block:: c#
 
    var id1 = BatchJob.StartNew(/* for (var i = 0; i < 1000... */);
-   var id2 = BatchJob.ContinueWith(id, x => 
+   var id2 = BatchJob.ContinueWith(id1, x => 
    {
        x.Enqueue(() => MarkCampaignFinished());
        x.Enqueue(() => NotifyAdministrator());
