@@ -75,6 +75,23 @@ To make it secure by default, only **local requests are allowed**, however you c
              return context.Authentication.User.Identity.IsAuthenticated;
          }
     }
+    
+Coming up in v2.0, the ``IAuthorizationFilter`` interface will be removed. You should now start implementing ``IDashboardAuthorizationFilter``.
+
+.. code-block:: c#
+
+    public class MyRestrictiveAuthorizationFilter : IDashboardAuthorizationFilter
+    {
+         public bool Authorize(DashboardContext context)
+         {
+             // In case you need an OWIN context, use the next line,
+             // `OwinContext` class is the part of the `Microsoft.Owin` package.
+             var owinContext = new OwinContext(context.GetOwinEnvironment());
+
+             // Allow all authenticated users to see the Dashboard (potentially dangerous).
+             return owinContext.Authentication.User.Identity.IsAuthenticated;
+         }
+    }
 
 The second step is to pass it to the ``UseHangfireDashboard`` method. You can pass multiple filters, and the access will be granted only if *all of them* return ``true``.
 
@@ -83,6 +100,15 @@ The second step is to pass it to the ``UseHangfireDashboard`` method. You can pa
     app.UseHangfireDashboard("/hangfire", new DashboardOptions
     {
         AuthorizationFilters = new[] { new MyRestrictiveAuthorizationFilter() }
+    });
+    
+As with the filter itself, the ``DashboardOptions`` are changing with the removal of the ``AuthorizationFilters`` property.
+
+.. code-block:: c#
+
+    app.UseHangfireDashboard("/hangfire", new DashboardOptions
+    {
+        Authorization = new[] { new MyRestrictiveAuthorizationFilter() }
     });
 
 .. admonition:: Method call order is important
