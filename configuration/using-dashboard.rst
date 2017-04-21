@@ -53,7 +53,7 @@ Configuring Authorization
 
 Hangfire Dashboard exposes sensitive information about your background jobs, including method names and serialized arguments as well as gives you an opportunity to manage them by performing different actions – retry, delete, trigger, etc. So it is really important to restrict access to the Dashboard. 
 
-To make it secure by default, only **local requests are allowed**, however you can change this by passing your own implementations of the ``IAuthorizationFilter`` interface, whose ``Authorize`` method is used to allow or prohibit a request. The first step is to provide your own implementation.
+To make it secure by default, only **local requests are allowed**, however you can change this by passing your own implementations of the ``IDashboardAuthorizationFilter`` interface, whose ``Authorize`` method is used to allow or prohibit a request. The first step is to provide your own implementation.
 
 .. admonition:: Don't want to reinvent the wheel?
    :class: note
@@ -63,16 +63,16 @@ To make it secure by default, only **local requests are allowed**, however you c
 
 .. code-block:: c#
 
-    public class MyRestrictiveAuthorizationFilter : IAuthorizationFilter
+    public class MyRestrictiveAuthorizationFilter : IDashboardAuthorizationFilter
     {
-         public bool Authorize(IDictionary<string, object> owinEnvironment)
+         public bool Authorize(DashboardContext context)
          {
              // In case you need an OWIN context, use the next line,
              // `OwinContext` class is the part of the `Microsoft.Owin` package.
-             var context = new OwinContext(owinEnvironment);
+             var owinContext = new OwinContext(context.GetOwinEnvironment());
 
              // Allow all authenticated users to see the Dashboard (potentially dangerous).
-             return context.Authentication.User.Identity.IsAuthenticated;
+             return owinContext.Authentication.User.Identity.IsAuthenticated;
          }
     }
 
@@ -82,7 +82,7 @@ The second step is to pass it to the ``UseHangfireDashboard`` method. You can pa
 
     app.UseHangfireDashboard("/hangfire", new DashboardOptions
     {
-        AuthorizationFilters = new[] { new MyRestrictiveAuthorizationFilter() }
+        Authorization = new[] { new MyRestrictiveAuthorizationFilter() }
     });
 
 .. admonition:: Method call order is important
