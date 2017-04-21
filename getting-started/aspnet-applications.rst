@@ -105,6 +105,7 @@ You might also need to disable OWIN's Startup class detection, when using initia
 .. code-block:: xml
    :emphasize-lines: 6
 
+   <!-- web.config -->
    <appSettings>
      <add key="webpages:Version" value="3.0.0.0" />
      <add key="webpages:Enabled" value="false" />
@@ -120,7 +121,9 @@ Run your application in the Debug mode by pressing :kbd:`F5` (this is required t
 
 .. image:: debug-output.png
 
-When application is started, open the following URL (assuming your app is running on the 5000 port) to access to the Hangfire Dashboard interface. As we can see, our background job was completed successfully.
+When application is started, open the following URL (assuming your app is running on the 5000 port) to access to the Hangfire Dashboard interface. As we can see, our background job was completed successfully. 
+
+**Please note, dashboard is available only if you were using the Startup class to configure Hangfire.**
 
 .. code-block:: bash
 
