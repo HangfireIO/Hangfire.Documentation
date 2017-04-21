@@ -63,27 +63,42 @@ To make it secure by default, only **local requests are allowed**, however you c
 
 .. code-block:: c#
 
-    public class MyRestrictiveAuthorizationFilter : IAuthorizationFilter
-    {
-         public bool Authorize(IDictionary<string, object> owinEnvironment)
-         {
-             // In case you need an OWIN context, use the next line,
-             // `OwinContext` class is the part of the `Microsoft.Owin` package.
-             var context = new OwinContext(owinEnvironment);
+   public class MyAuthorizationFilter : IDashboardAuthorizationFilter
+   {
+       public bool Authorize(DashboardContext context)
+       {
+           // In case you need an OWIN context, use the next line, `OwinContext` class 
+           // is the part of the `Microsoft.Owin` package.
+           var owinContext = new OwinContext(context.GetOwinEnvironment());
 
-             // Allow all authenticated users to see the Dashboard (potentially dangerous).
-             return context.Authentication.User.Identity.IsAuthenticated;
-         }
-    }
+           // Allow all authenticated users to see the Dashboard (potentially dangerous).
+           return owinContext.Authentication.User.Identity.IsAuthenticated;
+       }
+   }
+
+For ASP.NET Core environments, use the ``GetHttpContext`` extension method defined in the ``Hangfire.AspNetCore`` package.
+
+.. code-block:: c#
+
+   public class MyAuthorizationFilter : IDashboardAuthorizationFilter
+   {
+       public bool Authorize(DashboardContext context)
+       {
+           var httpContext = context.GetHttpContext();
+
+           // Allow all authenticated users to see the Dashboard (potentially dangerous).
+           return httpContext.User.Identity.IsAuthenticated;
+       }
+   }
 
 The second step is to pass it to the ``UseHangfireDashboard`` method. You can pass multiple filters, and the access will be granted only if *all of them* return ``true``.
 
 .. code-block:: c#
 
-    app.UseHangfireDashboard("/hangfire", new DashboardOptions
-    {
-        AuthorizationFilters = new[] { new MyRestrictiveAuthorizationFilter() }
-    });
+   app.UseHangfireDashboard("/hangfire", new DashboardOptions
+   {
+       Authorization = new [] { new MyAuthorizationFilter() }
+   });
 
 .. admonition:: Method call order is important
    :class: warning
