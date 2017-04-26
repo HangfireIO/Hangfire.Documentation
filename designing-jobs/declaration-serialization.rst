@@ -4,7 +4,7 @@ Declaration and Serialization
 .. admonition:: Under construction
    :class: warning
 
-   Declaration and serialization: supported methods (instance, scoped, static, public, async, interface/implementation, return, async void isn’t supported), arguments (JSON serialization, primitive types best, complex types, controlling serialization, limitations, dependencies, Hangfire types), supported types (base classes, constructor parameters, dependencies, activation, IoC containers), type, method, argument serialization (not supported: out, ref parameters, delegates, expressions), passed object isn’t serialized, IDisposable. Generics types and methods. Open generic parameters.
+   Declaration and serialization: supported methods (instance, scoped, static, public, async, interface/implementation, return, async void isn’t supported), arguments (JSON serialization, primitive types best, complex types, controlling serialization, limitations, dependencies, Hangfire types), supported types (base classes, constructor parameters, dependencies, activation, IoC containers, use interfaces to apply filters), type, method, argument serialization (not supported: out, ref parameters, delegates, expressions), passed object isn’t serialized, IDisposable. Generics types and methods. Open generic parameters.
 
 Passing Arguments
 ------------------
