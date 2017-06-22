@@ -97,7 +97,7 @@ The second step is to pass it to the ``UseHangfireDashboard`` method. You can pa
 
    app.UseHangfireDashboard("/hangfire", new DashboardOptions
    {
-       Authorization = new [] { new MyAuthorizationFilter() }
+       ViewDashboardAuthorization = new [] { new MyAuthorizationFilter() }
    });
 
 .. admonition:: Method call order is important
@@ -113,6 +113,29 @@ The second step is to pass it to the ``UseHangfireDashboard`` method. You can pa
             app.UseHangfireDashboard();       // Hangfire - last
         }
 
+Configuring Other Permissions
+-----------------------------
+
+It is possible to restrict access to certain dashboard operations:
+
+- **Enqueue Job**: the ability to trigger jobs manually from the dashboard.
+- **Delete Job**: the ability to delete jobs from the dashboard.
+
+.. admonition:: These permissions are granted by default
+   :class: note
+   
+   By default all users with access to the dashboard are granted these permissions.
+
+To restrict access to a certain permission we can set the ``IDashboardAuthorizationFilter``(s)  of the respective ``DashboardOptions`` property, similar to above. For instance, the following results in a read-only view of the dashboard:
+
+.. code-block:: c#
+
+   app.UseHangfireDashboard("/hangfire", new DashboardOptions
+   {
+       EnqueueJobAuthorization = new [] { new MyNotAuthorizedFilter() },
+       DeleteJobAuthorization = new [] { new MyNotAuthorizedFilter() }
+   });
+   
 Change URL Mapping
 -------------------
 
