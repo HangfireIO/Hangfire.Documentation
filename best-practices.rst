@@ -33,7 +33,7 @@ Instead of doing this:
 
    public void Method()
    {
-       _emailService.Send("person@exapmle.com", "Hello!");
+       _emailService.Send("person@example.com", "Hello!");
    }
 
 Consider doing this:
