@@ -169,3 +169,12 @@ When you finished working with the application, press the :kbd:`Ctrl+C` in your 
       Hangfire Server stopped.
 
 You can also kill your process, but in this case some background jobs may be delayed in invocation.
+
+Processing Lifetime
+--------------------
+
+Your background jobs and recurring ones are processed only when your application is running, that's why it's important to know the processing lifetime. Graceful shutdown is another important topic, because it helps you to avoid unnecessary delays in background processing, that's why it is important to know how to start your application, and how to stop it.
+
+When using console applications, background processing is started when console application is running. And it is stopped gracefully when you press :kbd:`Ctrl+C` on Windows, or sending the ``SIGINT`` on Linux. When console application is running in a Docker container or registered as a daemon, ensure ``SIGINT`` is configured as a termination signal, because default one, ``SIGTERM`` `isn't handled <https://github.com/dotnet/cli/issues/812>`_ by .NET Core runtime before 2.0.
+
+If you host your ASP.NET Core application in IIS, set the "Idle Time-out (minutes)" setting to ``0`` to disallow IIS to stop your application by inactivity.

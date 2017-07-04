@@ -83,6 +83,16 @@ Configuration is performed using the ``GlobalConfiguration`` class, its ``Config
 
 Method calls can be chained, so there's no need to use the class name again and again. Global configuration is made for simplicity, almost each class of Hangfire also allows you to specify overrides for storage, filters, etc. In ASP.NET Core environments global configuration class is hidden inside the ``AddHangfire`` method.
 
+Logging
+--------
+
+TBD
+
+Lifetime
+---------
+
+TBD
+
 Usage
 ------
 
