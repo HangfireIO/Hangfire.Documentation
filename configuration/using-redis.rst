@@ -1,7 +1,7 @@
 Using Redis
 ============
 
-.. admonition:: Pro Only
+.. admonition:: Hangfire Pro subscription required
    :class: note
 
    Starting from Hangfire 1.2, this feature is a part of `Hangfire Pro <http://hangfire.io/pro/>`_ package set
@@ -16,9 +16,7 @@ Please, see the `downloads page <http://redis.io/download>`_ to obtain latest ve
 Limitations
 ------------
 
-Despite of StackExchange.Redis library does support some of the following features, we can’t use them immediately. For example, to support high availability via master/slave replication, we should first implement the `Redlock <http://redis.io/topics/distlock>`_ algorithm to ensure that distributed locks are working correctly in corner cases. For Cluster support, together with Redlock, we should ensure that subscriptions are working properly all the time.
-
-**So, multiple endpoints, Redis Cluster and Redis Sentinel aren’t supported yet.**
+Multiple Redis endpoints are **only supported** in Redis Cluster configuration starting from `Hangfire.Pro.Redis 2.1.0 <https://www.hangfire.io/blog/2017/04/17/hangfire.pro.redis-2.1.0.html>`_. You can't use multiple detached masters or Redis Sentinel configurations.
 
 Redis Configuration
 --------------------
