@@ -113,6 +113,18 @@ The second step is to pass it to the ``UseHangfireDashboard`` method. You can pa
             app.UseHangfireDashboard();       // Hangfire - last
         }
 
+Read-only view
+--------------
+
+The read-only dashboard view prevents users from changing anything, such as deleting or enqueueing jobs. It is off by default, meaning that users have full control. To enable it, set the ``IsReadOnlyFunc`` property of the ``DashboardOptions``:
+
+.. code-block:: c#
+
+   app.UseHangfireDashboard("/hangfire", new DashboardOptions
+   {
+       IsReadOnlyFunc = (DashboardContext context) => true
+   });
+
 Change URL Mapping
 -------------------
 
