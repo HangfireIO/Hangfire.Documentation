@@ -10,7 +10,7 @@ Well scenarios
 * You have long-running jobs that **are constantly aborted** (retrying, aborted, retried again and so on) due to regular shutdowns of the main application. So you want to use separate process with increased lifetime (and you can't use :doc:`always running mode <../deployment-to-production/making-aspnet-app-always-running>` for your web application).
 * *Do you have other suggestions? Please post them in the comment form below*.
 
-You can stop processing background jobs in your main application by simply removing the instantiation of the ``BackgroundJobServer`` class (if you create it manually) or removing an invocation of the ``UseServer`` method from your OWIN configuration class.
+You can stop processing background jobs in your main application by simply removing the instantiation of the ``BackgroundJobServer`` class (if you create it manually) or removing an invocation of the ``UseHangfireServer`` method from your OWIN configuration class.
 
 After accomplishing the first step, you need to enable processing in another process, here are some guides:
 
