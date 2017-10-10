@@ -9,7 +9,7 @@ Sometimes you may want to postpone a method invocation; for example, to send an 
        () => Console.WriteLine("Hello, world"),
        TimeSpan.FromDays(1));
 
-:doc:`Hangfire Server <../background-processing/processing-background-jobs>` periodically checks the schedule to enqueue scheduled jobs to their queues, allowing workers to execute them. By default, check interval is equal to ``15 seconds``, but you can change it by setting the corresponding option on the options you pass to the ``BackgroundJobServer`` constructor.
+:doc:`Hangfire Server <../background-processing/processing-background-jobs>` periodically checks the schedule to enqueue scheduled jobs to their queues, allowing workers to execute them. By default, check interval is equal to ``15 seconds``, but you can change it by setting the SchedulePollingInterval property on the options you pass to the ``BackgroundJobServer`` constructor:
 
 .. code-block:: c#
 
