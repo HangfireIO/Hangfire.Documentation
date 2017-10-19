@@ -44,7 +44,7 @@ Hangfire.Pro.Redis 2.x
 
 
 
-Redis ≥ 2.6 is required
+Redis ≥ 2.6.12 is required
 
 Installation
 ~~~~~~~~~~~~~
