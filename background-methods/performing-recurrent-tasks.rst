@@ -9,7 +9,7 @@ Recurring job registration is just as simple as background job registration – 
 
 This line creates a new entry in persistant storage. A special component in Hangfire Server (see :doc:`../background-processing/processing-background-jobs`) checks the recurring jobs on a minute-based interval and then enqueues them as fire-and-forget jobs. This enables you to track them as usual.
 
-.. admonition:: Make sure your app always running
+.. admonition:: Make sure your app is always running
    :class: warning
 
    Your Hangfire Server instance should be always on to perform scheduling and processing logic. If you perform the processing inside an ASP.NET application, please also read the :doc:`../deployment-to-production/making-aspnet-app-always-running` chapter.
