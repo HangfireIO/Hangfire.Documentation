@@ -52,6 +52,17 @@ Batches require to add some additional job filters, some new pages to the Dashbo
 
    Only **Hangfire.SqlServer** and **Hangfire.Pro.Redis** job storage implementations are currently supported. There is nothing special for batches, but some new storage methods should be implemented.
 
+Configuration
+--------------
+
+The default batch job expiration/retention time if the batch succeeds is 7 days.
+
+.. code-block:: c#
+    
+    var defaultBatchJobRetentionPeriod = new TimeSpan(2, 0, 0, 0); //2 day retention
+    Hangfire.GlobalConfiguration.Configuration.UseBatches(defaultBatchJobRetentionPeriod);
+
+
 Chaining Batches
 -----------------
 
