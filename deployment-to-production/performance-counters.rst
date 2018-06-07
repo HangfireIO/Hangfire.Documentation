@@ -46,6 +46,11 @@ Initialization logic is much easier within your OWIN Startup class:
    {
        app.UseHangfirePerformanceCounters();
    }
+   
+.. admonition::
+   :class: note
+   
+   Also, ensure your IIS/ASP.NET user is a member of the "Performance Monitor Users" group. 
 
 Performance counters
 ---------------------
