@@ -24,7 +24,7 @@ MSMQ support for SQL Server job storage implementation, like other Hangfire exte
 
    PM> Install-Package Hangfire.SqlServer.Msmq
 
-Configuration
+Microsoft Message Queuing (MSMQ) Configuration
 --------------
 
 To use MSMQ queues, you should do the following steps:
@@ -33,24 +33,35 @@ To use MSMQ queues, you should do the following steps:
 2. Register all MSMQ queues in current ``SqlServerStorage`` instance.
 
 To create a new Queue you must first install MSMQ on your windows machine:
+
 1. At a command prompt, run the command OptionalFeatures to open the 'Windows Features' dialog.
 2. In the feature tree of the dialog, Check the top-level feature 'Microsoft Message Queue (MSMQ) Server'. This also checks the sub-feature 'Microsoft MessageQueue (MSMQ) Server Core'. The dialog should look like this:
-https://i.stack.imgur.com/rFTIo.png
+
+.. image:: windows_features.png
+
 3. Windows displays a dialog to say "Please wait while Windows makes changes to features. This might take several minutes." Wait until the dialog disappears.
-https://i.stack.imgur.com/iRvbC.png
 
 Now to create a queue:
 
 1. Right click on “My Computer” → Manage → Services and Applications → Message Queueing:
-https://discuss.hangfire.io/uploads/default/169/c374f21c24146817.png
+
+.. image:: private_queues.png
+
 2. Right click on Private queues (here is how to create public ones – https://technet.microsoft.com/en-us/library/cc776346(v=ws.10).aspx), New, Private Queue, give name, check the Transactional:
-https://discuss.hangfire.io/uploads/default/170/4b7d280584f9bad5.png
+
+.. image:: new_queue.png
+
 3. And then configure Hangfire:
 
 .. code-block:: c#
+
     var sqlServerStorage = new SqlServerStorage(
         @"Server=.\sqlexpress;Database=Hangfire.Sample;Trusted_Connection=True;");
     sqlServerStorage.UseMsmqQueues(@".\Private$\hangfire-{0}", "default");
+
+
+Configuration
+--------------
 
 If you are using **only default queue**, call the ``UseMsmqQueues`` method just after ``UseSqlServerStorage`` method call and pass the path pattern as an argument.
 
