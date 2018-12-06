@@ -7,7 +7,7 @@ Recurring job registration is just as simple as background job registration – 
 
    RecurringJob.AddOrUpdate(() => Console.Write("Easy!"), Cron.Daily);
 
-This line creates a new entry in persistant storage. A special component in Hangfire Server (see :doc:`../background-processing/processing-background-jobs`) checks the recurring jobs on a minute-based interval and then enqueues them as fire-and-forget jobs. This enables you to track them as usual.
+This line creates a new entry in persistent storage. A special component in Hangfire Server (see :doc:`../background-processing/processing-background-jobs`) checks the recurring jobs on a minute-based interval and then enqueues them as fire-and-forget jobs. This enables you to track them as usual.
 
 .. admonition:: Make sure your app is always running
    :class: warning
