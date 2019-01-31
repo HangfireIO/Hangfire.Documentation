@@ -29,6 +29,31 @@ After installing the package, add or update the OWIN Startup class with the foll
        app.UseHangfireDashboard();
        app.UseHangfireServer();
    }
+   
+Alternatively, if using .NET core, add or update the Startup class with the following lines:
+
+.. code-block:: c#  
+   
+   using Microsoft.AspNetCore.Builder;
+   using Microsoft.Extensions.DependencyInjection;
+   using Hangfire;
+
+   namespace MyWebApplication
+   {
+       public class Startup
+       {
+           public void ConfigureServices(IServiceCollection services)
+           {
+               services.AddHangfire(x => x.UseSqlServerStorage("<connection string>"));
+           }
+           
+           public void Configure(IApplicationBuilder app)
+           {
+               app.UseHangfireServer();
+               app.UseHangfireDashboard();
+           }
+       }
+   }
 
 .. admonition:: Authorization configuration required
    :class: warning
