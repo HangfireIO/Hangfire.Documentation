@@ -1,9 +1,9 @@
 Tracking the progress
 ======================
 
-There are two ways to implement this task: polling and pushing. Polling is easier to understand, but server push is a more comfortable way, because it help you to avoid unnecessary calls to server. Plus, `SignalR <http://signalr.net>`_ greatly simplifies the latter task.
+There are two ways to implement this task: polling and pushing. Polling is easier to understand, but server push is a more comfortable way, because it helps you to avoid unnecessary calls to server. Plus, `SignalR <http://signalr.net>`_ greatly simplifies the latter task.
 
-I'll show you a simple example, where client needs only to check for a job completion. You can see the full sample in `Hangfire.Highlighter <https://github.com/odinserj/Hangfire.Highlighter>`_ project. 
+I'll show you a simple example, where client only needs to check for a job completion. You can see the full sample in `Hangfire.Highlighter <https://github.com/odinserj/Hangfire.Highlighter>`_ project. 
 
 Highlighter has the following background job that calls an external web service to highlight code snippets:
 
@@ -38,7 +38,7 @@ So, when we are rendering the code snippet that is not highlighted yet, we need 
             : Content(snippet.HighlightedCode);
     }
 
-When code snippet become highlighted, we can stop the polling and show the highlighted code. But if you want to track progress of your job, you need to perform extra steps:
+When code snippet becomes highlighted, we can stop the polling and show the highlighted code. But if you want to track progress of your job, you need to perform extra steps:
 
 * Add a column ``Status`` to the snippets table.
 * Update this column during background work.
@@ -49,7 +49,7 @@ But there is a better way.
 Using server push with SignalR
 -------------------------------
 
-Why we need to poll our server? It can say when the snippet becomes highlighted himself. And `SignalR <http://signalr.net>`_, an awesome library to perform server push, will help us. If you don't know about this library, look at it, and you'll love it. Really.
+Why do we need to poll our server? It can say when the snippet becomes highlighted itself. And `SignalR <http://signalr.net>`_, an awesome library to perform server push, will help us. If you don't know about this library, look at it, and you'll love it. Really.
 
 I don't want to include all the code snippets here (you can look at the sources of this sample). I'll show you only the two changes that you need, and they are incredibly simple.
 

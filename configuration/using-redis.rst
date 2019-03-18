@@ -44,7 +44,7 @@ Hangfire.Pro.Redis 2.x
 
 
 
-Redis ≥ 2.6 is required
+Redis ≥ 2.6.12 is required
 
 Installation
 ~~~~~~~~~~~~~
@@ -105,6 +105,21 @@ In .NET Core you need to use IP addresses instead, because DNS lookup isn't avai
 
    GlobalConfiguration.Configuration
        .UseRedisStorage("127.0.0.1");
+       
+Redis Cluster support
+^^^^^^^^^^^^^^^^^^^^^
+
+You can use a single endpoint to connect to a Redis cluster, Hangfire will detect other instances automatically by querying the node configuration. However, it's better to pass multiple endpoints in order to mitigate connectivity issues, when some of endpoints aren't available, e.g. during the failover process.
+
+Since Hangfire requires transactions, and Redis doesn't support ones that span multiple hash slots, you also need to configure the prefix to assign it to the same hash tag:
+
+.. code-block:: csharp
+
+   GlobalConfiguration.Configuration.UseRedisStorage(
+       "localhost:6379,localhost:6380,localhost:6381",
+       new RedisStorageOptions { Prefix = "{hangfire-1}:" });
+       
+This will bind all the keys to a single Redis instance. To be able to fully utilize your Redis cluster, consider using multiple ``JobStorage`` instances and leveraging some load-balancing technique (round-robin is enough for the most cases). To do so, pick different hash tags for different storages and ensure they are using hash slots that live on different masters by using commands ``CLUSTER NODES`` and ``CLUSTER KEYSLOT``.
 
 Passing options
 ^^^^^^^^^^^^^^^
