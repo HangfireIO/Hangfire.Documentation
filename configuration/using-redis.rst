@@ -11,7 +11,7 @@ Hangfire with Redis job storage implementation processes jobs much faster than w
 .. image:: storage-compare.png
    :align: center
 
-Please, see the `downloads page <http://redis.io/download>`_ to obtain latest version of Redis. If you unfamiliar with this great storage, please see its `documentation <http://redis.io/documentation>`_. Binaries for Windows are available through NuGet (`32-bit <https://www.nuget.org/packages/Redis-32/>`_, `64-bit <https://www.nuget.org/packages/Redis-64/>`_) and Chocolatey galleries (`64-bit <http://chocolatey.org/packages/redis-64>`_ only).
+Please, see the `downloads page <http://redis.io/download>`_ to obtain latest version of Redis. If you unfamiliar with this great storage, please see its `documentation <http://redis.io/documentation>`_. Binaries for Windows are available through NuGet (`32-bit <https://www.nuget.org/packages/Redis-32/>`_, `64-bit <https://www.nuget.org/packages/Redis-64/>`_) and Chocolatey galleries (`64-bit package <http://chocolatey.org/packages/redis-64>`_ only).
 
 Limitations
 ------------
@@ -59,8 +59,10 @@ If your project targets .NET Core, just add a dependency in your ``project.json`
 
 .. code-block:: json
 
-   "dependencies": {
-       "Hangfire.Pro.Redis": "2.0.2"
+   {
+      "dependencies": {
+          "Hangfire.Pro.Redis": "2.0.2"
+      }
    }
 
 Configuration
