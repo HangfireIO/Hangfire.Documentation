@@ -497,7 +497,7 @@ The latter way solves this problem, but brings another ones. Should the queue be
 
    They will be simple aborted on application shutdown, and can be aborted even if the ``IRegisteredObject`` interface is used due to time out.
 
-Too many questions? Relax, you can use `Hangfire <http://hangfire.io>`_. It is based on *persistent queues* to survive on application restarts, uses *reliable fetching* to handle unexpected thread aborts and contains *coordination logic* to allow multiple worker threads. And it is simple enough to use it.
+Too many questions? Relax, you can use `Hangfire <https://www.hangfire.io>`_. It is based on *persistent queues* to survive on application restarts, uses *reliable fetching* to handle unexpected thread aborts and contains *coordination logic* to allow multiple worker threads. And it is simple enough to use it.
 
 .. note::
 

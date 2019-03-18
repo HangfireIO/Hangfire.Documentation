@@ -4,7 +4,7 @@ Using Redis
 .. admonition:: Hangfire Pro subscription required
    :class: note
 
-   Starting from Hangfire 1.2, this feature is a part of `Hangfire Pro <http://hangfire.io/pro/>`_ package set
+   Starting from Hangfire 1.2, this feature is a part of `Hangfire Pro <https://www.hangfire.io/pro/>`_ package set
 
 Hangfire with Redis job storage implementation processes jobs much faster than with SQL Server storage. On my development machine I observed more than 4x throughput improvement with empty jobs (method that does not do anything). ``Hangfire.Pro.Redis`` leverages the ``BRPOPLPUSH`` command to fetch jobs, so the job processing latency is kept to minimum.
 
@@ -49,7 +49,7 @@ Redis ≥ 2.6.12 is required
 Installation
 ~~~~~~~~~~~~~
 
-Ensure that you have configured the private Hangfire Pro NuGet feed as `written here <http://hangfire.io/pro/downloads.html#configuring-feed>`_, and use your favorite NuGet client to install the ``Hangfire.Pro.Redis`` package:
+Ensure that you have configured the private Hangfire Pro NuGet feed as `written here <https://www.hangfire.io/pro/downloads.html#configuring-feed>`_, and use your favorite NuGet client to install the ``Hangfire.Pro.Redis`` package:
 
 .. code-block:: powershell
 

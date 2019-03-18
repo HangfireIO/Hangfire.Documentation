@@ -161,7 +161,7 @@ Ensuring auto-start feature is working
 
    If your app won't load after these changes made, check your Windows Event Log by opening **Control Panel → Administrative Tools → Event Viewer**. Then open *Windows Logs → Application* and look for a recent error records.
 
-The simplest method - recycle your Application pool, wait for 5 minutes, then go to the Hangfire Dashboard UI and check that current Hangfire Server instance was started 5 minutes ago. If you have problems -- don't hesitate to ask them on `forum <http://discuss.hangfire.io>`_.
+The simplest method - recycle your Application pool, wait for 5 minutes, then go to the Hangfire Dashboard UI and check that current Hangfire Server instance was started 5 minutes ago. If you have problems -- don't hesitate to ask them on `forum <https://discuss.hangfire.io>`_.
 
 Azure web applications
 -----------------------

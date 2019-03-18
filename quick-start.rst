@@ -69,7 +69,7 @@ Then open the Hangfire Dashboard to test your configuration. Please, build the p
    </div>
 
 
-.. image:: http://hangfire.io/img/ui/dashboard-sm.png
+.. image:: https://www.hangfire.io/img/ui/dashboard-sm.png
 
 Usage
 ------

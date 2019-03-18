@@ -123,7 +123,7 @@ And you are unlikely to want to install external Windows Services or use Windows
 Installing Hangfire
 --------------------
 
-To be able to put tasks into the background and not lose them during application restarts, we'll use `Hangfire <http://hangfire.io>`_. It can handle background jobs in a reliable way inside ASP.NET application without external Windows Services or Windows Scheduler.
+To be able to put tasks into the background and not lose them during application restarts, we'll use `Hangfire <https://www.hangfire.io>`_. It can handle background jobs in a reliable way inside ASP.NET application without external Windows Services or Windows Scheduler.
 
 .. code-block:: powershell
 

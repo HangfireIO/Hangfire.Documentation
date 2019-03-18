@@ -4,7 +4,7 @@ Using Batches
 .. admonition:: Pro Only
    :class: note
 
-   This feature is a part of `Hangfire Pro <http://hangfire.io/pro/>`_ package set
+   This feature is a part of `Hangfire Pro <https://www.hangfire.io/pro/>`_ package set
 
 Batches allow you to create a bunch of background jobs *atomically*. This means that if there was an exception during the creation of background jobs, none of them will be processed. Consider you want to send 1000 emails to your clients, and they really want to receive these emails. Here is the old way:
 
@@ -35,7 +35,7 @@ In case of exception, you may show an error to a user, and simply ask to retry h
 Installation
 -------------
 
-Batches are available in the `Hangfire.Pro <http://nuget.hangfire.io/feeds/hangfire-pro/Hangfire.Pro/>`_ package, and you can install it using NuGet Package Manager Console window as usually:
+Batches are available in the `Hangfire.Pro <https://nuget.hangfire.io/feeds/hangfire-pro/Hangfire.Pro/>`_ package, and you can install it using NuGet Package Manager Console window as usually:
 
 .. code-block:: powershell
 

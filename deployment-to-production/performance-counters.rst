@@ -4,7 +4,7 @@ Using performance counters
 .. admonition:: Pro Only
    :class: note
 
-   This feature is a part of `Hangfire Pro <http://hangfire.io/pro/>`_ package set
+   This feature is a part of `Hangfire Pro <https://www.hangfire.io/pro/>`_ package set
 
 Performance Counters is a standard way to `measure <http://blogs.msdn.com/b/securitytools/archive/2009/11/04/how-to-use-perfmon-in-windows-7.aspx>`_ different application metrics on a Windows platform. This package enables Hangfire to publish performance counters so you can track them using different tools, including `Performance Monitor <http://technet.microsoft.com/en-us/library/cc749249.aspx>`_, `Nagios <http://www.nagios.org/>`_, `New Relic <http://newrelic.com/>`_ and others.
 
