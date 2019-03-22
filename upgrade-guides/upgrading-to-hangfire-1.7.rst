@@ -57,7 +57,7 @@ Forward compatibility is supported on the ``CompatibilityLevel.Version_110`` (de
 Hangfire.SqlServer 1.6.23 **is forward compatible** with ``Schema 6`` and ``Schema 7`` schemas. Previous versions don't support the new schemas and may lead to exceptions. Anyway it's better to upgrade all your servers first, and only then apply the migration.
 
 Code Compatibility
------------------
+------------------
 
 Breaking Changes in API
 ~~~~~~~~~~~~~~~~~~~~~~~
