@@ -93,3 +93,4 @@ Table of Contents
    deployment-to-production/index
    extensibility/index
    tutorials/index
+   upgrade-guides/index
