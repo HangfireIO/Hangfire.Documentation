@@ -16,6 +16,8 @@ Read the following sections carefully to minimize the risks during the upgrade p
 2. ``Schema 6`` and ``Schema 7`` migrations added to SQL Server, and you'll need to perform them either automatically or manually. Hangfire.SqlServer 1.6.23 is forward compatible with those schemas, and 1.7.0 is backward compatible with ``Schema 4`` (from version 1.5.0) and later.
 3. New migrations for SQL Server will not be performed automatically unless ``EnableHeavyMigrations`` option is set. If your background processing is quite intensive, you should apply the migration manually with setting ``SINGLE_USER`` mode for the database to avoid deadlocks and reduce migration time.
 
+If you have any issues with an upgrade process, please post your thoughts to `GitHub Issues <https://github.com/HangfireIO/Hangfire/issues>`_.
+
 Data Compatibility
 ------------------
 
