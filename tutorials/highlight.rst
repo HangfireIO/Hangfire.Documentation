@@ -3,7 +3,7 @@ Highlighter Tutorial
 
 ====================== =======
 Simple sample          https://github.com/odinserj/Hangfire.Highlighter 
-Full sample            http://highlighter.hangfire.io, `sources <https://github.com/odinserj/Hangfire/tree/master/samples/Hangfire.Sample.Highlighter>`_
+Full sample            http://demo.hangfire.io, `sources <https://github.com/odinserj/Hangfire/tree/master/samples/Hangfire.Sample.Highlighter>`_
 ====================== =======
 
 .. contents:: Table of Contents
