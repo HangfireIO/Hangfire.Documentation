@@ -83,9 +83,10 @@ Table of Contents
 
 .. toctree::
    :maxdepth: 2
+   :titlesonly:
+   :includehidden:
 
-   quick-start
-   installation
+   getting-started/index
    configuration/index
    background-methods/index
    background-processing/index
