@@ -59,7 +59,7 @@ All you need is to call them, to start using both Hangfire Dashboard and Hangfir
    By default only local access is permitted to the Hangfire Dashboard. `Dashboard authorization <../configuration/using-dashboard.html#configuring-authorization>`_ must be configured in order to allow remote access.
 
 .. code-block:: c#
-   :emphasize-lines: 2-3,7-22,26-27,30
+   :emphasize-lines: 2-3,7-24,28-29,32
 
    // Startup.cs
    using Hangfire;
@@ -76,9 +76,11 @@ All you need is to call them, to start using both Hangfire Dashboard and Hangfir
                .UseSqlServerStorage("Server=.\\SQLEXPRESS; Database=HangfireTest; Integrated Security=True;", new SqlServerStorageOptions
                {
                     CommandBatchMaxTimeout = TimeSpan.FromMinutes(5),
-                    QueuePollInterval = TimeSpan.Zero,
                     SlidingInvisibilityTimeout = TimeSpan.FromMinutes(5),
+                    QueuePollInterval = TimeSpan.Zero,           
                     UseRecommendedIsolationLevel = true,
+                    UsePageLocksOnDequeue = true,
+                    DisableGlobalLocks = true
                });
 
            yield return new BackgroundJobServer();
@@ -104,7 +106,7 @@ Using Global.asax.cs file
 If you can't use the ``Startup`` class for a reason, just use the ``HangfireAspNet`` class and modify the ``Global.asax.cs`` file. You'll not have Hangfire Dashboard in this case, but at least you can start the background processing. If you'd like to install the dashboard also, please google how to add the ``Startup`` class to your project, and go to the previous section.
 
 .. code-block:: c#
-   :emphasize-lines: 2-3,7-22,29,32
+   :emphasize-lines: 2-3,7-24,31,34
 
    // Global.asax.cs
    using Hangfire;
@@ -121,9 +123,11 @@ If you can't use the ``Startup`` class for a reason, just use the ``HangfireAspN
                .UseSqlServerStorage("Server=.\\SQLEXPRESS; Database=HangfireTest; Integrated Security=True;", new SqlServerStorageOptions
                {
                     CommandBatchMaxTimeout = TimeSpan.FromMinutes(5),
-                    QueuePollInterval = TimeSpan.Zero,
                     SlidingInvisibilityTimeout = TimeSpan.FromMinutes(5),
+                    QueuePollInterval = TimeSpan.Zero,           
                     UseRecommendedIsolationLevel = true,
+                    UsePageLocksOnDequeue = true,
+                    DisableGlobalLocks = true
                });
 
            yield return new BackgroundJobServer();

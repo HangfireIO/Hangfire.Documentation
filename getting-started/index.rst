@@ -69,9 +69,11 @@ Configuration is performed using the ``GlobalConfiguration`` class, its ``Config
        .UseSqlServerStorage("Database=Hangfire.Sample; Integrated Security=True;", new SqlServerStorageOptions
        {
            CommandBatchMaxTimeout = TimeSpan.FromMinutes(5),
-           QueuePollInterval = TimeSpan.Zero,
            SlidingInvisibilityTimeout = TimeSpan.FromMinutes(5),
+           QueuePollInterval = TimeSpan.Zero,           
            UseRecommendedIsolationLevel = true,
+           UsePageLocksOnDequeue = true,
+           DisableGlobalLocks = true
        })
        .UseBatches()
        .UsePerformanceCounters();
@@ -103,9 +105,11 @@ Here are all the Hangfire components in action, and it's fully working sample th
                    .UseSqlServerStorage("Database=Hangfire.Sample; Integrated Security=True;", new SqlServerStorageOptions
                    {
                        CommandBatchMaxTimeout = TimeSpan.FromMinutes(5),
-                       QueuePollInterval = TimeSpan.Zero,
                        SlidingInvisibilityTimeout = TimeSpan.FromMinutes(5),
+                       QueuePollInterval = TimeSpan.Zero,           
                        UseRecommendedIsolationLevel = true,
+                       UsePageLocksOnDequeue = true,
+                       DisableGlobalLocks = true
                    });
 
                BackgroundJob.Enqueue(() => Console.WriteLine("Hello, world!"));

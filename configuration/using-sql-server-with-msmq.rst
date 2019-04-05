@@ -1,19 +1,7 @@
 Using SQL Server with MSMQ
 ===========================
 
-`Hangfire.SqlServer.MSMQ <https://www.nuget.org/packages/Hangfire.SqlServer.MSMQ/>`_ extension changes the way Hangfire handles job queues. Default :doc:`implementation <using-sql-server>` uses regular SQL Server tables to organize queues, and this extensions uses transactional MSMQ queues to process jobs in a more efficient way:
-
-================================ ================= =================
-Feature                          Raw SQL Server    SQL Server + MSMQ
-================================ ================= =================
-Retry after process termination  Immediate after   Immediate after
-                                 restart           restart
-Worst job fetch time             Polling Interval  Immediate
-                                 (15 seconds by
-                                 default)
-================================ ================= =================
-
-So, if you want to lower background job processing latency with SQL Server storage, consider switching to using MSMQ.
+`Hangfire.SqlServer.MSMQ <https://www.nuget.org/packages/Hangfire.SqlServer.MSMQ/>`_ extension changes the way Hangfire handles job queues. Default :doc:`implementation <using-sql-server>` uses regular SQL Server tables to organize queues, and this extensions uses transactional MSMQ queues to process jobs. Please note that starting from 1.7.0 it's possible to use ``TimeSpan.Zero`` as a polling delay in Hangfire.SqlServer, so think twice before using MSMQ.
 
 Installation
 -------------

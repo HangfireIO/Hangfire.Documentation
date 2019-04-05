@@ -34,6 +34,21 @@ The package provides extension methods for ``GlobalConfiguration`` class. Choose
        // Use custom connection string
        .UseSqlServerStorage(@"Server=.\sqlexpress; Database=Hangfire; Integrated Security=SSPI;");
 
+Starting from version 1.7.0 it is recommended to set the following options for new installations (for existing ones, please see :doc:`../upgrade-guides/upgrading-to-hangfire-1.7`). These settings will be turned on by default in 2.0, but meanwhile we should preserve backward compatibility.
+
+.. code-block:: c#
+
+   GlobalConfiguration.Configuration
+       .UseSqlServerStorage("db_connection", new SqlServerStorageOptions
+       {
+           CommandBatchMaxTimeout = TimeSpan.FromMinutes(5),
+           SlidingInvisibilityTimeout = TimeSpan.FromMinutes(5),
+           QueuePollInterval = TimeSpan.Zero,           
+           UseRecommendedIsolationLevel = true,
+           UsePageLocksOnDequeue = true,
+           DisableGlobalLocks = true
+       });
+
 Installing objects
 ~~~~~~~~~~~~~~~~~~~
 
@@ -76,17 +91,16 @@ You can isolate HangFire database access to just the HangFire schema.  You need 
 Configuring the Polling Interval
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-One of the main disadvantage of raw SQL Server job storage implementation – it uses the polling technique to fetch new jobs. You can adjust the polling interval, but, as always, lower intervals can harm your SQL Server, and higher interval produce too much latency, so be careful. 
-
-Please note that **millisecond-based intervals aren't supported**, you can only use intervals starting from *1 second*.
+One of the main disadvantage of raw SQL Server job storage implementation – it uses the polling technique to fetch new jobs. Starting from Hangfire 1.7.0 it's possible to use ``TimeSpan.Zero`` as a polling interval, when ``SlidingInvisibilityTimeout`` option is set. 
 
 .. code-block:: c#
 
    var options = new SqlServerStorageOptions
    {
-       QueuePollInterval = TimeSpan.FromSeconds(15) // Default value
+       SlidingInvisibilityTimeout = TimeSpan.FromMinutes(5),
+       QueuePollInterval = TimeSpan.Zero
    };
 
    GlobalConfiguration.Configuration.UseSqlServerStorage("<name or connection string>", options);
 
-If you want to remove the polling technique, consider using the MSMQ extensions or Redis storage implementation.
+This is the recommended value in that version, but you can decrease the polling interval if your background jobs can tolerate additional delay before the invocation.

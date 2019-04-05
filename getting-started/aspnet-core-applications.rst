@@ -84,7 +84,7 @@ Dependency Injection is one of the primary techniques introduced in ASP.NET Core
    Some of those settings can be incompatible with existing installations, please see the :doc:`Upgrade Guides <../upgrade-guides/index>` instead when upgrading to a newer version.
 
 .. code-block:: csharp
-   :emphasize-lines: 4-14, 17
+   :emphasize-lines: 4-16, 19
 
    public void ConfigureServices(IServiceCollection services)
    {
@@ -96,9 +96,11 @@ Dependency Injection is one of the primary techniques introduced in ASP.NET Core
            .UseSqlServerStorage(Configuration.GetConnectionString("HangfireConnection"), new SqlServerStorageOptions
            {
                CommandBatchMaxTimeout = TimeSpan.FromMinutes(5),
-               QueuePollInterval = TimeSpan.Zero,
                SlidingInvisibilityTimeout = TimeSpan.FromMinutes(5),
+               QueuePollInterval = TimeSpan.Zero,           
                UseRecommendedIsolationLevel = true,
+               UsePageLocksOnDequeue = true,
+               DisableGlobalLocks = true
            }));
 
        // Add the processing server as IHostedService
