@@ -6,23 +6,13 @@ You can place the background processing in an ASP.NET application without using 
 Installing Hangfire
 --------------------
 
-Before we start, we'll need a working ASP.NET application, you can use ASP.NET MVC or ASP.NET WebForms, the steps are almost the same. First of all, the following packages should be installed. There are a lot of ways to install NuGet packages, I'll show how to use package references, since it's the latest method. 
+Before we start, we'll need a working ASP.NET application, you can use ASP.NET MVC or ASP.NET WebForms, the steps are almost the same. First of all, the following packages should be installed. There are a lot of ways to install NuGet packages, I'll show how to use Package Manager Console window as it doesn't require any screenshots. 
 
-Please note that versions in the code snippet below may be outdated, so use versions from the following badges, they are updated in real-time.
-
-.. |latest-core| image:: https://img.shields.io/nuget/v/Hangfire.Core.svg?label=Hangfire.Core
-.. |latest-aspnet| image:: https://img.shields.io/nuget/v/Hangfire.AspNet.svg?label=Hangfire.AspNet
-.. |latest-sqlserver| image:: https://img.shields.io/nuget/v/Hangfire.SqlServer.svg?label=Hangfire.SqlServer
-
-|latest-core| |latest-sqlserver| |latest-aspnet|
-
-.. code-block:: xml
-
-   <ItemGroup>
-     <PackageReference Include="Hangfire.Core" Version="1.7.0" />
-     <PackageReference Include="Hangfire.SqlServer" Version="1.7.0" />
-     <PackageReference Include="Hangfire.AspNet" Version="0.2.0" />
-   </ItemGroup>
+.. code-block:: powershell
+  
+   PM> Install-Package Hangfire.Core
+   PM> Install-Package Hangfire.SqlServer
+   PM> Install-Package Hangfire.AspNet
 
 Creating a database
 -------------------
