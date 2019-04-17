@@ -85,7 +85,7 @@ For ASP.NET Core projects, call the ``UseRedisStorage`` method from the ``AddHan
 
    services.AddHangfire(configuration => configuration.UseRedisStorage());
 
-You can customize the connection string using the StackExchange.Redis' configuration string format. Please read `their documentation <https://github.com/StackExchange/StackExchange.Redis/blob/master/Docs/Configuration.md>`_ for details. The values for the following options have their own defaults in Hangfire, but can be overriden in the *connection string*:
+You can customize the connection string using the StackExchange.Redis' configuration string format. Please read `their documentation <https://stackexchange.github.io/StackExchange.Redis/Configuration>`_ for details. The values for the following options have their own defaults in Hangfire, but can be overriden in the *connection string*:
 
 =============== =======
 Option          Default
