@@ -67,6 +67,7 @@ Unfortunately there's need to update your code if you are using one of the follo
 *Hangfire.Core:*
 
 * Added ``IBackgroundJobFactory.StateMachine`` property to enable transactional behavior of ``RecurringJobScheduler``.
+* Changed the way of creating recurring job. ``CreatingContext.InitialState`` and ``CreatedContext.InitialState`` properties for ``IClientFilter`` implementations will return ``null`` now, instead of an actual value. Use ``IApplyStateFilter`` or ``IElectStateFilter`` to access that value.
 
 *Hangfire.AspNetCore:*
 
