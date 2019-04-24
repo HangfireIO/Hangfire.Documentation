@@ -11,7 +11,7 @@ Storage
 
 Storage is a place where Hangfire keeps all the information related to background job processing. All the details like types, method names, arguments, etc. are serialized and placed into a storage, no data is kept in a process' memory. The storage subsystem is abstracted in Hangfire well enough to be implemented for RDBMS and NoSQL solutions.
 
-This is the main decision you should made, and the only configuration required before start using the framework. The following example shows how to configure Hangfire with an SQL Server database. Please note that connection string may vary, depending on your environment.
+This is the main decision you should make, and the only configuration required before start using the framework. The following example shows how to configure Hangfire with an SQL Server database. Please note that connection string may vary, depending on your environment.
 
 .. code-block:: csharp
 
