@@ -1,9 +1,45 @@
 Configuring logging
-====================
+===================
 
-Logging plays an important role in background processing, where work is performed behind the scenes. :doc:`Dashboard UI<using-dashboard>` can greatly help to reveal problems with user code, background jobs themselves. But it works by querying the job storage and requires the information is properly written first, before displaying it.
+Logging plays an important role in background processing, where work is performed behind the scenes. :doc:`Dashboard UI <using-dashboard>` can greatly help to reveal problems with user code, background jobs themselves. But it works by querying the job storage and requires the information is properly written first, before displaying it.
 
 Even if Hangfire itself doesn't contain any errors, there may be connectivity issues, network blips, problems with the storage instance, different timeout issues and so on. And without logging it's very hard to diagnose those problems and understand what to do – exceptions are thrown in background and may get unnoticed.
+
+Logging subsystem in Hangfire is abstracted to allow you to integrate it with any infrastructure. Also, you don't need to configure logging if your application doesn't create any background processing servers – client methods don't log anything, they just throw exceptions on errors.
+
+.NET Core and ASP.NET Core
+--------------------------
+
+`Hangfire.NetCore <https://www.nuget.org/packages/Hangfire.NetCore/>`_ and `Hangfire.AspNetCore <https://www.nuget.org/packages/Hangfire.AspNetCore/>`_ packages provide the simplest way to integrate Hangfire into modern .NET Core applications. It delegates the logging implementation to the `Microsoft.Extensions.Logging <https://www.nuget.org/packages/Microsoft.Extensions.Logging>`_ package, so the only required method to call is the ``AddHangfire`` method:
+
+.. code-block:: csharp
+   :caption: Startup.cs
+
+   public void ConfigureServices(IServiceCollection services)
+   {
+       // ...
+       services.AddHangfire(config => config.UseXXXStorage());
+   }
+
+You can also change the minimal logging level for background processing servers to capture lifetime events like "starting" and "stopping" ones. These events are very important to debug cases when background processing isn't working, because all the processing servers are stopped.
+
+.. code-block:: json
+   :emphasize-lines: 5
+   :caption: appsettings.json
+
+   {
+     "Logging": {
+       "LogLevel": {
+         "Default": "Warning",
+         "Hangfire": "Information"
+       }
+     }
+   }
+
+
+
+.NET Framework
+---------------
 
 Starting from Hangfire 1.3.0, you are **not required to do anything**, if your application already uses one of the following libraries through the reflection (so that Hangfire itself does not depend on any of them). Logging implementation is **automatically chosen** by checking for the presence of corresponding types in the order shown below.
 
