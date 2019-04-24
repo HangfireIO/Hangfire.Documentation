@@ -5,7 +5,7 @@
         <li><a href="{{ doc.link|e }}">{{ doc.title }}</a></li>
     {% endfor %}
   <li>{{ title }}</li>
-    <li class="breadcrumb-aside">
+    <li class="breadcrumb-aside hidden-xs hidden-sm">
       {% if display_github %}
         <a href="https://github.com/{{ github_user }}/{{ github_repo }}/blob/{{ github_version }}{{ conf_py_path }}{{ pagename }}{{ source_suffix }}"><i class="fa fa-github"></i> Edit on GitHub</a>
       {% elif display_bitbucket %}
