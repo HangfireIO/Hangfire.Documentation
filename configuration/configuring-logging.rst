@@ -21,7 +21,7 @@ Logging subsystem in Hangfire is abstracted to allow you to integrate it with an
        services.AddHangfire(config => config.UseXXXStorage());
    }
 
-You can also change the minimal logging level for background processing servers to capture lifetime events like "starting" and "stopping" ones. These events are very important to debug cases when background processing isn't working, because all the processing servers are stopped.
+You can also change the minimal logging level for background processing servers to capture lifetime events like "server is starting" and "server is stopping" ones. These events are very important to debug cases when background processing isn't working, because all the processing servers are inactive.
 
 .. code-block:: json
    :emphasize-lines: 5
@@ -41,21 +41,35 @@ You can also change the minimal logging level for background processing servers 
 .NET Framework
 ---------------
 
-Starting from Hangfire 1.3.0, you are **not required to do anything**, if your application already uses one of the following libraries through the reflection (so that Hangfire itself does not depend on any of them). Logging implementation is **automatically chosen** by checking for the presence of corresponding types in the order shown below.
+If your application uses one of the following libraries, no manual action is required in the most cases. Hangfire knows about these loggers and uses reflection to determine the first available one (in the order defined below) and to call the corresponding methods when logging. And since reflection is used, there are no unnecessary package or assembly references.
 
-1. `Serilog <http://serilog.net/>`_ 
-2. `NLog <http://nlog-project.org/>`_
+1. `Serilog <https://serilog.net/>`_ 
+2. `NLog <https://nlog-project.org/>`_
 3. `Log4Net <https://logging.apache.org/log4net/>`_
 4. `EntLib Logging <http://msdn.microsoft.com/en-us/library/ff647183.aspx>`_
 5. `Loupe <http://www.gibraltarsoftware.com/Loupe>`_
-6. `Elmah <https://code.google.com/p/elmah/>`_
+6. `Elmah <https://elmah.github.io/>`_
 
-If you want to log Hangfire events and have no logging library installed, please choose one of the above and refer to its documentation.
+Automatic wiring works correctly when your project references only a single logging package. Also, due to breaking changes (rare enough in the packages above), it's possible that wiring doesn't succeed. And to explicitly tell Hangfire what package to use to avoid the ambiguity, you can call one of the following methods (last invocation wins).
+
+.. code-block:: csharp
+
+   GlobalConfiguration.Configuration
+       .UseSerilogLogProvider()
+       .UseNLogLogProvider()
+       .UseLog4NetLogProvider()
+       .UseEntLibLogProvider()
+       .UseLoupeLogProvider()
+       .UseElmahLogProvider();
+
+If your project doesn't have the required references when calling these methods, you may get a run-time exception.
+
+Of course if you don't have any logging package installed or didn't configure it properly, Hangfire will not log anything, falling back to the internal ``NoOpLogger`` class. So it's a great time to install one, for example `Serilog <https://github.com/serilog/serilog/wiki/Getting-Started>`_, as it's the most simple logging package to set up.
 
 Console logger
 ---------------
 
-For console applications and sandbox installations, there is the ``ColouredConsoleLogProvider`` class. You can start to use it by doing the following:
+For console applications and sandbox installations, there is the ``ColouredConsoleLogProvider`` class. You can start to use it by configuring it in the following way. But ensure you aren't using this logger in production environment, because it's very slow due to locking that's used to ensure the colors are correct.
 
 .. code-block:: csharp
 
