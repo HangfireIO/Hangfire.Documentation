@@ -36,7 +36,7 @@ You can also change the minimal logging level for background processing servers 
      }
    }
 
-
+Once integration is complete, please refer to the official `Logging in ASP.NET Core <https://docs.microsoft.com/ru-ru/aspnet/core/fundamentals/logging/>`_ article to learn how to configure the logging subsystem of .NET Core itself.
 
 .NET Framework
 ---------------
@@ -69,7 +69,7 @@ Of course if you don't have any logging package installed or didn't configure it
 Console logger
 ---------------
 
-For console applications and sandbox installations, there is the ``ColouredConsoleLogProvider`` class. You can start to use it by configuring it in the following way. But ensure you aren't using this logger in production environment, because it's very slow due to locking that's used to ensure the colors are correct.
+For simple applications you can use the built-in console log provider, please see the following snippet to learn how to activate it. But please ensure you aren't using it in production environments, because this logger may produce unwanted blocks, since global lock is obtained each time we are writing a message to ensure the colors are correct.
 
 .. code-block:: csharp
 
@@ -78,7 +78,7 @@ For console applications and sandbox installations, there is the ``ColouredConso
 Using a custom logger
 -----------------------
 
-It is very simple to add a custom logger implementation.  If your application uses another logging library that is not listed above, you only need to implement the following interfaces:
+If your application uses another logging library that's not listed above, you can implement your own logging adapter. Please see the following snippet to learn how to do this – all you need is to implement some interfaces and register the resulting log provider in a global configuration instance.
 
 .. code-block:: csharp
 
@@ -128,9 +128,24 @@ After implementing the interfaces above, call the following method:
 Log level description
 ----------------------
 
-* **Trace** – for debugging Hangfire itself.
-* **Debug** – to know why background processing does not work for you.
-* **Info**  – to see that everything is working as expected: *Hangfire was started or stopped*, *Hangfire components performed useful work*. This is the **recommended** level to log.
-* **Warn**  – to know learn about potential problems early: *performance failed, but automatic retry attempt will be made*, *thread abort exceptions*.
-* **Error** – to know about problems that may lead to temporary background processing disruptions or problems you should know about: *performance failed, you need either to retry or delete a job manually*, *storage connectivity errors, automatic retry attempt will be made*.
-* **Fatal** – to know that background job processing does not work partly or entirely, and requires manual intervention: *storage connectivity errors, retry attempts exceeded*, *different internal issues, such as OutOfMemoryException and so on*.
+There are the following semantics behind each log level. Please take into account that some logging libraries may have slightly other names for these levels, but usually they are almost the same. If you are looking for a good candidate for the minimal log level configuration in your application, choose the ``LogLevel.Info``.
+
+============= ======================================================
+Level         Description
+============= ======================================================
+``Trace``     These messages are for debugging Hangfire itself to see what events happened and what conditional branches taken.
+``Debug``     Use this level to know why background processing does not work for you. There are no message count thresholds for this level, so you can use it when something is going wrong. But expect much higher number of messages, comparing to the next levels.
+``Info``      This is the **recommended** minimal level to log from, to ensure everything is working as expected. 
+
+              Processing server is usually using this level to notify about start and stop events – perhaps the most important ones, because inactive server doesn't process anything. Starting from this level, Hangfire tries to log as few messages as possible to not to harm your logging subsystem.
+``Warn``      Background processing may be delayed due to some reason. You can take the corresponding action to minimize the delay, but there will be yet another automatic retry attempt anyway.
+``Error``     Background process or job is unable to perform its work due to some external error which lasts for a long time. 
+
+              Usually a message with this level is logged only after a bunch of retry attempts to ensure you don't get messages on transient errors or network blips. Also usually you don't need to restart the processing server after resolving the cause of these messages, because yet another attempt will be made automatically after some delay.
+``Fatal``     Current processing server will not process background jobs anymore, and manual intervention is required.
+
+              This log level is almost unused in Hangfire, because there are retries almost everywhere, except in the retry logic itself. Theoretically, ``ThreadAbortException`` may cause a fatal error, but only if it's thrown in a bad place –  usually thread aborts are being reset automatically.
+
+              Please also keep in mind that we can't log anything if process is died unexpectedly.
+============= ======================================================
+
