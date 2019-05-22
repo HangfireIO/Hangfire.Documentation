@@ -142,7 +142,7 @@ After registering Hangfire types, you can now choose features you need to add to
 Running Application
 --------------------
 
-Run the following command in to to start an application, or click the ``F5`` button in Visual Studio.
+Run the following command in to to start an application, or click the :kbd:`F5` button in Visual Studio.
 
 .. code-block:: bash
    
