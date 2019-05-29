@@ -5,7 +5,7 @@ Logging plays an important role in background processing, where work is performe
 
 Even if Hangfire itself doesn't contain any errors, there may be connectivity issues, network blips, problems with the storage instance, different timeout issues and so on. And without logging it's very hard to diagnose those problems and understand what to do – exceptions are thrown in background and may get unnoticed.
 
-Logging subsystem in Hangfire is abstracted to allow you to integrate it with any infrastructure. Also, you don't need to configure logging if your application doesn't create any background processing servers – client methods don't log anything, they just throw exceptions on errors.
+Logging subsystem in Hangfire is abstracted by using the `LibLog <https://github.com/damianh/LibLog>`_ package to allow you to integrate it with any infrastructure. Also, you don't need to configure logging if your application doesn't create any background processing servers – client methods don't log anything, they just throw exceptions on errors.
 
 .NET Core and ASP.NET Core
 --------------------------
