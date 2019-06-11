@@ -31,7 +31,7 @@ To call the ``Send`` method in background, use the following override of the ``E
 
    BackgroundJob.Enqueue<EmailSender>(x => x.Send(13, "Hello!"));
 
-When a worker determines that it need to call an instance method, it creates the instance of a given class first using the current ``JobActivator`` class instance. By default, it uses the ``Activator.CreateInstance`` method that can create an instance of your class using **its default constructor**, so let's add it:
+When a worker determines that it needs to call an instance method, it creates the instance of a given class first using the current ``JobActivator`` class instance. By default, it uses the ``Activator.CreateInstance`` method that can create an instance of your class using **its default constructor**, so let's add it:
 
 .. code-block:: c#
 
