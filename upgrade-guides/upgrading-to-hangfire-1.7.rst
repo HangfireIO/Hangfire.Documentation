@@ -214,9 +214,9 @@ c. Update SQL Server options to have better locking scheme, more efficient deque
           .UseSqlServerStorage("connection_string", new SqlServerStorageOptions
           {
               // ...
-              UsePageLocksOnDequeue = true,
-              DisableGlobalLocks = true,
-              EnableHeavyMigrations = false    // Default value: false
+              UsePageLocksOnDequeue = true, // Migration to Schema 7 is required
+              DisableGlobalLocks = true,    // Migration to Schema 7 is required 
+              EnableHeavyMigrations = false // Default value: false
           });
 
 After setting new configuration options, deploy the changes to your servers when needed.
