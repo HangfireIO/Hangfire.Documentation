@@ -16,7 +16,7 @@ To place a job into a different queue, use the QueueAttribute class on your meth
 .. admonition:: Queue name argument formatting 
    :class: warning
 
-   The Queue name argument must consist of lowercase letters, digits and underscore characters only.
+   The Queue name argument must consist of lowercase letters, digits, underscore, and dash characters only.
   
 To start to process multiple queues, you need to update your ``BackgroundJobServer`` configuration.
 
