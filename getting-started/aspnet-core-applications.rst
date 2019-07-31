@@ -41,7 +41,7 @@ Configuring Hangfire
 
 We'll start our configuration process with defining configuration string for ``Hangfire.SqlServer`` package. Consider you have an ``sqlexpress`` named instance running on localhost, and **just created the "HangfireTest" database**. Current user *hould be able to create tables, to allow automatic migrations to do their job.
 
-Also, ``Hangfire.AspNetCore`` package has a logging integration with ASP.NET Core applications. Hangfire's log messages sometimes very important and help to diagnose different issues. ``Information`` level allows to see how Hangfire is working, and ``Waring`` and upper log level help to investigate problems.
+Also, ``Hangfire.AspNetCore`` package has a logging integration with ASP.NET Core applications. Hangfire's log messages sometimes very important and help to diagnose different issues. ``Information`` level allows to see how Hangfire is working, and ``Warning`` and upper log level help to investigate problems.
 
 Configuring Settings
 ~~~~~~~~~~~~~~~~~~~~
