@@ -1,7 +1,7 @@
 Concurrency & Rate Limiting
 ===========================
 
-.. note:: Hangfire.Throttling package is a part of Hangfire.Ace extensibility set and available on the private NuGet feed.
+.. note:: Hangfire.Throttling package is a part of `Hangfire.Ace <https://www.hangfire.io/ace/>`_ extensibility set and available on the private NuGet feed.
 
 Hangfire.Throttling package contains advanced types and methods to apply concurrency and rate limits directly to our background jobs without touching any logic related to queues, workers, servers or using additional services. So we can control how many particular background jobs are running at the same point of time  or within a specific time window.
 
