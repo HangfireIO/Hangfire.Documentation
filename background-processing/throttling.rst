@@ -5,7 +5,7 @@ Concurrency & Rate Limiting
 
 Hangfire.Throttling package contains advanced types and methods to apply concurrency and rate limits directly to our background jobs without touching any logic related to queues, workers, servers or using additional services. So we can control how many particular background jobs are running at the same point of time  or within a specific time window.
 
-Throttling is performed asynchronously by rescheduling jobs at a later time or deleting them instead when throttling condition is met, depending on the configured behavior. And while throttled jobs are waiting for their turn, our workers are free to process other enqueued background jobs.
+Throttling is performed asynchronously by rescheduling jobs to a later time or deleting them when throttling condition is met, depending on the configured behavior. And while throttled jobs are waiting for their turn, our workers are free to process other enqueued background jobs.
 
 The primary focus of this package is to provide a simpler way of reducing the load on external resources. Databases or third-party services affected by background jobs may suffer from additional concurrency, causing increased latency and error rates. While standard solution to use different queues with a constrained number of workers works well enough, it requires additional infrastructure planning and may lead to underutilization. And throttling primitives are much easier to use for this purpose.
 
@@ -37,7 +37,7 @@ Supported only for :doc:`Hangfire.SqlServer <../configuration/using-sql-server>`
 Installation
 ------------
 
-The package is available on a private Hangfire.Ace NuGet feed (that's different from Hangfire.Pro one), please see the Downloads page to learn how to use it (TODO: add links). After registering the private feed, we can install the ``Hangfire.Throttling`` package by editing our ``.csproj`` file for new project types:
+The package is available on a private Hangfire.Ace NuGet feed (that's different from Hangfire.Pro one), please see the `Downloads page <https://www.hangfire.io/ace/downloads.html>`_ to learn how to use it. After registering the private feed, we can install the ``Hangfire.Throttling`` package by editing our ``.csproj`` file for new project types:
 
 .. code-block:: xml
 
@@ -361,7 +361,7 @@ If we increase the number of buckets, we'll be able to use sliding windows inste
        buckets: 60));
 
 Limiting the Capacity
-++++++++++++++++++++
++++++++++++++++++++++
 
 Capacity allows us to control how many fixed or sliding sub-windows will be created dynamically. After running the following sample, there will be maximum 5 sub-windows limited to 4 executions. This is useful in scenarios when we don't want a particular background job to take all the available resources.
 
@@ -399,7 +399,7 @@ So in the example above, if there are background jobs only for a single tenant, 
 Removing the Throttling
 +++++++++++++++++++++++
 
-As with other rate limiters, you can just remove the ``DynamicWindow`` attributes from your methods and call the following methods. There's no need to change the mode to ``Release`` as with `Concurrent Limiters`_, since no logic is running on background job completion.
+As with other rate limiters, you can just remove the ``DynamicWindow`` attributes from your methods and call the following methods. There's no need to change the mode to ``Release`` as with `Concurrency Limiters`_, since no logic is running on background job completion.
 
 .. code-block:: c#
 

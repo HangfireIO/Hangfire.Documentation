@@ -73,16 +73,15 @@ table.field-list {
 .bs-sidenav {
     padding-top:    10px;
     padding-bottom: 10px;
-    text-shadow: 0 1px 0 #fff;
     background-color: #f5f5f5;
     border-radius: 5px;
     margin-bottom: 20px;
 }
 
 .bs-sidenav h4 {
-    margin: 5px 20px 7px;
+    margin: 5px 20px 4px;
     color: #888;
-    font-size: 20px;
+    font-size: 16px;
     padding-bottom: 7px;
     border-bottom: solid 1px #ddd;
 }
