@@ -148,6 +148,23 @@ It's better not to remove the throttling attributes directly when deciding to re
 
 In this mode, throttlers will not be applied anymore, only released. So when all the background jobs processed and corresponding limiters were already released, we can safely remove the attribute. `Rate Limiters`_ don't run anything on the Release stage and are expired automatically, so we don't need to change the mode before their removal.
 
+Strict Mode
+~~~~~~~~~~~
+
+Since the primary focus of the library is to reduce pressure on other services, throttlers are released by default when background jobs move out of the *Processing* state. So when you retry or re-schedule a running background job, any *Mutexes* or *Semaphores* will be released immediately and let other jobs to acquire them. This mode is called *Relaxed*.
+
+Alternatively you can use *Strict Mode* to release throttlers only when background job was fully completed, e.g. moved to a final state (such as *Succeeded* or *Deleted*, but not the *Failed* one). This is useful when your background job produces multiple side effects, and you don't want to let other background jobs to examine partial effects.
+
+You can turn on the *Strict Mode* by applying the ``ThrottlingAttribute`` on a method and using its ``StrictMode`` property as shown below. When multiple throttlers are defined, Strict Mode is applied to all of them. Please note it affects only *Concurrency Limiters* and don't affect *Rate Limiters*, since they don't invoke anything when released.
+
+.. code-block:: c#
+
+   [Mutex("orders:{0}")]
+   [Throttling(StrictMode = true)]
+   Task ProcessOrderAsync(long orderId);
+
+In either mode, throttler's release and background job's state transition performed in the same transaction.
+
 Concurrency Limiters
 --------------------
 
