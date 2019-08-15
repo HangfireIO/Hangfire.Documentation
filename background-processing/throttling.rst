@@ -158,6 +158,7 @@ Alternatively you can use *Strict Mode* to release throttlers only when backgrou
 You can turn on the *Strict Mode* by applying the ``ThrottlingAttribute`` on a method and using its ``StrictMode`` property as shown below. When multiple throttlers are defined, Strict Mode is applied to all of them. Please note it affects only *Concurrency Limiters* and don't affect *Rate Limiters*, since they don't invoke anything when released.
 
 .. code-block:: c#
+   :emphasize-lines: 2
 
    [Mutex("orders:{0}")]
    [Throttling(StrictMode = true)]
