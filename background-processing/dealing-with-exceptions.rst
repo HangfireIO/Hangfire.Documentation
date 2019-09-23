@@ -27,3 +27,13 @@ Use the same way to limit the number of attempts to the different value. If you 
 .. code-block:: c#
 
    GlobalJobFilters.Filters.Add(new AutomaticRetryAttribute { Attempts = 5 });
+
+
+If you are using ASP.NET Core you can use the IServiceCollection extension method AddHangfire. Note that AddHangfire uses the GlobalJobFilter instance and therefore dependencies should be Transient or Singleton.
+
+.. code-block:: c#
+
+    services.AddHangfire((provider, configuration) =>
+    {
+        configuration.UseFilter(provider.GetRequiredService<AutomaticRetryAttribute>());
+    }
