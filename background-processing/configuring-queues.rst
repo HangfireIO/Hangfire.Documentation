@@ -32,3 +32,17 @@ To start to process multiple queues, you need to update your ``BackgroundJobServ
    using (new BackgroundJobServer(options)) { /* ... */ }
 
 The order is important, workers will fetch jobs from the critical queue first, and then from the default queue.
+
+ASP.NET Core
+------------
+If you are using ASP.NET Core you can use ``services.AddHangfireServer();`` in the ``Startup.cs`` file to define Queues (since 1.7.5)
+
+.. code-block:: c#
+
+   public void ConfigureServices(IServiceCollection services)
+    {
+        // Add the processing server as IHostedService
+        services.AddHangfireServer(options = {
+            options.Queues = new[] { "critical", "default" };
+        });
+    }
