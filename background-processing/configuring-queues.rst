@@ -35,14 +35,16 @@ The order is important, workers will fetch jobs from the critical queue first, a
 
 ASP.NET Core
 ------------
-If you are using ASP.NET Core you can use ``services.AddHangfireServer();`` in the ``Startup.cs`` file to define Queues (since 1.7.5)
+
+If you are using ASP.NET Core you can use the ``services.AddHangfireServer`` method in the ``Startup.cs`` file to define the queues array:
 
 .. code-block:: c#
 
    public void ConfigureServices(IServiceCollection services)
-    {
-        // Add the processing server as IHostedService
-        services.AddHangfireServer(options = {
-            options.Queues = new[] { "critical", "default" };
-        });
-    }
+   {
+       // Add the processing server as IHostedService
+       services.AddHangfireServer(options =>
+       {
+           options.Queues = new[] { "critical", "default" };
+       });
+   }
