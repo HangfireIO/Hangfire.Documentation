@@ -70,7 +70,7 @@ Create a corresponding template for this email by adding the ``~/Views/Emails/Ne
 
     <3
 
-And call Postal to sent email notification from the ``Create`` controller action:
+And call Postal to send email notification from the ``Create`` controller action:
 
 .. code-block:: c#
 
