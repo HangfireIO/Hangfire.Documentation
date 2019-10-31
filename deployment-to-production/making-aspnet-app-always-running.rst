@@ -185,9 +185,9 @@ If nothing works for you…
 Making ASP.NET Core application always running on IIS
 -----------------------------------------------------
 
-In this case the only need you to do are :
+Follow these directions:
 
-1. Open Advanced Settings of your web application :
+1. Open Advanced Settings on your web application in IIS Manager:
 
 .. image:: iis-advanced-settings.png
 
