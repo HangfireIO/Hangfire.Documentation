@@ -181,3 +181,30 @@ If nothing works for you…
 1. Use :doc:`separate process <../background-processing/placing-processing-into-another-process>` to handle background jobs either on the same, or dedicated host.
 2. Make HTTP requests to your web site on a recurring basis by external tool (for example, `Pingdom <https://www.pingdom.com/>`_).
 3. *Do you know any other ways? Let me know!*
+
+Making ASP.NET Core application always running on IIS
+-----------------------------------------------------
+
+Follow these directions:
+
+1. Open Advanced Settings on your web application in IIS Manager:
+
+.. image:: iis-advanced-settings.png
+
+2. Set value true the option Preload Enabled :
+
+.. image:: iis-preload-enabled.png
+
+3. And finally In IIS Manager, right click on the application pool under which the application runs and select “Advanced Settings”. Update the following values:
+
+    a. Set start mode to “Always Running”.
+    b. Set Idle Time-Out (minutes) to 0.
+
+.. image:: iis-pool-setting.png
+
+The Idle time-out value of 0 means your application never time out. IIS does not kill your application even if it has not received any HTTP request for an indefinite time.
+
+Setting the start mode to “Always Running” tells IIS to start a worker process for your application right away, without waiting for the initial request.
+
+You can check `this page for more documentation about it <https://www.taithienbo.com/how-to-auto-start-and-keep-an-asp-net-core-web-application-and-keep-it-running-on-iis/>`_.
+
