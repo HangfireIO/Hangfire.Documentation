@@ -206,4 +206,5 @@ The Idle time-out value of 0 means your application never time out. IIS does not
 
 Setting the start mode to “Always Running” tells IIS to start a worker process for your application right away, without waiting for the initial request.
 
+You can check `this page for more documentation about it <https://www.taithienbo.com/how-to-auto-start-and-keep-an-asp-net-core-web-application-and-keep-it-running-on-iis/>`_.
 
