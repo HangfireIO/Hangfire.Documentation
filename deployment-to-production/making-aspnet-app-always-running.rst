@@ -189,7 +189,7 @@ In this case the only need you to do are :
 
 1. Open Advanced Settings of your web application :
 
-.. imgae:: iis-advanced-settings.png
+.. image:: iis-advanced-settings.png
 
 2. Set value true the option Preload Enabled :
 
