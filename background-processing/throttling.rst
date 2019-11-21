@@ -182,7 +182,7 @@ Mutex prevents concurrent execution of *multiple* background jobs that share the
        // ...
    }
 
-When we create multiple background jobs based on this method, they will be executed one after another on a best-effort basis with the limitations described below. UIf there's a background job protected by a mutex currently executing, other executions will be throttled (rescheduled by default a minute later), allowing a worker to process other jobs without waiting.
+When we create multiple background jobs based on this method, they will be executed one after another on a best-effort basis with the limitations described below. If there's a background job protected by a mutex currently executing, other executions will be throttled (rescheduled by default a minute later), allowing a worker to process other jobs without waiting.
 
 .. admonition:: Mutex doesn't prevent simultaneous execution of the same background job
    :class: warning
