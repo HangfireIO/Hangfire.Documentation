@@ -55,6 +55,8 @@ Alternatively, if using .NET core, add or update the Startup class with the foll
        }
    }
 
+The ``UseSqlServerStorage()`` extention method comes from the `SQL Server <http://hangfire.readthedocs.org/en/latest/configuration/using-sql-server.html>`_ nuget package. 
+
 .. admonition:: Authorization configuration required
    :class: warning
 
