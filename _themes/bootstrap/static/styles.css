@@ -203,7 +203,7 @@ div.admonition p.admonition-title {
 }
 
 div.admonition.note {
-  border-left-color: #5bc0de;
+  border-color: #5bc0de;
 }
 
 div.admonition.note p.admonition-title {
@@ -211,7 +211,7 @@ div.admonition.note p.admonition-title {
 }
 
 div.admonition.warning {
-  border-left-color: #f0ad4e;
+  border-color: #f0ad4e;
 }
 
 div.admonition.warning p.admonition-title {
