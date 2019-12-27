@@ -1,4 +1,4 @@
-Background processing
+Background Processing
 ======================
 
 .. toctree::

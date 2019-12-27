@@ -1,4 +1,4 @@
-Best practices
+Best Practices
 ===============
 
 Background job processing can differ a lot from a regular method invocation. This guide will help you keep background processing running smoothly and efficiently. The information given here is based off of `this blog post <http://odinserj.net/2014/05/10/are-your-methods-ready-to-run-in-background/>`_.

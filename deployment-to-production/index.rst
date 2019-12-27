@@ -1,4 +1,4 @@
-Deployment to production
+Deployment to Production
 =========================
 
 .. toctree::

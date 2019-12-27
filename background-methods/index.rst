@@ -1,4 +1,4 @@
-Background methods
+Background Methods
 ===================
 
 Background jobs in Hangfire look like regular method calls. Most of its interfaces are using `expression trees <https://docs.microsoft.com/dotnet/csharp/programming-guide/concepts/expression-trees/>`_ to define what method should be called and with what arguments. And background jobs can use both instance and static method calls as in the following example.
