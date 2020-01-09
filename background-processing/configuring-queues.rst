@@ -2,13 +2,13 @@
 Configuring Job Queues
 ======================
 
-Hangfire can process multiple queues. If you want to prioritize your jobs or split the processing across your servers (some processes the archive queue, others – the images queue, etc), you can tell Hangfire about your decisions.
+Hangfire can process multiple queues. If you want to prioritize your jobs, or split the processing across your servers (some processes for the archive queue, others for the images queue, etc), you can tell Hangfire about your decisions.
 
-To place a job into a different queue, use the QueueAttribute class on your method:
+To place a job into a different queue, use the ``QueueAttribute`` class on your method:
 
 .. code-block:: c#
 
-   [Queue("critical")]
+   [Queue("alpha")]
    public void SomeMethod() { }
 
    BackgroundJob.Enqueue(() => SomeMethod());
@@ -18,25 +18,25 @@ To place a job into a different queue, use the QueueAttribute class on your meth
 
    The Queue name argument must consist of lowercase letters, digits, underscore, and dash (since 1.7.6) characters only.
   
-To start to process multiple queues, you need to update your ``BackgroundJobServer`` configuration.
+To begin processing multiple queues, you need to update your ``BackgroundJobServer`` configuration.
 
 .. code-block:: c#
 
    var options = new BackgroundJobServerOptions 
    {
-       Queues = new[] { "critical", "default" }
+       Queues = new[] { "alpha", "beta", "default" }
    };
    
    app.UseHangfireServer(options);
    // or
    using (new BackgroundJobServer(options)) { /* ... */ }
-
-The order is important, workers will fetch jobs from the critical queue first, and then from the default queue.
+   
+**Queues are run in alphabetical order.** In the above example, workers will fetch jobs from the ``alpha`` queue first, ``beta`` second, and then from the ``default`` queue.
 
 ASP.NET Core
 ------------
 
-If you are using ASP.NET Core you can use the ``services.AddHangfireServer`` method in the ``Startup.cs`` file to define the queues array:
+For ASP.NET Core, define the queues array with ``services.AddHangfireServer`` in ``Startup.cs``:
 
 .. code-block:: c#
 
@@ -45,6 +45,6 @@ If you are using ASP.NET Core you can use the ``services.AddHangfireServer`` met
        // Add the processing server as IHostedService
        services.AddHangfireServer(options =>
        {
-           options.Queues = new[] { "critical", "default" };
+           options.Queues = new[] { "alpha", "beta", "default" };
        });
    }
