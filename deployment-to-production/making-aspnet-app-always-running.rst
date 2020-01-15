@@ -185,26 +185,36 @@ If nothing works for you…
 Making ASP.NET Core application always running on IIS
 -----------------------------------------------------
 
-Follow these directions:
+Follow these directions in IIS:
 
-1. Open Advanced Settings on your web application in IIS Manager:
+1. Set application pool under which the application runs to:
 
-.. image:: iis-advanced-settings.png
-
-2. Set value true the option Preload Enabled :
-
-.. image:: iis-preload-enabled.png
-
-3. And finally In IIS Manager, right click on the application pool under which the application runs and select “Advanced Settings”. Update the following values:
+    a. .NET CLR version: **.NET CLR Version v4.0.30319**
+        i. Normally, for a .NET Core app, you'd use *No managed code*, but if you do that, the application preload option won't work.
+    b. Managed pipeline mode: **Integrated**
+    
+2. Right-click on the same application pool and select “Advanced Settings”. Update the following values:
 
     a. Set start mode to “Always Running”.
+        i. Setting the start mode to “Always Running” tells IIS to start a worker process for your application right away, without waiting for the initial request.
     b. Set Idle Time-Out (minutes) to 0.
 
 .. image:: iis-pool-setting.png
 
-The Idle time-out value of 0 means your application never time out. IIS does not kill your application even if it has not received any HTTP request for an indefinite time.
+3. Open Advanced Settings on your application:
 
-Setting the start mode to “Always Running” tells IIS to start a worker process for your application right away, without waiting for the initial request.
+.. image:: iis-advanced-settings.png
+
+4. Set Preload Enabled = True:
+
+.. image:: iis-preload-enabled.png
+
+5. Go to the *Configuration Editor* on your app, and navigate to *system.webServer/applicationInitialization*.  Set the following settings:
+
+    a. doAppInitAfterRestart: **True**
+    b. Open up the *Collection...* ellipsis.  On the next window, click *Add* and enter the following:
+        i. hostName: **{URL host for your Hangfire application}**
+        ii. initializationPage: **{path for your Hangfire dashboard, like /hangfire}**
 
 You can check `this page for more documentation about it <https://www.taithienbo.com/how-to-auto-start-and-keep-an-asp-net-core-web-application-and-keep-it-running-on-iis/>`_.
 
