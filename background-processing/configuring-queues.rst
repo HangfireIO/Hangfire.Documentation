@@ -30,8 +30,13 @@ To begin processing multiple queues, you need to update your ``BackgroundJobServ
    app.UseHangfireServer(options);
    // or
    using (new BackgroundJobServer(options)) { /* ... */ }
-   
-**Queues are run in alphabetical order.** In the above example, workers will fetch jobs from the ``alpha`` queue first, ``beta`` second, and then from the ``default`` queue.
+
+.. admonition:: Processing order
+   :class: note
+
+   Queues are run in the order that depends on the concrete storage implementation. For example, when we are using *Hangfire.SqlServer* the order is defined by alphanumeric order and array index is ignored. When using *Hangfire.Pro.Redis* package, array index is important and queues with a lower index will be processed first.
+
+   The example above shows a generic approach, where workers will fetch jobs from the ``alpha`` queue first, ``beta`` second, and then from the ``default`` queue, regardless of an implementation.
 
 ASP.NET Core
 ------------
