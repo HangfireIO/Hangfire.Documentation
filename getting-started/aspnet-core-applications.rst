@@ -118,7 +118,7 @@ After registering Hangfire types, you can now choose features you need to add to
 .. admonition:: Authorization configuration required for non-local requests
    :class: warning
 
-   By default only local access is permitted to the Hangfire Dashboard. `Dashboard authorization <configuration/using-dashboard.html#configuring-authorization>`__ must be configured in order to allow remote access.
+   By default only local access is permitted to the Hangfire Dashboard. `Dashboard authorization </configuration/using-dashboard.html#configuring-authorization>`__ must be configured in order to allow remote access.
 
 .. code-block:: csharp
    :emphasize-lines: 1,6,7
