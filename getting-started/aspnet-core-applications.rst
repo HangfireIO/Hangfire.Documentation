@@ -19,9 +19,9 @@ Hangfire is available as a set of NuGet packages, so you need to add them to the
 
    <ItemGroup>
      <PackageReference Include="Microsoft.AspNetCore.App" />
-     <PackageReference Include="Hangfire.Core" Version="1.7.0" />
-     <PackageReference Include="Hangfire.SqlServer" Version="1.7.0" />
-     <PackageReference Include="Hangfire.AspNetCore" Version="1.7.0" />
+     <PackageReference Include="Hangfire.Core" Version="1.7.9" />
+     <PackageReference Include="Hangfire.SqlServer" Version="1.7.9" />
+     <PackageReference Include="Hangfire.AspNetCore" Version="1.7.9" />
    </ItemGroup>
 
 Creating a database
