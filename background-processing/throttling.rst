@@ -112,7 +112,7 @@ Throttlers are regular background job filters and can be applied to a particular
        [Mutex("orders:{0}")]
        void ProcessOrder(long orderId);
 
-       [Throttling(ThrottlingAction.DeleteJob)]
+       [Throttling(ThrottlingAction.DeleteJob, minimumDelayInSeconds: 120)]
        void CancelOrder(long orderId);
    }
 
