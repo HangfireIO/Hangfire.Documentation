@@ -9,7 +9,7 @@ Since Hangfire does not have any specific dependencies and does not depend on ``
 * ASP.NET MVC
 * ASP.NET WebApi
 * ASP.NET vNext (through the ``app.UseOwin`` method)
-* Other OWIN-based web frameworks (`Nancy <http://nancyfx.org/>`_, `FubuMVC <http://mvc.fubu-project.org/>`_, `Simple.Web <https://github.com/markrendle/Simple.Web>`_)
+* Other OWIN-based web frameworks (`Nancy <http://nancyfx.org/>`_, `Simple.Web <https://github.com/markrendle/Simple.Web>`_)
 * Other non-OWIN based web frameworks (`ServiceStack <https://servicestack.net/>`_)
 
 Using ``BackgroundJobServer`` class
