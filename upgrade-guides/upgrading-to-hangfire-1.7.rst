@@ -106,7 +106,7 @@ a. Upgrade your NuGet package references using your own preferred way. If you've
 
    .. code-block:: xml
        
-      <PackageReference Include="Hangfire" Version="1.7.0" />
+      <PackageReference Include="Hangfire" Version="1.7.*" />
 
    If you reference individual packages upgrade them all, here is the full list of packages that come with this release. Please note that versions in the code snippet below may be outdated, so use versions from the following badges, they are updated in real-time.
 
@@ -118,10 +118,10 @@ a. Upgrade your NuGet package references using your own preferred way. If you've
 
    .. code-block:: xml
 
-      <PackageReference Include="Hangfire.Core" Version="1.7.0" />
-      <PackageReference Include="Hangfire.AspNetCore" Version="1.7.0" />
-      <PackageReference Include="Hangfire.SqlServer" Version="1.7.0" />
-      <PackageReference Include="Hangfire.SqlServer.Msmq" Version="1.7.0" />
+      <PackageReference Include="Hangfire.Core" Version="1.7.*" />
+      <PackageReference Include="Hangfire.AspNetCore" Version="1.7.*" />
+      <PackageReference Include="Hangfire.SqlServer" Version="1.7.*" />
+      <PackageReference Include="Hangfire.SqlServer.Msmq" Version="1.7.*" />
 
 b. Fix breaking changes mentioned in the previous section if they apply to your use case.
 c. (Optional) If your background processing sits mostly idle and you are already using Hangfire 1.6.23, you can run the schema migration for SQL Server during this step. Otherwise I'd highly encourage you to perform the migration manually as written in the following section, because it may take too long if there are outstanding queries.
