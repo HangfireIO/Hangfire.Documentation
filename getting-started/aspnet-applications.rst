@@ -69,7 +69,6 @@ All you need is to call them, to start using both Hangfire Dashboard and Hangfir
                     SlidingInvisibilityTimeout = TimeSpan.FromMinutes(5),
                     QueuePollInterval = TimeSpan.Zero,           
                     UseRecommendedIsolationLevel = true,
-                    UsePageLocksOnDequeue = true,
                     DisableGlobalLocks = true
                });
 
@@ -116,7 +115,6 @@ If you can't use the ``Startup`` class for a reason, just use the ``HangfireAspN
                     SlidingInvisibilityTimeout = TimeSpan.FromMinutes(5),
                     QueuePollInterval = TimeSpan.Zero,           
                     UseRecommendedIsolationLevel = true,
-                    UsePageLocksOnDequeue = true,
                     DisableGlobalLocks = true
                });
 
