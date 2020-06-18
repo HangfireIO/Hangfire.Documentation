@@ -99,7 +99,6 @@ Dependency Injection is one of the primary techniques introduced in ASP.NET Core
                SlidingInvisibilityTimeout = TimeSpan.FromMinutes(5),
                QueuePollInterval = TimeSpan.Zero,           
                UseRecommendedIsolationLevel = true,
-               UsePageLocksOnDequeue = true,
                DisableGlobalLocks = true
            }));
 
