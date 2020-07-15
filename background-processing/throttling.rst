@@ -240,7 +240,7 @@ We should place the ``SemaphoreAttribute`` filter on a background job method and
 .. admonition:: Multiple executions of the same background job count as 1
    :class: warning
 
-   As with mutexes, multiple invocations of the same background job aren't respected and counted as 1. So actually it's possible that more then the given count of background job methods are running concurrently. As before, we can use ``DisableConcurrentExecution`` to reduce the probability of this event, but we should be prepared for this anyway.
+   As with mutexes, multiple invocations of the same background job aren't respected and counted as 1. So actually it's possible that more than the given count of background job methods are running concurrently. As before, we can use ``DisableConcurrentExecution`` to reduce the probability of this event, but we should be prepared for this anyway.
 
 As with mutexes, we can apply the ``SemaphoreAttribute`` with the same resource identifier to multiple background job methods, and all of them will respect the behavior of a given semaphore. However dynamic resource identifiers based on arguments aren't allowed for semaphores as they are required to be created first.
 
