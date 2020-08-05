@@ -6,10 +6,10 @@ Hangfire Dashboard is a place where you could find all the information about you
 .. contents::
    :local:
 
-Adding Dashboard
+Adding Dashboard (OWIN)
 -----------------
 
-.. admonition:: Additional package required for ASP.NET + IIS
+.. admonition:: Additional package required for `ASP.NET <getting-started/aspnet-applications.rst>`_ and `ASP.NET Core <getting-started/aspnet-core-applications.rst>`_
    :class: note
 
    Before moving to the next steps, ensure you have `Microsoft.Owin.Host.SystemWeb <https://www.nuget.org/packages/Microsoft.Owin.Host.SystemWeb/>`_ package installed, otherwise you'll have different strange problems with the Dashboard.
