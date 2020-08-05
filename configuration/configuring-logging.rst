@@ -36,7 +36,7 @@ You can also change the minimal logging level for background processing servers 
      }
    }
 
-Once integration is complete, please refer to the official `Logging in ASP.NET Core <https://docs.microsoft.com/ru-ru/aspnet/core/fundamentals/logging/>`_ article to learn how to configure the logging subsystem of .NET Core itself.
+Once integration is complete, please refer to the official `Logging in ASP.NET Core <https://docs.microsoft.com/en-us/aspnet/core/fundamentals/logging/>`_ article to learn how to configure the logging subsystem of .NET Core itself.
 
 .NET Framework
 ---------------
