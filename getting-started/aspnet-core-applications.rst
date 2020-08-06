@@ -142,6 +142,7 @@ Starting with ``Hangfire.AspNetCore 1.7.8``, Hangfire officially supports ASP.NE
 
 .. code-block:: csharp
    :emphasize-lines: 6,9
+   
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     {
