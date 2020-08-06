@@ -6,7 +6,7 @@ Hangfire Dashboard is a place where you could find all the information about you
 .. contents::
    :local:
 
-Adding Dashboard
+Adding Dashboard (OWIN)
 -----------------
 
 .. admonition:: Additional package required for ASP.NET + IIS

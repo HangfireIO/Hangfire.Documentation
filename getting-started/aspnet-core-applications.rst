@@ -138,6 +138,24 @@ After registering Hangfire types, you can now choose features you need to add to
        });
    }
 
+Starting with ``Hangfire.AspNetCore 1.7.8``, Hangfire officially supports ASP.NET Core 3.0 endpoint routing. When using ``RequireAuthorization`` with ``MapHangfireDashboard`` be cautious that only local access is allowed by default.
+
+.. code-block:: csharp
+   :emphasize-lines: 6,9
+    // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+    public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+    {
+        app.UseRouting();
+        app.UseAuthorization();
+        app.UseEndpoints(endpoints =>
+        {
+            endpoints.MapControllers();
+            endpoints.MapHangfireDashboard();
+        });
+    }
+    
+    
+
 Running Application
 --------------------
 
