@@ -45,7 +45,7 @@ Starting from version 1.7.0 it is recommended to set the following options for n
            SlidingInvisibilityTimeout = TimeSpan.FromMinutes(5),
            QueuePollInterval = TimeSpan.Zero,           
            UseRecommendedIsolationLevel = true,
-           DisableGlobalLocks = true
+           DisableGlobalLocks = true // Migration to Schema 7 is required
        });
 
 Installing objects
