@@ -189,15 +189,13 @@ Follow these directions in IIS:
 
 1. Set application pool under which the application runs to:
 
-    a. .NET CLR version: **.NET CLR Version v4.0.30319**
-        i. Normally, for a .NET Core app, you'd use *No managed code*, but if you do that, the application preload option won't work.
+    a. .NET CLR version: **No managed code**
     b. Managed pipeline mode: **Integrated**
     
 2. Right-click on the same application pool and select “Advanced Settings”. Update the following values:
 
     a. Set start mode to “Always Running”.
         i. Setting the start mode to “Always Running” tells IIS to start a worker process for your application right away, without waiting for the initial request.
-    b. Set Idle Time-Out (minutes) to 0.
 
 .. image:: iis-pool-setting.png
 
@@ -209,12 +207,35 @@ Follow these directions in IIS:
 
 .. image:: iis-preload-enabled.png
 
-5. Go to the *Configuration Editor* on your app, and navigate to *system.webServer/applicationInitialization*.  Set the following settings:
+5. You will need to set the application initialization settings.  There are two ways to do this.
 
-    a. doAppInitAfterRestart: **True**
-    b. Open up the *Collection...* ellipsis.  On the next window, click *Add* and enter the following:
-        i. hostName: **{URL host for your Hangfire application}**
-        ii. initializationPage: **{path for your Hangfire dashboard, like /hangfire}**
+    a.  First make sure the application initialization module is installed for IIS.
+    b.  To make changes to your settings directly in IIS:
+    
+        i. Go to the *Configuration Editor* on your app, and navigate to *system.webServer/applicationInitialization*. 
+        ii. doAppInitAfterRestart: **True**
+        iii. Open up the *Collection...* ellipsis.  On the next window, click *Add* and enter the following:
+        
+            a) hostName: **{URL host for your Hangfire application}**
+            b) initializationPage: **{path for your Hangfire dashboard, like /hangfire}**
+            
+    c.  Alternatively to ii. above, you can make these changes directly in your web.config file:
 
-You can check `this page for more documentation about it <https://www.taithienbo.com/how-to-auto-start-and-keep-an-asp-net-core-web-application-and-keep-it-running-on-iis/>`_.
+.. code-block:: xml
+
+    <system.webServer>
+        <applicationInitialization doAppInitAfterRestart="true">
+            <clear />
+            <add initializationPage="**{path for your Hangfire dashboard, like /hangfire}**" hostName="**{URL host for your Hangfire application}**" />
+        </applicationInitialization>
+    </system.webServer>
+        
+6. There is `currently a bug <https://github.com/dotnet/aspnetcore/issues/19509>` in .NET Core affecting garbage collection.  To get around this, you must add the following to your .csproj file:
+
+.. code-block:: xml
+
+    <PropertyGroup>
+        <ServerGarbageCollection>true</ServerGarbageCollection>
+        <ConcurrentGarbageCollection>false</ConcurrentGarbageCollection>
+    </PropertyGroup>
 
