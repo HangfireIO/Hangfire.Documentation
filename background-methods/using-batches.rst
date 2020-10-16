@@ -50,7 +50,7 @@ Batches require to add some additional job filters, some new pages to the Dashbo
 .. admonition:: Limited storage support
    :class: warning
 
-   Only **Hangfire.SqlServer** and **Hangfire.Pro.Redis** job storage implementations are currently supported. There is nothing special for batches, but some new storage methods should be implemented.
+   Only official **Hangfire.InMemory**, **Hangfire.SqlServer** and **Hangfire.Pro.Redis** job storage implementations are currently supported. There is nothing special for batches, but some new storage methods should be implemented.
 
 Configuration
 --------------
@@ -60,7 +60,7 @@ The default batch job expiration/retention time if the batch succeeds is 7 days.
 .. code-block:: c#
     
     var defaultBatchJobRetentionPeriod = new TimeSpan(2, 0, 0, 0); //2 day retention
-    Hangfire.GlobalConfiguration.Configuration.UseBatches(defaultBatchJobRetentionPeriod);
+    GlobalConfiguration.Configuration.UseBatches(defaultBatchJobRetentionPeriod);
 
 
 Chaining Batches
@@ -71,7 +71,7 @@ Continuations allow you to chain multiple batches together. They will be execute
 .. code-block:: c#
 
    var id1 = BatchJob.StartNew(/* for (var i = 0; i < 1000... */);
-   var id2 = BatchJob.ContinueWith(id1, x => 
+   var id2 = BatchJob.ContinueBatchWith(id1, x => 
    {
        x.Enqueue(() => MarkCampaignFinished());
        x.Enqueue(() => NotifyAdministrator());
@@ -90,11 +90,11 @@ Create action does not restrict you to create jobs only in *Enqueued* state. You
    {
        x.Enqueue(() => Console.Write("1a... "));
        var id1 = x.Schedule(() => Console.Write("1b... "), TimeSpan.FromSeconds(1));
-       var id2 = x.ContinueWith(id1, () => Console.Write("2... "));
-       x.ContinueWith(id2, () => Console.Write("3... "));
+       var id2 = x.ContinueJobWith(id1, () => Console.Write("2... "));
+       x.ContinueJobWith(id2, () => Console.Write("3... "));
    });
    
-   BatchJob.ContinueWith(batchId, x =>
+   BatchJob.ContinueBatchWith(batchId, x =>
    {
        x.Enqueue(() => Console.WriteLine("4..."));
    });
