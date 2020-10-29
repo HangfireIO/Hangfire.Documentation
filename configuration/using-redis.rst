@@ -30,19 +30,17 @@ Please read the `official Redis documentation <http://redis.io/documentation>`_ 
 
 .. code-block:: shell
 
-   # Non-zero value cause long-running background jobs to be 
-   # processed multiple times due to connection was closed.
-   # NOTE: This setting is only required for Hangfire.Pro.Redis 1.x!
-   timeout 0
-
    # Hangfire neither expect that non-expired keys are deleted,
    # nor expiring keys are evicted before the expiration time.
    maxmemory-policy noeviction
 
+   # Non-zero value cause long-running background jobs to be 
+   # processed multiple times due to connection being closed.
+   # ONLY FOR Hangfire.Pro.Redis 1.X!
+   timeout 0   
+
 Hangfire.Pro.Redis 2.x
 -----------------------
-
-
 
 Redis ≥ 2.6.12 is required
 
@@ -55,15 +53,13 @@ Ensure that you have configured the private Hangfire Pro NuGet feed as `written 
 
    PM> Install-Package Hangfire.Pro.Redis
 
-If your project targets .NET Core, just add a dependency in your ``project.json`` file:
+If your project targets .NET Core, just add a dependency in your ``*.csproj`` file:
 
-.. code-block:: json
+.. code-block:: xml
 
-   {
-      "dependencies": {
-          "Hangfire.Pro.Redis": "2.0.2"
-      }
-   }
+   <ItemGroup>
+     <PackageReference Include="Hangfire.Pro.Redis" Version="2.8.2" />
+   </ItemGroup>
 
 Configuration
 ~~~~~~~~~~~~~~
@@ -99,13 +95,6 @@ Option          Default
    GlobalConfiguration.Configuration
        .UseRedisStorage("contoso5.redis.cache.windows.net,abortConnect=false,ssl=true,password=...");
 
-In .NET Core you need to use IP addresses instead, because DNS lookup isn't available in StackExchange.Redis for .NET Core.
-
-.. code-block:: csharp
-
-   GlobalConfiguration.Configuration
-       .UseRedisStorage("127.0.0.1");
-       
 Redis Cluster support
 ^^^^^^^^^^^^^^^^^^^^^
 
@@ -130,24 +119,25 @@ You can also pass the Hangfire-specific options for Redis storage by using the `
 
    var options = new RedisStorageOptions
    {
-       Prefix = "hangfire:app1:",
-       InvisibilityTimeout = TimeSpan.FromHours(3)
+       Prefix = "hangfire:app1:"
    };
 
    GlobalConfiguration.Configuration.UseRedisStorage("localhost", options);
 
 The following options are available for configuration:
 
-============================ ============================ ===========
-Option                       Default                      Description
-============================ ============================ ===========
-Database                     ``null``                     Redis database number to be used by Hangfire. When null, then the defaultDatabase option from the configuration string is used.
-InvisibilityTimeout          ``TimeSpan.FromMinutes(30)`` Time interval, within which background job is considered to be still successfully processed by a worker. When a timeout is elapsed, another worker will be able to pick the same background job.
-Prefix                       ``hangfire:``                Prefix for all Redis keys related to Hangfire.
-MaxSucceededListLength       ``10000``                    Maximum visible background jobs in the succeeed list to prevent it from growing indefinitely.
-MaxDeletedListLength         ``1000``                     Maximum visible background jobs in the deleted list to prevent it from growing indefinitely.
-SubscriptionIntegrityTimeout ``TimeSpan.FromHours(1)``    Timeout for subscription-based fetch. The value should be high enough enough (hours) to decrease the stress on a database. This is an additional layer to provide integrity, because otherwise subscriptions can be active for weeks, and bad things may happen during this time.
-============================ ============================ ===========
+============================== ============================ ===========
+Option                         Default                      Description
+============================== ============================ ===========
+Prefix                         ``hangfire:``                Prefix for all Redis keys related to Hangfire.
+Database                       ``null``                     Redis database number to be used by Hangfire. When null, then the defaultDatabase option from the configuration string is used.
+MaxSucceededListLength         ``10000``                    Maximum visible background jobs in the succeeed list to prevent it from growing indefinitely.
+MaxDeletedListLength           ``1000``                     Maximum visible background jobs in the deleted list to prevent it from growing indefinitely.
+*InvisibilityTimeout*          ``TimeSpan.FromMinutes(30)`` **Obsolete since 2.4.0**
+                                                            Time interval, within which background job is considered to be still successfully processed by a worker. When a timeout is elapsed, another worker will be able to pick the same background job.
+*SubscriptionIntegrityTimeout* ``TimeSpan.FromHours(1)``    **Obsolete since 2.1.3**
+                                                            Timeout for subscription-based fetch. The value should be high enough enough (hours) to decrease the stress on a database. This is an additional layer to provide integrity, because otherwise subscriptions can be active for weeks, and bad things may happen during this time.
+============================== ============================ ===========
 
 Hangfire.Pro.Redis 1.x
 -----------------------
