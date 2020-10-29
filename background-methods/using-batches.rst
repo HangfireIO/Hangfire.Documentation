@@ -55,12 +55,11 @@ Batches require to add some additional job filters, some new pages to the Dashbo
 Configuration
 --------------
 
-The default batch job expiration/retention time if the batch succeeds is 7 days.
+The default batch job expiration/retention time if the batch succeeds is 7 days, but you can configure it when calling the ``UseBatches`` method:
 
 .. code-block:: c#
     
-    var defaultBatchJobRetentionPeriod = new TimeSpan(2, 0, 0, 0); //2 day retention
-    GlobalConfiguration.Configuration.UseBatches(defaultBatchJobRetentionPeriod);
+   GlobalConfiguration.Configuration.UseBatches(TimeSpan.FromDays(2));
 
 
 Chaining Batches
