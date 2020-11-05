@@ -124,7 +124,7 @@ a. Upgrade your NuGet package references using your own preferred way. If you've
       <PackageReference Include="Hangfire.SqlServer.Msmq" Version="1.7.*" />
 
 b. Fix breaking changes mentioned in the previous section if they apply to your use case.
-c. (Optional) If your background processing sits mostly idle and you are already using Hangfire 1.6.23, you can run the schema migration for SQL Server during this step. Otherwise I'd highly encourage you to perform the migration manually as written in the following section, because it may take too long if there are outstanding queries.
+c. **Optional.** If your background processing sits mostly idle and you are already using Hangfire 1.6.23, you can run the schema migration for SQL Server during this step. Otherwise I'd highly encourage you to perform the migration manually as written in the following section, because it may take too long if there are outstanding queries.
 
    .. code-block:: csharp
 
@@ -177,7 +177,7 @@ If you are using non-default schema, please get the `Install.sql <https://github
 
    Before performing this step, ensure all your processing servers successfully migrated to the new version. Otherwise you may get exceptions or even undefined behavior, caused by custom JSON serialization settings.
 
-When all your servers can understand the new features, you can safely enable them. The new version understands all the existing jobs even in previous data format, thanks to backward compatibility. All these settings are recommended, but optional – you can use whatever you have currently.
+When all your servers can understand the new features, you can safely enable them. The new version understands all the existing jobs even in previous data format, thanks to backward compatibility. All these settings are recommended, but **optional** – you can use whatever you have currently.
 
 a. Set the new data compatibility level and type serializer to have more compact payloads for background jobs.
 
