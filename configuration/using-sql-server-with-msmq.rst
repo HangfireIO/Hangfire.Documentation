@@ -53,10 +53,7 @@ If you are using default queue only, do this:
 
     /* This server will process only SQL Server table queues, i.e. old jobs */
     var oldStorage = new SqlServerStorage("<connection string or its name>");
-    var oldOptions = new BackgroundJobServerOptions
-    {
-        ServerName = "OldQueueServer" // Pass this to differentiate this server from the next one
-    };
+    var oldOptions = new BackgroundJobServerOptions();
 
     app.UseHangfireServer(oldOptions, oldStorage);
 
@@ -76,7 +73,6 @@ If you use multiple queues, do this:
     var oldOptions = new BackgroundJobServerOptions
     {
         Queues = new [] { "critical", "default" }, // Include this line only if you have multiple queues
-        ServerName = "OldQueueServer" // Pass this to differentiate this server from the next one
     };
 
     app.UseHangfireServer(oldOptions, oldStorage);
