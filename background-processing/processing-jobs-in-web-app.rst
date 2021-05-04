@@ -59,7 +59,7 @@ Hangfire also provides a dashboard that is implemented on top of OWIN pipeline t
 .. admonition:: Install ``Microsoft.Owin.Host.SystemWeb`` for ASP.NET + IIS
    :class: warning
 
-   If you are using OWIN extension methods for ASP.NET application hosted in IIS, ensure you have ``Microsoft.Owin.Host.SystemWeb`` package installed. Otherwise some features like `graceful shutdown <processing-background-jobs>`_ feature will not work for you.
+   If you are using OWIN extension methods for ASP.NET application hosted in IIS, ensure you have ``Microsoft.Owin.Host.SystemWeb`` package installed. Otherwise some features like :doc:`graceful shutdown <processing-background-jobs>` feature will not work for you.
    
    If you installed Hangfire through the ``Hangfire`` package, this dependency is already installed.
 

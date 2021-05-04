@@ -3,9 +3,9 @@ Dealing with exceptions
 
 Bad things happen. Any method can throw different types of exceptions. These exceptions can be caused either by programming errors that require you to re-deploy the application, or transient errors, that can be fixed without additional deployment.
 
-Hangfire handles all exceptions occured both in internal (belonging to Hangfire itself), and external methods (jobs, filters and so on), so it will not bring down the whole application. All internal exceptions are logged (so, don't forget to :doc:`enable logging <../configuration/configuring-logging>`) and the worst case they can lead – background processing will be stopped after ``10`` retry attempts with increasing delay modifier.
+Hangfire handles all exceptions occurred both in internal (belonging to Hangfire itself), and external methods (jobs, filters and so on), so it will not bring down the whole application. All internal exceptions are logged (so, don't forget to :doc:`enable logging <../configuration/configuring-logging>`) and the worst case they can lead – background processing will be stopped after ``10`` retry attempts with increasing delay modifier.
 
-When Hangfire encounters external exception that occured during the job performance, it will automatically *try* to change its state to the ``Failed`` one, and you always can find this job in the Monitor UI (it will not be expired unless you delete it explicitly).
+When Hangfire encounters external exception that occurred during the job performance, it will automatically *try* to change its state to the ``Failed`` one, and you always can find this job in the Monitor UI (it will not be expired unless you delete it explicitly).
 
 .. image:: failed-job.png
 

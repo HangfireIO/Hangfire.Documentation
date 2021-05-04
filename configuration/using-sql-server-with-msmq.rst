@@ -4,7 +4,7 @@ Using SQL Server with MSMQ
 .. admonition:: This extension will be deprecated soon
   :class: warning
   
-  Hangfire.SqlServer 1.7.X versions have long-polling feature implemented when using the `recommended settings <https://docs.hangfire.io/en/latest/configuration/using-sql-server.html#configuration>`_ with the latest schema version. Additional technology like MSMQ complicates the application infrastructure, additional storage like MSMQ brings consistency issues on data loss, and MSMQ itself is a complicated technology, especially with DTC transactions. Therefore, the number of disadvantages outweight all the advantages of using this extension.
+  Hangfire.SqlServer 1.7.X versions have long-polling feature implemented when using the `recommended settings <https://docs.hangfire.io/en/latest/configuration/using-sql-server.html#configuration>`_ with the latest schema version. Additional technology like MSMQ complicates the application infrastructure, additional storage like MSMQ brings consistency issues on data loss, and MSMQ itself is a complicated technology, especially with DTC transactions. Therefore, the number of disadvantages outweigh all the advantages of using this extension.
 
 `Hangfire.SqlServer.MSMQ <https://www.nuget.org/packages/Hangfire.SqlServer.MSMQ/>`_ extension changes the way Hangfire handles job queues. Default :doc:`implementation <using-sql-server>` uses regular SQL Server tables to organize queues, and this extensions uses transactional MSMQ queues to process jobs. Please note that starting from 1.7.0 it's possible to use ``TimeSpan.Zero`` as a polling delay in Hangfire.SqlServer, so think twice before using MSMQ.
 

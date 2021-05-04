@@ -3,7 +3,7 @@ Making ASP.NET application always running
 
 By default, Hangfire Server instance in a web application will not be started until the first user hits your site. Even more, there are some events that will bring your web application down after some time (I'm talking about Idle Timeout and different app pool recycling events). In these cases your :doc:`recurring tasks <../background-methods/performing-recurrent-tasks>` and :doc:`delayed jobs <../background-methods/calling-methods-with-delay>` will not be enqueued, and :doc:`enqueued jobs <../background-methods/calling-methods-in-background>` will not be processed. 
 
-This is particulary true for smaller sites, as there may be long periods of user inactivity. But if you are running critical jobs, you should ensure that your Hangfire Server instance is always running to guarantee the in-time background job processing.
+This is particularly true for smaller sites, as there may be long periods of user inactivity. But if you are running critical jobs, you should ensure that your Hangfire Server instance is always running to guarantee the in-time background job processing.
 
 On-Premise applications
 ------------------------
@@ -176,10 +176,10 @@ This setting does not work for free sites.
 If nothing works for you…
 --------------------------
 
-… because you are using shared hosting, free Azure web site or something else (btw, can you tell me your configuration in this case?), then you can use the following ways to ensure that Hangfire Server is always running:
+… because you are using shared hosting, free Azure website or something else (btw, can you tell me your configuration in this case?), then you can use the following ways to ensure that Hangfire Server is always running:
 
 1. Use :doc:`separate process <../background-processing/placing-processing-into-another-process>` to handle background jobs either on the same, or dedicated host.
-2. Make HTTP requests to your web site on a recurring basis by external tool (for example, `Pingdom <https://www.pingdom.com/>`_).
+2. Make HTTP requests to your website on a recurring basis by external tool (for example, `Pingdom <https://www.pingdom.com/>`_).
 3. *Do you know any other ways? Let me know!*
 
 Making ASP.NET Core application always running on IIS

@@ -81,7 +81,7 @@ For ASP.NET Core projects, call the ``UseRedisStorage`` method from the ``AddHan
 
    services.AddHangfire(configuration => configuration.UseRedisStorage());
 
-You can customize the connection string using the StackExchange.Redis' configuration string format. Please read `their documentation <https://stackexchange.github.io/StackExchange.Redis/Configuration>`_ for details. The values for the following options have their own defaults in Hangfire, but can be overriden in the *connection string*:
+You can customize the connection string using the StackExchange.Redis' configuration string format. Please read `their documentation <https://stackexchange.github.io/StackExchange.Redis/Configuration>`_ for details. The values for the following options have their own defaults in Hangfire, but can be overridden in the *connection string*:
 
 =============== =======
 Option          Default
@@ -131,12 +131,12 @@ Option                         Default                      Description
 ============================== ============================ ===========
 Prefix                         ``hangfire:``                Prefix for all Redis keys related to Hangfire.
 Database                       ``null``                     Redis database number to be used by Hangfire. When null, then the defaultDatabase option from the configuration string is used.
-MaxSucceededListLength         ``10000``                    Maximum visible background jobs in the succeeed list to prevent it from growing indefinitely.
+MaxSucceededListLength         ``10000``                    Maximum visible background jobs in the succeed list to prevent it from growing indefinitely.
 MaxDeletedListLength           ``1000``                     Maximum visible background jobs in the deleted list to prevent it from growing indefinitely.
 *InvisibilityTimeout*          ``TimeSpan.FromMinutes(30)`` **Obsolete since 2.4.0**
                                                             Time interval, within which background job is considered to be still successfully processed by a worker. When a timeout is elapsed, another worker will be able to pick the same background job.
 *SubscriptionIntegrityTimeout* ``TimeSpan.FromHours(1)``    **Obsolete since 2.1.3**
-                                                            Timeout for subscription-based fetch. The value should be high enough enough (hours) to decrease the stress on a database. This is an additional layer to provide integrity, because otherwise subscriptions can be active for weeks, and bad things may happen during this time.
+                                                            Timeout for subscription-based fetch. The value should be high enough (hours) to decrease the stress on a database. This is an additional layer to provide integrity, because otherwise subscriptions can be active for weeks, and bad things may happen during this time.
 ============================== ============================ ===========
 
 Hangfire.Pro.Redis 1.x

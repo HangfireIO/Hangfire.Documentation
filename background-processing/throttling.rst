@@ -125,7 +125,7 @@ Before processing the ``CreateOrder`` method in the example above, a worker will
 
 For the ``ProcessOrder`` method, worker will attempt to acquire *both* semaphore and mutex. So if the acquisition of a mutex or semaphore, or both of them fails, background job will be throttled and retried, releasing the worker. 
 
-And for the ``CancelOrder`` method, default throttling action is changed to the ``DeleteJob`` value. So when semaphore can't be acquired for that job, it will be deleted instead of re-scheduled.
+And for the ``CancelOrder`` method, default throttling action is changed to the ``DeleteJob`` value. So when semaphore can't be acquired for that job, it will be deleted instead of rescheduled.
 
 Removing Attributes
 ~~~~~~~~~~~~~~~~~~~
@@ -151,7 +151,7 @@ In this mode, throttlers will not be applied anymore, only released. So when all
 Strict Mode
 ~~~~~~~~~~~
 
-Since the primary focus of the library is to reduce pressure on other services, throttlers are released by default when background jobs move out of the *Processing* state. So when you retry or re-schedule a running background job, any *Mutexes* or *Semaphores* will be released immediately and let other jobs to acquire them. This mode is called *Relaxed*.
+Since the primary focus of the library is to reduce pressure on other services, throttlers are released by default when background jobs move out of the *Processing* state. So when you retry or reschedule a running background job, any *Mutexes* or *Semaphores* will be released immediately and let other jobs to acquire them. This mode is called *Relaxed*.
 
 Alternatively you can use *Strict Mode* to release throttlers only when background job was fully completed, e.g. moved to a final state (such as *Succeeded* or *Deleted*, but not the *Failed* one). This is useful when your background job produces multiple side effects, and you don't want to let other background jobs to examine partial effects.
 
