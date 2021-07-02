@@ -466,3 +466,28 @@ dt:target, .highlighted {
     width: inherit;
     padding: inherit;
 }
+
+/* Sticky Sidenav */
+
+@media (min-width:992px) {
+    .bs-sidenav.h-sidenav {
+        margin-bottom: 0;
+        top: 10px;
+        position: -webkit-sticky;
+        position: sticky;
+        max-height: calc(100vh - 20px);
+        overflow: scroll;
+        overflow-x: auto;
+        overflow-y: auto;
+    }
+
+    .row-no-float {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .row-no-float > [class*='col-'] {
+        display: flex;
+        flex-direction: column;
+    }
+}
