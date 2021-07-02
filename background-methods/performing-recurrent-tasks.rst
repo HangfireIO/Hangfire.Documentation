@@ -1,11 +1,11 @@
 Performing recurrent tasks
 ===========================
 
-Recurring job registration is just as simple as background job registration – you only need to write a single line of code:
+Recurring job registration is almost as simple as background job registration – you need to write a single line of code, but you also need to specify an identifier you can use to refer to your job later. The call to ``AddOrUpdate`` method will create a new recurring job or update existing job with the same identifier.
 
 .. code-block:: c#
 
-   RecurringJob.AddOrUpdate(() => Console.Write("Easy!"), Cron.Daily);
+   RecurringJob.AddOrUpdate("easyjob", () => Console.Write("Easy!"), Cron.Daily);
 
 This line creates a new entry in persistent storage. A special component in Hangfire Server (see :doc:`../background-processing/processing-background-jobs`) checks the recurring jobs on a minute-based interval and then enqueues them as fire-and-forget jobs. This enables you to track them as usual.
 
@@ -18,18 +18,7 @@ The ``Cron`` class contains different methods and overloads to run jobs on a min
 
 .. code-block:: c#
 
-   RecurringJob.AddOrUpdate(() => Console.Write("Powerful!"), "0 12 * */2");
-
-Specifying identifiers
------------------------
-
-Each recurring job has its own unique identifier. In the previous examples it was  generated implicitly, using the type and method names of the given call expression (resulting in ``"Console.Write"`` as the identifier). The ``RecurringJob`` class contains overloads that take an explicitly defined job identifier.  So that you can refer to the job later.
-
-.. code-block:: c#
-
-   RecurringJob.AddOrUpdate("some-id", () => Console.WriteLine(), Cron.Hourly);
-
-The call to ``AddOrUpdate`` method will create a new recurring job or update existing job with the same identifier.
+   RecurringJob.AddOrUpdate("powerfuljob", () => Console.Write("Powerful!"), "0 12 * */2");
 
 .. admonition:: Identifiers should be unique
    :class: warning
