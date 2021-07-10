@@ -79,3 +79,16 @@ Like ASP.NET filters, you can apply filters on method, class and globally:
     }
 
     GlobalJobFilters.Filters.Add(new LogEverythingAttribute());
+
+If your service is resolved via interface, then the filter should be applied to your interface instead of class:
+
+.. code-block:: c#
+
+    [LogEverything]
+    public interface IEmailService
+    {
+        [LogEverything]
+        void Send() { }
+    }
+
+
