@@ -108,7 +108,7 @@ Since version 2.0, **batches can consist of other batches**, not only of backgro
    BatchJob.StartNew(parent =>
    {
        parent.Enqueue(() => Console.WriteLine("First"));
-       batch.StartNew(child => child.Enqueue(() => Console.WriteLine("Second")));
+       parent.StartNew(child => child.Enqueue(() => Console.WriteLine("Second")));
    });
 
 **Multiple nesting levels are supported**, so each child batch can, in turn, become a parent for another batch, allowing you to create very complex batch hierarchies.
