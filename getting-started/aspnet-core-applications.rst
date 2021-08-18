@@ -103,6 +103,7 @@ Dependency Injection is one of the primary techniques introduced in ASP.NET Core
            }));
 
        // Add the processing server as IHostedService
+       // Note: Not available/required for netcoreapp31, net50 and so on
        services.AddHangfireServer();
 
        // Add framework services. 
