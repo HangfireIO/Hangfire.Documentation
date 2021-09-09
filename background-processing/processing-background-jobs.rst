@@ -18,7 +18,7 @@ Processing background jobs
 
    Call the ``Dispose`` method whenever possible to have graceful shutdown features working.
 
-Hangfire Server consist of different components that are doing different work: workers listen to queue and process jobs, recurring scheduler enqueues recurring jobs, schedule poller enqueues delayed jobs, expire manager removes obsolete jobs and keeps the storage as clean as possible, etc.
+Hangfire Server consists of different components that are doing different work: workers listen to queue and process jobs, recurring scheduler enqueues recurring jobs, schedule poller enqueues delayed jobs, expire manager removes obsolete jobs and keeps the storage as clean as possible, etc.
 
 .. admonition:: You can turn off the processing
    :class: note
