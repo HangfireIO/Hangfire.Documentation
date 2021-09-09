@@ -9,7 +9,7 @@ Overview
 
 Hangfire allows you to kick off method calls outside of the request processing pipeline in a very easy, but reliable way. These method invocations are performed in a *background thread* and called *background jobs*.
 
-From the 10.000-feet view the library consist of three main components: *client*, *storage* and *server*. Here is a small diagram that describes the main processes in Hangfire:
+From the 10.000-feet view the library consists of three main components: *client*, *storage* and *server*. Here is a small diagram that describes the main processes in Hangfire:
 
 .. image:: hangfire-workflow.png
    :alt: Hangfire Workflow

@@ -76,7 +76,7 @@ Continuations allow you to chain multiple batches together. They will be execute
        x.Enqueue(() => NotifyAdministrator());
    });
 
-So batches and batch continuations allow you to define workflows and configure what actions will be executed in parallel. This is very useful for heavy computational methods as they can be distributed to a different machines.
+So batches and batch continuations allow you to define workflows and configure what actions will be executed in parallel. This is very useful for heavy computational methods as they can be distributed to different machines.
 
 Complex Workflows
 ------------------
@@ -174,7 +174,7 @@ Starting from Hangfire.Pro 2.1.0 it's also possible to use continuations in batc
 Batch Modification
 ------------------
 
-This is another interesting feature available from version 2.0 that allows you to **modify existing batches** by attaching new background jobs and child batches to them. You can add background jobs in any states, as well as nested batches. If a modified batch has already been finished, it will be move to the *started* state back.
+This is another interesting feature available from version 2.0 that allows you to **modify existing batches** by attaching new background jobs and child batches to them. You can add background jobs in any states, as well as nested batches. If a modified batch has already been finished, it will be moved back to the *started* state.
 
 .. code-block:: c#
 
@@ -209,7 +209,7 @@ Batches can be created without any background jobs. Initially such an empty batc
 More Continuations
 ------------------
 
-Since version 2.0 it's possible to **continue batch with a regular background job** without creating a batch that consist only of a single background job. Unfortunately we can't add extension methods for static classes, so let's create a client first.
+Since version 2.0 it's possible to **continue batch with a regular background job** without creating a batch that consists only of a single background job. Unfortunately we can't add extension methods for static classes, so let's create a client first.
 
 .. code-block:: c#
 
