@@ -71,9 +71,7 @@ Configuration is performed using the ``GlobalConfiguration`` class. Its ``Config
            CommandBatchMaxTimeout = TimeSpan.FromMinutes(5),
            SlidingInvisibilityTimeout = TimeSpan.FromMinutes(5),
            QueuePollInterval = TimeSpan.Zero,           
-           UseRecommendedIsolationLevel = true,
-           UsePageLocksOnDequeue = true,
-           DisableGlobalLocks = true
+           UseRecommendedIsolationLevel = true
        })
        .UseBatches()
        .UsePerformanceCounters();
@@ -107,9 +105,7 @@ Here are all the Hangfire components in action, as a fully working sample that p
                        CommandBatchMaxTimeout = TimeSpan.FromMinutes(5),
                        SlidingInvisibilityTimeout = TimeSpan.FromMinutes(5),
                        QueuePollInterval = TimeSpan.Zero,           
-                       UseRecommendedIsolationLevel = true,
-                       UsePageLocksOnDequeue = true,
-                       DisableGlobalLocks = true
+                       UseRecommendedIsolationLevel = true
                    });
 
                BackgroundJob.Enqueue(() => Console.WriteLine("Hello, world!"));
