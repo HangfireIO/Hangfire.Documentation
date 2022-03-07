@@ -205,7 +205,7 @@ latex_elements = {
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
   ('index', 'Hangfire.tex', u'Hangfire Documentation',
-   u'Hangfire OÜ', 'manual'),
+   u'Sergey Odinokov', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -235,7 +235,7 @@ latex_documents = [
 # (source start file, name, description, authors, manual section).
 man_pages = [
     ('index', 'hangfire', u'Hangfire Documentation',
-     [u'Hangfire OÜ'], 1)
+     [u'Sergey Odinokov'], 1)
 ]
 
 # If true, show URL addresses after external links.
@@ -249,7 +249,7 @@ man_pages = [
 #  dir menu entry, description, category)
 texinfo_documents = [
   ('index', 'Hangfire', u'Hangfire Documentation',
-   u'Hangfire OÜ', 'Hangfire', 'Incredibly easy way to perform fire-and-forget, delayed and recurring tasks inside ASP.NET applications',
+   u'Sergey Odinokov', 'Hangfire', 'Incredibly easy way to perform fire-and-forget, delayed and recurring tasks inside ASP.NET applications',
    'Miscellaneous'),
 ]
 
