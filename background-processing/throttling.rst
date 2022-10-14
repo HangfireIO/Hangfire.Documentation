@@ -223,39 +223,6 @@ Since mutexes are created dynamically, it's possible to use a dynamic resource i
    [Mutex("newsletters:{0}:{1}")]
    public void ProcessNewsletter(int tenantId, long newsletterId) { /* ... */ }
 
-Throttling Batches
-++++++++++++++++++
-
-By default background job id is used to identify the current owner of a particular mutex. But since version 1.3 it is possible to use any custom value from a given job parameter. With this feature we can throttle entire batches, since we can pass the ``BatchId`` job parameter that's used to store the batch identifier. To accomplish this, we need to create two empty methods with ``ThrottlerMode.Acquire`` and ``ThrottlerMode.Release`` semantics that will acquire and release a mutex:
-
-.. code-block:: c#
-
-   [Mutex("orders-api", Mode = ThrottlerMode.Acquire, ParameterName = "BatchId")] 
-   public static void StartBatch() { /* Doesn't do anything */ }
-
-   [Mutex("orders-api", Mode = ThrottlerMode.Release, ParameterName = "BatchId")] 
-   public static void CompleteBatch() { /* Doesn't do anything */ }
-
-And then create a batch as a chain of continuations, starting with the ``StartBatch`` method and ending with the ``CompleteBatch`` method. Please note that the last method is created with the ``BatchContinuationOptions.OnAnyFinishedState`` option to release the throttler even if some of our background jobs completed non-successfully (deleted, for example).
-
-.. code-block:: c#
-
-   BatchJob.StartNew(batch =>
-   {
-       var startId = batch.Enqueue(() => StartBatch());
-       var bodyId = batch.ContinueJobWith(startId, nestedBatch =>
-       {
-           for (var i = 0; i < 5; i++) nestedBatch.Enqueue(() => Thread.Sleep(5000));
-       });
-
-       batch.ContinueBatchWith(
-           bodyId,
-           () => CompleteBatch(),
-           options: BatchContinuationOptions.OnAnyFinishedState);
-   });
-
-In this case batch identifier will be used as an owner, and entire batch will be protected by a mutex, preventing other batches from running simultaneously.
-
 Semaphores
 ~~~~~~~~~~
 
@@ -300,6 +267,43 @@ Unused semaphore can be removed in the following way. Please note that if there 
 .. code-block:: csharp
 
    manager.RemoveSemaphoreIfExists("newsletter");
+
+Throttling Batches
+~~~~~~~~~~~~~~~~~~
+
+By default background job identifier is used to identify the current owner of a particular mutex or a semaphore. But since version 1.3 for mutexes and 1.4 for semaphores it is possible to use any custom value from a given job parameter.
+
+With this feature we can throttle entire batches, since we can pass the ``BatchId`` job parameter that's used to store the batch identifier. To accomplish this, we need to create two empty methods with ``ThrottlerMode.Acquire`` and ``ThrottlerMode.Release`` semantics that will acquire and release a synchronization primirive:
+
+.. code-block:: c#
+
+   [Mutex("orders-api", Mode = ThrottlerMode.Acquire, ParameterName = "BatchId")] 
+   // or [Semaphore(…
+   public static void StartBatch() { /* Doesn't do anything */ }
+
+   [Mutex("orders-api", Mode = ThrottlerMode.Release, ParameterName = "BatchId")] 
+   // or [Semaphore(…
+   public static void CompleteBatch() { /* Doesn't do anything */ }
+
+And then create a batch as a chain of continuations, starting with the ``StartBatch`` method and ending with the ``CompleteBatch`` method. Please note that the last method is created with the ``BatchContinuationOptions.OnAnyFinishedState`` option to release the throttler even if some of our background jobs completed non-successfully (deleted, for example).
+
+.. code-block:: c#
+
+   BatchJob.StartNew(batch =>
+   {
+       var startId = batch.Enqueue(() => StartBatch());
+       var bodyId = batch.ContinueJobWith(startId, nestedBatch =>
+       {
+           for (var i = 0; i < 5; i++) nestedBatch.Enqueue(() => Thread.Sleep(5000));
+       });
+
+       batch.ContinueBatchWith(
+           bodyId,
+           () => CompleteBatch(),
+           options: BatchContinuationOptions.OnAnyFinishedState);
+   });
+
+In this case batch identifier will be used as an owner, and entire batch will be protected by a mutex or a semaphore, preventing other batches from running simultaneously.
 
 Rate Limiters
 --------------
