@@ -184,6 +184,11 @@ Mutex prevents concurrent execution of *multiple* background jobs that share the
 
 When we create multiple background jobs based on this method, they will be executed one after another on a best-effort basis with the limitations described below. If there's a background job protected by a mutex currently executing, other executions will be throttled (rescheduled by default a minute later), allowing a worker to process other jobs without waiting.
 
+.. admonition:: Mutexes aren't suitable for heavy workloads
+   :class: note
+
+   Due to implementation limitations, mutexes are not suitable for workloads where several hundreds of background jobs compete for the same mutex. In this case there will be additional delays in processing, caused by background job re-scheduling logic due to throttling, with possibly even more increased latency for some particular jobs because of the absense of fair scheduling logic.
+
 .. admonition:: Mutex doesn't prevent simultaneous execution of the same background job
    :class: warning
 
@@ -269,6 +274,11 @@ We should place the ``SemaphoreAttribute`` filter on a background job method and
 
    [Semaphore("newsletter")]
    public void SendNewsletter() { /* ... */ }
+
+.. admonition:: Semaphores aren't suitable for heavy workloads
+   :class: note
+
+   Due to implementation limitations, semaphores are not suitable for workloads where several hundreds of background jobs compete for the same semaphore. In this case there will be additional delays in processing, caused by background job re-scheduling logic due to throttling, with possibly even more increased latency for some particular jobs because of the absense of fair scheduling logic.
 
 .. admonition:: Multiple executions of the same background job count as 1
    :class: warning
