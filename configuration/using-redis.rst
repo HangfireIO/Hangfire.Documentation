@@ -103,7 +103,6 @@ Option                         Default
 ``preferIOCP``                 ``false``
 ``connectRetry``               ``0`` (external retries)
 ``abortOnConnectFail``         ``true`` (external retries)
-``checkCertificateRevocation`` ``false``
 ============================== ===========================
 
 .. code-block:: csharp
