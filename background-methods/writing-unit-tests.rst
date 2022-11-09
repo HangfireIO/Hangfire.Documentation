@@ -1,4 +1,4 @@
-Writing unit tests
+Writing Unit Tests
 ===================
 
 I will not tell you anything related to unit testing background methods, because Hangfire does not add any specific changes to them (except ``IJobCancellationToken`` interface parameter). Use your favourite tools and write unit tests for them as usual. This section describes how to test that background jobs were created.

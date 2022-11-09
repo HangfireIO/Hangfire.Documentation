@@ -1,4 +1,4 @@
-Using IoC containers
+Using IoC Containers
 =====================
 
 As I said in the :doc:`previous section <passing-dependencies>` Hangfire uses the ``JobActivator`` class to instantiate the target types before invoking instance methods. You can override its behavior to perform more complex logic on a type instantiation. For example, you can tell it to use IoC container that is used in your project:

@@ -1,4 +1,4 @@
-Passing arguments
+Passing Arguments
 ==================
 
 You can pass additional data to your background jobs as a regular method arguments. I'll write the following line once again (hope it hasn't bothered you):

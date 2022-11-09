@@ -1,4 +1,4 @@
-Using performance counters
+Using Performance Counters
 ===========================
 
 .. admonition:: Pro Only

@@ -1,4 +1,4 @@
-Calling methods in background
+Calling Methods in Background
 =============================
 
 Fire-and-forget method invocation has never been simpler. As you already know from the :doc:`Quick start <../quick-start>` guide, you only need to pass a lambda expression with the corresponding method and its arguments:

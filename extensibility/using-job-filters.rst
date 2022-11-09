@@ -1,4 +1,4 @@
-Using job filters
+Using Job Filters
 ==================
 
 All processes are implemented with Chain-of-responsibility pattern and can be intercepted like with ASP.NET MVC Action Filters.

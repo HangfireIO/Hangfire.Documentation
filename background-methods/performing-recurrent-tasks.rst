@@ -1,4 +1,4 @@
-Performing recurrent tasks
+Performing Recurrent Tasks
 ===========================
 
 Recurring job registration is almost as simple as background job registration – you need to write a single line of code, but you also need to specify an identifier you can use to refer to your job later. The call to ``AddOrUpdate`` method will create a new recurring job or update existing job with the same identifier.

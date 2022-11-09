@@ -1,4 +1,4 @@
-Using cancellation tokens
+Using Cancellation Tokens
 ===========================
 
 Hangfire provides support for cancellation tokens for our background jobs to let them know when a shutdown request was initiated, or job performance was aborted. In the former case the job will be automatically put back to the beginning of its queue, allowing Hangfire to process it after restart.

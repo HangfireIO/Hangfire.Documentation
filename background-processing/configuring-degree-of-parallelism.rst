@@ -1,4 +1,4 @@
-Configuring the degree of parallelism
+Configuring the Degree of Parallelism
 ======================================
 
 Background jobs are processed by a dedicated pool of worker threads that run inside Hangfire Server subsystem. When you start the background job server, it initializes the pool and starts the fixed amount of workers. You can specify their number by passing the value to the ``UseHangfireServer`` method.

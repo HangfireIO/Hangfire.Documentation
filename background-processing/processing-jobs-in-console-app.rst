@@ -1,4 +1,4 @@
-Processing jobs in a console application
+Processing Jobs in a Console Application
 =========================================
 
 To start using Hangfire in a console application, you'll need to install Hangfire packages to your console application first. So, use your Package Manager Console window to install it:

@@ -1,4 +1,4 @@
-Calling methods with delay
+Calling Methods with Delay
 ===========================
 
 Sometimes you may want to postpone a method invocation; for example, to send an email to newly registered users a day after their registration. To do this, just call the ``BackgroundJob.Schedule`` method and pass the desired delay:

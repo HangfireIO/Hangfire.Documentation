@@ -1,4 +1,4 @@
-Making ASP.NET application always running
+Making ASP.NET Application Always Running
 ==========================================
 
 By default, Hangfire Server instance in a web application will not be started until the first user hits your site. Even more, there are some events that will bring your web application down after some time (I'm talking about Idle Timeout and different app pool recycling events). In these cases your :doc:`recurring tasks <../background-methods/performing-recurrent-tasks>` and :doc:`delayed jobs <../background-methods/calling-methods-with-delay>` will not be enqueued, and :doc:`enqueued jobs <../background-methods/calling-methods-in-background>` will not be processed. 

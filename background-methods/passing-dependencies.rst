@@ -1,4 +1,4 @@
-Passing dependencies
+Passing Dependencies
 =======================
 
 In almost every job you'll want to use other classes of your application to perform different work and keep your code clean and simple. Let's call these classes as *dependencies*. How to pass these dependencies to methods that will be called in background?

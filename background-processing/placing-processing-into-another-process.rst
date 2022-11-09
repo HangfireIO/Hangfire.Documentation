@@ -1,4 +1,4 @@
-Placing processing into another process
+Placing Processing into Another Process
 ========================================
 
 You may decide to move the processing to the different process from the main application. For example, your web application will only enqueue background jobs, leaving their performance to a Console application or Windows Service. First of all, let's overview the reasons for such decision.

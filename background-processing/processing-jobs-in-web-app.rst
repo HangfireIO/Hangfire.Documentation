@@ -1,4 +1,4 @@
-Processing jobs in a web application
+Processing Jobs in a Web Application
 =====================================
 
 Ability to process background jobs directly in web applications is a primary goal of Hangfire. No external application like Windows Service or console application is required for running background jobs, however you will be able to change your decision later if you really need it. So, you can postpone architecture decisions that complicate things.

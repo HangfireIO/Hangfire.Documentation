@@ -1,4 +1,4 @@
-Dealing with exceptions
+Dealing with Exceptions
 ========================
 
 Bad things happen. Any method can throw different types of exceptions. These exceptions can be caused either by programming errors that require you to re-deploy the application, or transient errors, that can be fixed without additional deployment.

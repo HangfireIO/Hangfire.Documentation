@@ -1,4 +1,4 @@
-Processing jobs in a Windows Service
+Processing Jobs in a Windows Service
 =====================================
 
 To start using Hangfire in a Windows Service, you'll need to install Hangfire packages to your application first. So, use your Package Manager Console window to install it:

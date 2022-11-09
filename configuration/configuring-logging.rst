@@ -1,4 +1,4 @@
-Configuring logging
+Configuring Logging
 ===================
 
 Logging plays an important role in background processing, where work is performed behind the scenes. :doc:`Dashboard UI <using-dashboard>` can greatly help to reveal problems with user code, background jobs themselves. But it works by querying the job storage and requires the information is properly written first, before displaying it.

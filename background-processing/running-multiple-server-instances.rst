@@ -1,4 +1,4 @@
-Running multiple server instances
+Running Multiple Server Instances
 ==================================
 
 .. admonition:: Obsolete since 1.5

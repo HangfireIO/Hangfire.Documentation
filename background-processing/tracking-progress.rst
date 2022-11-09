@@ -1,4 +1,4 @@
-Tracking the progress
+Tracking the Progress
 ======================
 
 There are two ways to implement this task: polling and pushing. Polling is easier to understand, but server push is a more comfortable way, because it helps you to avoid unnecessary calls to server. Plus, `SignalR <http://signalr.net>`_ greatly simplifies the latter task.

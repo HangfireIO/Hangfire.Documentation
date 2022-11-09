@@ -1,4 +1,4 @@
-Processing background jobs
+Processing Background Jobs
 ===========================
 
 *Hangfire Server* part is responsible for background job processing. The Server does not depend on ASP.NET and can be started anywhere, from a console application to Microsoft Azure Worker Role. Single API for all applications is exposed through the ``BackgroundJobServer`` class:

@@ -1,4 +1,3 @@
-
 Configuring Job Queues
 ======================
 
