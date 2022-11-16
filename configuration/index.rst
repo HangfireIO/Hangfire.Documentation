@@ -42,8 +42,8 @@ For other applications, place it somewhere **before** calling other Hangfire met
 .. toctree::
    :maxdepth: 1
 
-   using-dashboard
    using-sql-server
    using-sql-server-with-msmq
    using-redis
+   using-dashboard
    configuring-logging
