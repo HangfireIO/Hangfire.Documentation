@@ -1,5 +1,5 @@
-Using Dashboard
-================
+Using Dashboard UI
+==================
 
 Hangfire Dashboard is a place where you could find all the information about your background jobs. It is written as an OWIN middleware (if you are not familiar with OWIN, don't worry), so you can plug it into your ASP.NET, ASP.NET MVC, Nancy, ServiceStack application as well as use `OWIN Self-Host <http://www.asp.net/web-api/overview/hosting-aspnet-web-api/use-owin-to-self-host-web-api>`_ feature to host Dashboard inside console applications or in Windows Services.
 
@@ -87,7 +87,7 @@ For ASP.NET Core environments, use the ``GetHttpContext`` extension method defin
            var httpContext = context.GetHttpContext();
 
            // Allow all authenticated users to see the Dashboard (potentially dangerous).
-           return httpContext.User.Identity.IsAuthenticated;
+           return httpContext.User.Identity?.IsAuthenticated ?? false;
        }
    }
 
