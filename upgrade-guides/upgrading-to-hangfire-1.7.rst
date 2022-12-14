@@ -13,7 +13,7 @@ But during upgrades in distributed environments it's also important to have the 
 Read the following sections carefully to minimize the risks during the upgrade process, but here are the main points:
 
 1. You should call ``SetDataCompatibilityLevel(CompatibilityLevel.Version_170)`` and use other new features **only after** all of your servers migrated to the new version. Otherwise you will get only exceptions in the best case, or undefined behavior caused by custom serializer settings.
-2. ``Schema 6`` and ``Schema 7`` migrations added to SQL Server, and you'll need to perform them either automatically or manually. Hangfire.SqlServer 1.6.23 is forward compatible with those schemas, and 1.7.0 is backward compatible with ``Schema 4`` (from version 1.5.0) and later.
+2. ``Schema 6`` and ``Schema 7`` migrations added to SQL Server, and you'll need to perform them either automatically or manually. Hangfire.SqlServer 1.6.X is forward compatible with those schemas, and 1.7.0 is backward compatible with ``Schema 4`` (from version 1.5.0) and later.
 3. New migrations for SQL Server will not be performed automatically unless ``EnableHeavyMigrations`` option is set. If your background processing is quite intensive, you should apply the migration manually with setting ``SINGLE_USER`` mode for the database to avoid deadlocks and reduce migration time.
 
 If you have any issues with an upgrade process, please post your thoughts to `GitHub Issues <https://github.com/HangfireIO/Hangfire/issues>`_.
@@ -54,7 +54,7 @@ Forward compatibility is supported on the ``CompatibilityLevel.Version_110`` (de
 
 *Hangfire.SqlServer:*
 
-Hangfire.SqlServer 1.6.23 **is forward compatible** with ``Schema 6`` and ``Schema 7`` schemas. Previous versions don't support the new schemas and may lead to exceptions. Anyway it's better to upgrade all your servers first, and only then apply the migration.
+Hangfire.SqlServer 1.6.X **is forward compatible** with ``Schema 6`` and ``Schema 7`` schemas. Previous versions don't support the new schemas and may lead to exceptions. Anyway it's better to upgrade all your servers first, and only then apply the migration.
 
 Code Compatibility
 ------------------
@@ -124,7 +124,7 @@ a. Upgrade your NuGet package references using your own preferred way. If you've
       <PackageReference Include="Hangfire.SqlServer.Msmq" Version="1.7.*" />
 
 b. Fix breaking changes mentioned in the previous section if they apply to your use case.
-c. **Optional.** If your background processing sits mostly idle and you are already using Hangfire 1.6.23, you can run the schema migration for SQL Server during this step. Otherwise I'd highly encourage you to perform the migration manually as written in the following section, because it may take too long if there are outstanding queries.
+c. **Optional.** If your background processing sits mostly idle and you are already using Hangfire 1.6.X, you can run the schema migration for SQL Server during this step. Otherwise I'd highly encourage you to perform the migration manually as written in the following section, because it may take too long if there are outstanding queries.
 
    .. code-block:: csharp
 
