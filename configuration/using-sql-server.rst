@@ -53,8 +53,8 @@ Starting from version 1.7.0 it is recommended to set the following options for n
            DisableGlobalLocks = true // Migration to Schema 7 is required
        });
 
-Installing objects
-~~~~~~~~~~~~~~~~~~~
+Installing the Objects
+~~~~~~~~~~~~~~~~~~~~~~
 
 Hangfire leverages a couple of tables and indexes to persist background jobs and other information related to the processing:
 
