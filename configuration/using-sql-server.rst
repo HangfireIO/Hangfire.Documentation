@@ -18,7 +18,7 @@ SQL Server storage implementation is available through the ``Hangfire.SqlServer`
 
 This package is a dependency of the Hangfire's bootstrapper package ``Hangfire``, so if you installed it, you don't need to install the ``Hangfire.SqlServer`` separately – it was already added to your project.
 
-``Hangfire.SqlServer`` package is dependent on the .NET's ``System.Data.SqlClient`` package, but due to difficulties with managing dependencies with NuGet, lowest supported version will be installed by default. Since there are a lot of problems already fixed in the package, it's much better to install the latest version explicitly in the target application by modifying the ``*.csproj`` file or using NuGet Package Manager.
+``Hangfire.SqlServer`` package depends on the .NET's ``System.Data.SqlClient`` package, but due to difficulties with managing dependencies with NuGet, lowest supported version will be installed by default. Since there are a lot of problems already fixed in the package, it's much better to install the latest version explicitly in the target application by modifying the ``*.csproj`` file or using NuGet Package Manager.
 
 .. code-block:: xml
 
