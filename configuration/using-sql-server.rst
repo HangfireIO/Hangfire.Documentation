@@ -1,25 +1,30 @@
 Using SQL Server
 =================
 
-SQL Server is the default storage for Hangfire – it is well known to many .NET developers and used in many project environments. It may be interesting that in the early stage of Hangfire development, Redis was used to store information about jobs, and SQL Server storage implementation was inspired by that NoSql solution. But back to the SQL Server…
-
-SQL Server storage implementation is available through the ``Hangfire.SqlServer`` NuGet package. To install it, type the following command in your NuGet Package Console window:
-
-.. code-block:: powershell
-
-   Install-Package Hangfire.SqlServer
-
-This package is a dependency of the Hangfire's bootstrapper package ``Hangfire``, so if you installed it, you don't need to install the ``Hangfire.SqlServer`` separately – it was already added to your project.
+SQL Server is the default storage for Hangfire – it is well known to many .NET developers and used in many project environments. It might be interesting that in the early stage of Hangfire development, Redis was used to store information about jobs, and SQL Server storage implementation was inspired by that NoSQL solution.
 
 .. admonition:: Supported database engines
    :class: note
 
    **Microsoft SQL Server 2008R2** (any edition, including LocalDB) and later, **Microsoft SQL Azure**.
 
-.. admonition:: Snapshot isolation is not supported!
-   :class: warning
+SQL Server storage implementation is available through the ``Hangfire.SqlServer`` NuGet package. To install it, you can modify your ``*.csproj`` file to include the following lines or simply install it via the `NuGet Package Manager <https://learn.microsoft.com/en-us/nuget/consume-packages/install-use-packages-visual-studio>`_.
 
-   **Applies only to Hangfire < 1.5.9**: Ensure your database doesn't use the snapshot isolation level, and the ``READ_COMMITTED_SNAPSHOT`` option (another name is *Is Read Committed Snapshot On*) **is disabled**. Otherwise some of your background jobs will not be processed.
+.. code-block:: xml
+
+   <ItemGroup>
+     <PackageReference Include="Hangfire.SqlServer" Version="1.7.*" />
+   </ItemGroup>
+
+This package is a dependency of the Hangfire's bootstrapper package ``Hangfire``, so if you installed it, you don't need to install the ``Hangfire.SqlServer`` separately – it was already added to your project.
+
+``Hangfire.SqlServer`` package is dependent on the .NET's ``System.Data.SqlClient`` package, but due to difficulties with managing dependencies with NuGet, lowest supported version will be installed by default. Since there are a lot of problems already fixed in the package, it's much better to install the latest version explicitly in the target application by modifying the ``*.csproj`` file or using NuGet Package Manager.
+
+.. code-block:: xml
+
+   <ItemGroup>
+     <PackageReference Include="System.Data.SqlClient" Version="4.*" />
+   </ItemGroup>
 
 Configuration
 --------------
