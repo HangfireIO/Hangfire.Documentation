@@ -149,7 +149,7 @@ table.field-list {
   }
 }
 
-.section code, .section tt {
+section code, section tt, .section code, .section tt {
   padding: 0;
   padding-top: 0.2em;
   padding-bottom: 0.2em;
@@ -160,12 +160,13 @@ table.field-list {
   border-radius: 3px;
 }
 
+section code:before, section code:after, section tt:before, section tt:after,
 .section code:before, .section code:after, .section tt:before, .section tt:after {
   letter-spacing: -0.2em;
   content: "\00a0";
 }
 
-.section pre {
+section pre, .section pre {
   padding: 10px 15px;
   overflow: auto;
   font-size: 85%;
@@ -177,7 +178,7 @@ table.field-list {
   white-space: pre;
 }
 
-.section pre .hll {
+section pre .hll, .section pre .hll {
     background-color: #F7F69C!important;
     margin: 0 -15px;
     padding: 0 15px;
@@ -259,7 +260,7 @@ div.admonition p.last {
   color: #0000FF;
 }
 
-.section {
+section, .section {
   font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif;
   font-size: 16px;
   line-height: 1.5;
@@ -271,14 +272,14 @@ div.admonition p.last {
   text-decoration: none;
 }
 
-.section h1 {
+section h1, .section h1 {
     margin-top: 0;
     padding-bottom: 9px;
     margin: 0 0 20px;
     border-bottom: 1px solid #eee;
 }
 
-.section h2 {
+section h2, .section h2 {
     font-size: 28px;
 }
 
