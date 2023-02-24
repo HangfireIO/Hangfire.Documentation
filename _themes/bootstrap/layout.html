@@ -91,6 +91,11 @@
     {% block sidebar2 %} {# possible location for sidebar #} {% endblock %}
   </div>
 </div>
+{%- endblock %}
+
+{%- block footer %}
+  {% include "footer.html" %}
+{%- endblock %}
 
 {% if READTHEDOCS %}
 <script type="text/javascript">
@@ -101,8 +106,3 @@
 }(window.$jqTheme || window.jQuery));
 </script>
 {% endif %}
-{%- endblock %}
-
-{%- block footer %}
-  {% include "footer.html" %}
-{%- endblock %}
