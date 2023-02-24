@@ -96,3 +96,13 @@
 {%- block footer %}
   {% include "footer.html" %}
 {%- endblock %}
+
+{% if READTHEDOCS %}
+<script type="text/javascript">
+(function ($) {
+  $(function () {
+    Search.init();
+  });
+}(window.$jqTheme || window.jQuery));
+</script>
+{% endif %}
