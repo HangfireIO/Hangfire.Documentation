@@ -22,14 +22,14 @@
 {%- if search_performed %}
   <h2>Search Results</h2>
   {%- if not search_results %}
-  <p>Your search did not match any documents. Please make sure that all words are spelled correctly and that you've selected enough categories.</p>
+  <p>Your search did not match any results.</p>
   {%- endif %}
 {%- endif %}
 <div id="search-results">
   {%- if search_results %}
   <ul class="search">
     {% for href, caption, context in search_results %}
-    <li><a href="{{ pathto(item.href) }}">{{ caption }}</a>
+    <li><a href="{{ pathto(item.href) }}/?highlight={{ q }}">{{ caption }}</a>
       <div class="context">{{ context|e }}</div>
     </li>
     {% endfor %}
