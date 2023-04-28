@@ -21,7 +21,7 @@ Requirements
 
 Hangfire is not tied to the specific .NET application type. You can use it in ASP.NET :doc:`web applications <background-processing/processing-jobs-in-web-app>`, non-ASP.NET web applications, in :doc:`console applications <background-processing/processing-jobs-in-console-app>` or :doc:`Windows services <background-processing/processing-jobs-in-windows-service>`. Here are the requirements:
 
-* .NET Framework 4.5
+* .NET Framework 4.5.1 or later
 * Persistent storage (listed below)
 * `Newtonsoft.Json <https://www.nuget.org/packages/Newtonsoft.Json/>`_ library ≥ 5.0.1
 
@@ -47,15 +47,13 @@ There is also more easy way to create background jobs – the ``BackgroundJob`` 
 
 The control is returned to a caller just after Hangfire serializes the given information and saves it to the *storage*.
 
-Job Storage
+Storage
 ------------
 
 Hangfire keeps background jobs and other information that relates to the processing inside a *persistent storage*. Persistence helps background jobs to **survive on application restarts**, server reboots, etc. This is the main distinction between performing background jobs using *CLR's Thread Pool* and *Hangfire*. Different storage backends are supported:
 
 * :doc:`SQL Azure, SQL Server 2008 R2 <../configuration/using-sql-server>` (and later of any edition, including Express)
 * :doc:`Redis <../configuration/using-redis>`
-
-SQL Server storage can be empowered with :doc:`MSMQ <../configuration/using-sql-server-with-msmq>` or RabbitMQ to lower the processing latency.
 
 .. code-block:: c#
 

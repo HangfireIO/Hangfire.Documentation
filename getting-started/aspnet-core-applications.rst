@@ -6,22 +6,16 @@ Before we start with our tutorial, we need to have a working ASP.NET Core applic
 Installing Hangfire
 --------------------
 
-Hangfire is available as a set of NuGet packages, so you need to add them to the ``*.csproj`` file by adding new ``PackageReference`` tags as below. Please note that versions in the code snippet below may be outdated, so use versions from the following badges. They are updated in real-time.
-
-.. |latest-core| image:: https://img.shields.io/nuget/v/Hangfire.Core.svg?label=Hangfire.Core
-.. |latest-aspnetcore| image:: https://img.shields.io/nuget/v/Hangfire.AspNetCore.svg?label=Hangfire.AspNetCore
-.. |latest-sqlserver| image:: https://img.shields.io/nuget/v/Hangfire.SqlServer.svg?label=Hangfire.SqlServer
-
-|latest-core| |latest-aspnetcore| |latest-sqlserver| 
+Hangfire is available as a set of NuGet packages, so you need to add them to the ``*.csproj`` file by adding new ``PackageReference`` tags as below.
 
 .. code-block:: xml
-   :emphasize-lines: 3-5
+   :emphasize-lines: 2-5
 
    <ItemGroup>
-     <PackageReference Include="Microsoft.AspNetCore.App" />
-     <PackageReference Include="Hangfire.Core" Version="1.7.*" />
-     <PackageReference Include="Hangfire.SqlServer" Version="1.7.*" />
-     <PackageReference Include="Hangfire.AspNetCore" Version="1.7.*" />
+     <PackageReference Include="Hangfire.Core" Version="1.8.*" />
+     <PackageReference Include="Hangfire.SqlServer" Version="1.8.*" />
+     <PackageReference Include="Hangfire.AspNetCore" Version="1.8.*" />
+     <PackageReference Include="Microsoft.Data.SqlClient" Version="*" />
    </ItemGroup>
 
 Creating a database
@@ -84,23 +78,16 @@ Dependency Injection is one of the primary techniques introduced in ASP.NET Core
    Some of those settings can be incompatible with existing installations, please see the :doc:`Upgrade Guides <../upgrade-guides/index>` instead, when upgrading to a newer version.
 
 .. code-block:: csharp
-   :emphasize-lines: 4-15, 18
+   :emphasize-lines: 4-8, 11
 
    public void ConfigureServices(IServiceCollection services)
    {
        // Add Hangfire services.
        services.AddHangfire(configuration => configuration
-           .SetDataCompatibilityLevel(CompatibilityLevel.Version_170)
+           .SetDataCompatibilityLevel(CompatibilityLevel.Version_180)
            .UseSimpleAssemblyNameTypeSerializer()
            .UseRecommendedSerializerSettings()
-           .UseSqlServerStorage(Configuration.GetConnectionString("HangfireConnection"), new SqlServerStorageOptions
-           {
-               CommandBatchMaxTimeout = TimeSpan.FromMinutes(5),
-               SlidingInvisibilityTimeout = TimeSpan.FromMinutes(5),
-               QueuePollInterval = TimeSpan.Zero,           
-               UseRecommendedIsolationLevel = true,
-               DisableGlobalLocks = true
-           }));
+           .UseSqlServerStorage(Configuration.GetConnectionString("HangfireConnection")));
 
        // Add the processing server as IHostedService
        services.AddHangfireServer();

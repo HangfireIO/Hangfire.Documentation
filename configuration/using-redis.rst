@@ -1,17 +1,12 @@
 Using Redis
 ============
 
-.. admonition:: Hangfire Pro subscription required
-   :class: note
-
-   Starting from Hangfire 1.2, this feature is a part of `Hangfire Pro <https://www.hangfire.io/pro/>`_ package set
-
 Hangfire with Redis job storage implementation processes jobs much faster than with SQL Server storage. On my development machine I observed more than 4x throughput improvement with empty jobs (method that does not do anything). ``Hangfire.Pro.Redis`` leverages the ``BRPOPLPUSH`` command to fetch jobs, so the job processing latency is kept to minimum.
 
 .. image:: storage-compare.png
    :align: center
 
-Please, see the `downloads page <http://redis.io/download>`_ to obtain latest version of Redis. If you unfamiliar with this great storage, please see its `documentation <http://redis.io/documentation>`_. Binaries for Windows are available through NuGet (`32-bit <https://www.nuget.org/packages/Redis-32/>`_, `64-bit <https://www.nuget.org/packages/Redis-64/>`_) and Chocolatey galleries (`64-bit package <http://chocolatey.org/packages/redis-64>`_ only).
+Redis ≥ 2.6.12 is required. Please, see the `downloads page <http://redis.io/download>`_ to obtain latest version of Redis. If you unfamiliar with this great storage, please see its `documentation <http://redis.io/documentation>`_. Binaries for Windows are available through NuGet (`32-bit <https://www.nuget.org/packages/Redis-32/>`_, `64-bit <https://www.nuget.org/packages/Redis-64/>`_) and Chocolatey galleries (`64-bit package <http://chocolatey.org/packages/redis-64>`_ only).
 
 Limitations
 ------------
@@ -45,13 +40,8 @@ If you are planning to use the `Redis ACL <https://redis.io/docs/manual/security
 
    resetkeys ~hangfire:* resetchannels &hangfire:* nocommands +info +ping +echo +select +cluster +time +@read +@write +@set +@sortedset +@list +@hash +@string +@pubsub +@transaction +@scripting
 
-Hangfire.Pro.Redis 2.x
------------------------
-
-Redis ≥ 2.6.12 is required
-
 Installation
-~~~~~~~~~~~~~
+------------
 
 Ensure that you have configured the private Hangfire Pro NuGet feed as `written here <https://www.hangfire.io/pro/downloads.html#configuring-feed>`_, and use your favorite NuGet client to install the ``Hangfire.Pro.Redis`` package:
 
@@ -64,16 +54,16 @@ If your project targets .NET Core, just add a dependency in your ``*.csproj`` fi
 .. code-block:: xml
 
    <ItemGroup>
-     <PackageReference Include="Hangfire.Pro.Redis" Version="2.8.2" />
+     <PackageReference Include="Hangfire.Pro.Redis" Version="3.*" />
    </ItemGroup>
 
 Configuration
-~~~~~~~~~~~~~~
+-------------
 
 After installing the package, a couple of the ``UseRedisStorage`` extension method overloads will be available for the ``IGlobalConfiguration`` interface. They allow you to configure Redis job storage, using both *configuration string* and Hangfire-specific *options*.
 
 Connection string
-^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~
 
 The basic one is the following, will connect to the Redis on *localhost* using the default port, database and options:
 
@@ -111,7 +101,7 @@ Option                         Default
        .UseRedisStorage("contoso5.redis.cache.windows.net,abortConnect=false,ssl=true,password=...");
 
 Redis Cluster support
-^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~
 
 You can use a single endpoint to connect to a Redis cluster, Hangfire will detect other instances automatically by querying the node configuration. However, it's better to pass multiple endpoints in order to mitigate connectivity issues, when some of endpoints aren't available, e.g. during the failover process.
 
@@ -126,7 +116,7 @@ Since Hangfire requires transactions, and Redis doesn't support ones that span m
 This will bind all the keys to a single Redis instance. To be able to fully utilize your Redis cluster, consider using multiple ``JobStorage`` instances and leveraging some load-balancing technique (round-robin is enough for the most cases). To do so, pick different hash tags for different storages and ensure they are using hash slots that live on different masters by using commands ``CLUSTER NODES`` and ``CLUSTER KEYSLOT``.
 
 Passing options
-^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~
 
 You can also pass the Hangfire-specific options for Redis storage by using the ``RedisStorageOptions`` class instances:
 
@@ -153,49 +143,6 @@ MaxDeletedListLength           ``1000``                     Maximum visible back
 *SubscriptionIntegrityTimeout* ``TimeSpan.FromHours(1)``    **Obsolete since 2.1.3**
                                                             Timeout for subscription-based fetch. The value should be high enough (hours) to decrease the stress on a database. This is an additional layer to provide integrity, because otherwise subscriptions can be active for weeks, and bad things may happen during this time.
 ============================== ============================ ===========
-
-Hangfire.Pro.Redis 1.x
------------------------
-
-This is the old version of Redis job storage for Hangfire. It is based on `ServiceStack.Redis 3.71 <https://github.com/ServiceStack/ServiceStack.Redis/tree/v3>`_, and has no SSL and .NET Core support. No new features will be added for this version. **This version is deprecated**, switch to the new version to get the new features.
-
-Configuration
-~~~~~~~~~~~~~~
-
-Hangfire.Pro.Redis package contains some extension methods for the ``GlobalConfiguration`` class:
-
-.. code-block:: c#
-
-   GlobalConfiguration.Configuration
-       // Use localhost:6379
-       .UseRedisStorage();
-       // Using hostname only and default port 6379
-       .UseRedisStorage("localhost");
-       // or specify a port
-       .UseRedisStorage("localhost:6379");
-       // or add a db number
-       .UseRedisStorage("localhost:6379", 0);
-       // or use a password
-       .UseRedisStorage("password@localhost:6379", 0);
-
-   // or with options
-   var options = new RedisStorageOptions();
-   GlobalConfiguration.Configuration
-       .UseRedisStorage("localhost", 0, options);
-
-Connection pool size
-~~~~~~~~~~~~~~~~~~~~~
-
-Hangfire leverages connection pool to get connections quickly and shorten their usage. You can configure the pool size to match your environment needs:
-
-.. code-block:: c#
-
-   var options = new RedisStorageOptions
-   {
-       ConnectionPoolSize = 50 // default value
-   };
-
-   GlobalConfiguration.Configuration.UseRedisStorage("localhost", 0, options);
 
 Using key prefixes
 ~~~~~~~~~~~~~~~~~~~

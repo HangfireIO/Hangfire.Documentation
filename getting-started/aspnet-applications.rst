@@ -13,6 +13,7 @@ Before we start, we'll need a working ASP.NET application, you can use ASP.NET M
    PM> Install-Package Hangfire.Core
    PM> Install-Package Hangfire.SqlServer
    PM> Install-Package Hangfire.AspNet
+   PM> Install-Package Microsoft.Data.SqlClient
 
 Creating a database
 -------------------
@@ -49,7 +50,7 @@ All you need is to call them, to start using both Hangfire Dashboard and Hangfir
    By default only local access is permitted to the Hangfire Dashboard. `Dashboard authorization <../configuration/using-dashboard.html#configuring-authorization>`_ must be configured in order to allow remote access.
 
 .. code-block:: c#
-   :emphasize-lines: 2-3,7-24,28-29,32
+   :emphasize-lines: 2-3,7-16,20-21,24
 
    // Startup.cs
    using Hangfire;
@@ -60,17 +61,10 @@ All you need is to call them, to start using both Hangfire Dashboard and Hangfir
        private IEnumerable<IDisposable> GetHangfireServers()
        {
            GlobalConfiguration.Configuration
-               .SetDataCompatibilityLevel(CompatibilityLevel.Version_170)
+               .SetDataCompatibilityLevel(CompatibilityLevel.Version_180)
                .UseSimpleAssemblyNameTypeSerializer()
                .UseRecommendedSerializerSettings()
-               .UseSqlServerStorage("Server=.\\SQLEXPRESS; Database=HangfireTest; Integrated Security=True;", new SqlServerStorageOptions
-               {
-                    CommandBatchMaxTimeout = TimeSpan.FromMinutes(5),
-                    SlidingInvisibilityTimeout = TimeSpan.FromMinutes(5),
-                    QueuePollInterval = TimeSpan.Zero,           
-                    UseRecommendedIsolationLevel = true,
-                    DisableGlobalLocks = true
-               });
+               .UseSqlServerStorage("Server=.\\SQLEXPRESS; Database=HangfireTest; Integrated Security=True;");
 
            yield return new BackgroundJobServer();
        }
@@ -95,7 +89,7 @@ Using Global.asax.cs file
 If you can't use the ``Startup`` class for a reason, just use the ``HangfireAspNet`` class and modify the ``Global.asax.cs`` file. You'll not have Hangfire Dashboard in this case, but at least you can start the background processing. If you'd like to install the dashboard also, please google how to add the ``Startup`` class to your project, and go to the previous section.
 
 .. code-block:: c#
-   :emphasize-lines: 2-3,7-24,31,34
+   :emphasize-lines: 2-3,7-16,23,26
 
    // Global.asax.cs
    using Hangfire;
@@ -106,17 +100,10 @@ If you can't use the ``Startup`` class for a reason, just use the ``HangfireAspN
        private IEnumerable<IDisposable> GetHangfireServers()
        {
            GlobalConfiguration.Configuration
-               .SetDataCompatibilityLevel(CompatibilityLevel.Version_170)
+               .SetDataCompatibilityLevel(CompatibilityLevel.Version_180)
                .UseSimpleAssemblyNameTypeSerializer()
                .UseRecommendedSerializerSettings()
-               .UseSqlServerStorage("Server=.\\SQLEXPRESS; Database=HangfireTest; Integrated Security=True;", new SqlServerStorageOptions
-               {
-                    CommandBatchMaxTimeout = TimeSpan.FromMinutes(5),
-                    SlidingInvisibilityTimeout = TimeSpan.FromMinutes(5),
-                    QueuePollInterval = TimeSpan.Zero,           
-                    UseRecommendedIsolationLevel = true,
-                    DisableGlobalLocks = true
-               });
+               .UseSqlServerStorage("Server=.\\SQLEXPRESS; Database=HangfireTest; Integrated Security=True;");
 
            yield return new BackgroundJobServer();
        }
