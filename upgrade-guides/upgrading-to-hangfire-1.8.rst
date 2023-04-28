@@ -18,6 +18,12 @@ Read the following sections carefully to minimize the risks during the upgrade p
 1. You should set the compatibility level to ``CompatibilityLevel.Version_180`` and use other new features **only after** all your servers migrate to the latest version. Otherwise, you may get exceptions.
 2. ``Schema 8`` and ``Schema 9`` migrations added to SQL Server, and running them automatically or manually is recommended.
 3. New migrations for SQL Server will not be performed automatically unless the ``EnableHeavyMigrations`` option is set. If your background processing is quite intensive, you should apply the migration manually by setting the ``SINGLE_USER`` mode for the database to avoid deadlocks and reduce migration time.
+4. ``Microsoft.Data.SqlClient`` package is prioritized over ``System.Data.SqlClient`` package in this release, you may also need to reference either of these packages explicitly, please see the upgrade steps below.
+
+.. admonition:: Encryption is enabled by default in Microsoft.Data.SqlClient
+   :class: warning
+
+   ``Microsoft.Data.SqlClient`` package has `breaking changes <https://github.com/dotnet/SqlClient/blob/main/release-notes/4.0/4.0.0.md#breaking-changes>`_ and encryption is enabled by default. You might need to add ``TrustServerCertificate=true`` option to a connection string if you have connection-related errors, or stay with ``System.Data.SqlClient`` package. More details can be found in `this issue <https://github.com/dotnet/SqlClient/issues/1402>`_ on GitHub.
 
 If you have any issues with an upgrade process, please post them to `GitHub Issues <https://github.com/HangfireIO/Hangfire/issues>`_.
 
@@ -130,6 +136,11 @@ If you reference individual packages, upgrade them all. Here is the list of pack
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The new version of the ``Hangfire.SqlServer`` comes with no explicit reference to the ``System.Data.SqlClient`` package to avoid using outdated versions and prefer using the new ``Microsoft.Data.SqlClient`` package by default when it's installed and used by other parts of the application.
+
+.. admonition:: Encryption is enabled by default in Microsoft.Data.SqlClient
+   :class: warning
+
+   ``Microsoft.Data.SqlClient`` package has `breaking changes <https://github.com/dotnet/SqlClient/blob/main/release-notes/4.0/4.0.0.md#breaking-changes>`_ and encryption is enabled by default. You might need to add ``TrustServerCertificate=true`` option to a connection string if you have connection-related errors or stay with ``System.Data.SqlClient`` package. More details can be found in `this issue <https://github.com/dotnet/SqlClient/issues/1402>`_ on GitHub.
 
 If no other package references it, you can install it explicitly by modifying the ``*.csproj`` class and adding the package reference in the following way. Please note that there can be breaking changes in this package, compared to the old one, since the connection is encrypted by default since Microsoft.Data.SqlClient version 4.0.0.
 
