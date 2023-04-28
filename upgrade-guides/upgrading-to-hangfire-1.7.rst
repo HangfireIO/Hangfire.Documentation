@@ -1,11 +1,6 @@
 Upgrading to Hangfire 1.7
 =========================
 
-.. admonition:: For Beta users
-   :class: note
-
-   If you are upgrading from beta versions, please follow the same steps as described here, and update your configuration only when all your instances already updated to the newest version.
-
 Hangfire 1.7.0 brings a number of new features and great improvements for different aspects of background processing, including increased efficiency and better interoperability. We always consider backward compatibility when introducing new changes to ensure all the existing data can be processed by a newer version. 
 
 But during upgrades in distributed environments it's also important to have the forward compatibility property, where older versions can co-exist with the newer ones without causing any troubles. In this case you can perform upgrades gradually, updating instances one-by-one without stopping the whole processing first.
