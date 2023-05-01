@@ -196,7 +196,7 @@ Automatic migration is performed whenever the ``PrepareSchemaIfNecessary`` optio
 Manual migration
 ++++++++++++++++
 
-To perform the manual upgrade, obtain the `DefaultInstall.sql <https://github.com/HangfireIO/Hangfire/blob/27ab355ff1cd72a06af51fc6d2f4599a87c3b4b8/src/Hangfire.SqlServer/DefaultInstall.sql>`_ migration script from the repository and wrap it with the lines below to reduce the migration downtime. Please note this will abort all the current transactions and prevent new ones from starting until the upgrade is complete, so it's better to do it during off-hours.
+To perform the manual upgrade, obtain the `DefaultInstall.sql <https://github.com/HangfireIO/Hangfire/blob/858f19dfa5fd5fb5b95fe20f9c3f841a7ba658b2/src/Hangfire.SqlServer/DefaultInstall.sql>`_ migration script from the repository and wrap it with the lines below to reduce the migration downtime. Please note this will abort all the current transactions and prevent new ones from starting until the upgrade is complete, so it's better to do it during off-hours.
 
 .. code-block:: sql
 
@@ -206,7 +206,7 @@ To perform the manual upgrade, obtain the `DefaultInstall.sql <https://github.co
 
    ALTER DATABASE [HangfireDB] SET MULTI_USER;
 
-If you are using non-default schema, please get the `Install.sql <https://github.com/HangfireIO/Hangfire/blob/27ab355ff1cd72a06af51fc6d2f4599a87c3b4b8/src/Hangfire.SqlServer/Install.sql>`_ file instead and replace all the occurrences of the ``$(HangFireSchema)`` token with your schema name without brackets.
+If you are using non-default schema, please get the `Install.sql <https://github.com/HangfireIO/Hangfire/blob/858f19dfa5fd5fb5b95fe20f9c3f841a7ba658b2/src/Hangfire.SqlServer/Install.sql>`_ file instead and replace all the occurrences of the ``$(HangFireSchema)`` token with your schema name without brackets.
 
 3. Updating Configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~~
