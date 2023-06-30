@@ -1,0 +1,13 @@
+{
+    "globalHeaders": {
+        "Cache-Control": "public, max-age=600, must-revalidate"
+    },
+    "routes": [
+        {
+            "route": "/*.{png,jpg,gif}",
+            "headers": {
+                "Cache-Control": "public, max-age=604800, immutable"
+            }
+        }
+    ]
+}
