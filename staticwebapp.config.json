@@ -1,6 +1,6 @@
 {
     "globalHeaders": {
-        "Cache-Control": "public, max-age=600, must-revalidate"
+        "Cache-Control": "public, max-age=600"
     },
     "routes": [
         {
