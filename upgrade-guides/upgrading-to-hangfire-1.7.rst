@@ -95,7 +95,7 @@ First upgrade all the packages without touching any new configuration and/or new
 
 a. Upgrade your NuGet package references using your own preferred way. If you've referenced Hangfire using a single meta-package, just upgrade it:
 
-   .. |latest-core| image:: https://img.shields.io/nuget/v/Hangfire.Core.svg?label=Hangfire.Core
+   .. |latest-core| image:: https://www.hangfire.io/shields/nuget/v/Hangfire.Core.svg?label=Hangfire.Core
 
    |latest-core|
 
@@ -105,9 +105,9 @@ a. Upgrade your NuGet package references using your own preferred way. If you've
 
    If you reference individual packages upgrade them all, here is the full list of packages that come with this release. Please note that versions in the code snippet below may be outdated, so use versions from the following badges, they are updated in real-time.
 
-   .. |latest-aspnetcore| image:: https://img.shields.io/nuget/v/Hangfire.AspNetCore.svg?label=Hangfire.AspNetCore
-   .. |latest-sqlserver| image:: https://img.shields.io/nuget/v/Hangfire.SqlServer.svg?label=Hangfire.SqlServer
-   .. |latest-sqlserver-msmq| image:: https://img.shields.io/nuget/v/Hangfire.SqlServer.Msmq.svg?label=Hangfire.SqlServer.Msmq
+   .. |latest-aspnetcore| image:: https://www.hangfire.io/shields/nuget/v/Hangfire.AspNetCore.svg?label=Hangfire.AspNetCore
+   .. |latest-sqlserver| image:: https://www.hangfire.io/shields/nuget/v/Hangfire.SqlServer.svg?label=Hangfire.SqlServer
+   .. |latest-sqlserver-msmq| image:: https://www.hangfire.io/shields/nuget/v/Hangfire.SqlServer.Msmq.svg?label=Hangfire.SqlServer.Msmq
 
    |latest-core| |latest-aspnetcore| |latest-sqlserver| |latest-sqlserver-msmq| 
 
