@@ -18,10 +18,9 @@ Then, install the needed package for your job storage. For example, you need to 
 
    Please don't install the ``Hangfire`` package for console applications as it is a quick-start package only and contain dependencies you may not need (for example, ``Microsoft.Owin.Host.SystemWeb``).
 
-After installing packages, all you need is to create a new *Hangfire Server* instance and start it as written in the :doc:`previous <processing-background-jobs>` chapter. However, there are some details here:
+After installing the packages, all you need is to create a new *Hangfire Server* instance that's responsible for background job processing. You can do this by creating a new instance of the ``BackgroundJobServer`` class, which will bootstrap everything required for background job processing in its constructor.
 
-* Since the ``Start`` method is **non-blocking**, we insert a ``Console.ReadKey`` call to prevent instant shutdown of an application.
-* The call to ``Stop`` method is implicit -- it is made through the ``using`` statement.
+However, since we shouldn't exit from our console application immediately, we should block it somehow, and the easiest way is to use the ``Console.ReadKey`` method as shown below.
 
 .. code-block:: c#
 
