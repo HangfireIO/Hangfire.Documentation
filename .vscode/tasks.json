@@ -1,9 +1,24 @@
 {
     // See https://go.microsoft.com/fwlink/?LinkId=733558
     // for the documentation about the tasks.json format
-    "version": "0.1.0",
+    "version": "2.0.0",
     "command": "make",
-    "isShellCommand": true,
-    "args": ["html"],
-    "showOutput": "always"
+    "args": [
+        "html"
+    ],
+    "tasks": [
+        {
+            "label": "make",
+            "type": "shell",
+            "command": "make",
+            "args": [
+                "html"
+            ],
+            "problemMatcher": [],
+            "group": {
+                "_id": "build",
+                "isDefault": false
+            }
+        }
+    ]
 }
