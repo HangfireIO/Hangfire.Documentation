@@ -28,7 +28,7 @@ The 1.8 version of the ``Hangfire.SqlServer`` package comes with no explicit ref
 .. code-block:: xml
 
    <ItemGroup>
-       <PackageReference Include="Microsoft.Data.SqlClient" Version="*">
+       <PackageReference Include="Microsoft.Data.SqlClient" Version="*" />
    </ItemGroup>
 
 **System.Data.SqlClient**
@@ -38,7 +38,7 @@ Suppose you'd prefer to keep the previous SQL Client package instead for compati
 .. code-block:: xml
 
    <ItemGroup>
-       <PackageReference Include="System.Data.SqlClient" Version="*">
+       <PackageReference Include="System.Data.SqlClient" Version="*" />
    </ItemGroup>
 
 **Explicit configuration**
