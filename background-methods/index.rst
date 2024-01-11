@@ -30,7 +30,7 @@ Parameters
 
 It is also possible to preserve some context that will be associated with a background job by using *Job Parameters*. This feature is available from :doc:`Background Job Filters <../extensibility/using-job-filters>` and allow us to capture and restore some ambient information. Extension filters use job parameters to store additional details without any intervention to method call metadata.
 
-For example, the `CaptureCultureAttribute <https://github.com/HangfireIO/Hangfire/blob/master/src/Hangfire.Core/CaptureCultureAttribute.cs>`_ filter uses job parameters to capture ``CurrentCulture`` and ``CurrentUICulture`` when creating a background job and restores it when it is about to be processed.
+For example, the `CaptureCultureAttribute <https://github.com/HangfireIO/Hangfire/blob/main/src/Hangfire.Core/CaptureCultureAttribute.cs>`_ filter uses job parameters to capture ``CurrentCulture`` and ``CurrentUICulture`` when creating a background job and restores it when it is about to be processed.
 
 .. admonition:: Anyway, no other context data is preserved
    :class: note
