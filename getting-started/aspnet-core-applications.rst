@@ -115,7 +115,7 @@ After registering Hangfire types, you can now choose features you need to add to
        app.UseStaticFiles();
 
        app.UseHangfireDashboard();
-       backgroundJobs.Enqueue(() => Console.WriteLine("Hello world from Hangfire!"));
+       BackgroundJob.Enqueue(() => Console.WriteLine("Hello world from Hangfire!"));
 
        app.UseMvc(routes =>
        {
