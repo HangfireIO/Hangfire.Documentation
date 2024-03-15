@@ -131,7 +131,7 @@ Starting with ``Hangfire.AspNetCore 1.7.8``, Hangfire officially supports ASP.NE
    :emphasize-lines: 6,9
    
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-    public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+    public void Configure(IApplicationBuilder app, IBackgroundJobClient backgroundJobs, IWebHostEnvironment env)
     {
         app.UseRouting();
         app.UseAuthorization();
@@ -140,6 +140,8 @@ Starting with ``Hangfire.AspNetCore 1.7.8``, Hangfire officially supports ASP.NE
             endpoints.MapControllers();
             endpoints.MapHangfireDashboard();
         });
+
+        backgroundJobs.Enqueue(() => Console.WriteLine("Hello world from Hangfire!"));
     }
     
     
