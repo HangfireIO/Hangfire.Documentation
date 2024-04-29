@@ -1,11 +1,6 @@
 Upgrading to Hangfire 1.8
 =========================
 
-.. admonition:: For beta* and rc* users
-   :class: note
-
-   If you are upgrading from beta versions, please follow the same steps as described here, and update your configuration only when all your instances are already updated to the newest version.
-
 Hangfire 1.8.0 offers a set of great new features like first-class queue support for background jobs, the enhanced role of the Deleted state that now supports exceptions, more options for continuations to implement even try/catch/finally semantics, better defaults to simplify the initial configuration and various Dashboard UI improvements like full-width and optional dark mode support.
 
 We always consider backward compatibility when introducing changes to ensure a newer version can process all the existing data. But during upgrades in distributed environments, it's also essential to have the forward compatibility property, where older versions can co-exist with the newer ones without causing any trouble. In this case, you can perform upgrades gradually, updating instances one by one without stopping the processing entirely.
