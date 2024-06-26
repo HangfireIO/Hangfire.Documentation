@@ -360,6 +360,10 @@ footer {
     border: none;
 }
 
+.navbar-hangfire .navbar-brand {
+  padding: 10px 15px;
+}
+
 .navbar-hangfire .icon-bar {
     background-color: #333;
 }
