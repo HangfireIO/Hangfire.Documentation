@@ -29,11 +29,6 @@ Please read the `official Redis documentation <http://redis.io/documentation>`_ 
    # nor expiring keys are evicted before the expiration time.
    maxmemory-policy noeviction
 
-   # Non-zero value cause long-running background jobs to be 
-   # processed multiple times due to connection being closed.
-   # ONLY FOR Hangfire.Pro.Redis 1.X!
-   timeout 0   
-
 If you are planning to use the `Redis ACL <https://redis.io/docs/manual/security/acl/>`_ feature, below you can find a minimal supported set of rules you can specify to use Redis as a job storage. They restrict keyspace for regular and pub/sub commands to the default prefix used by Hangfire (``hangfire:``) and declare a minimal set of Redis commands used by Hangfire.Pro.Redis.
 
 .. code-block:: shell
