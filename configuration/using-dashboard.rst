@@ -125,7 +125,7 @@ The read-only dashboard view prevents users from changing anything, such as dele
        IsReadOnlyFunc = (DashboardContext dashboardContext) =>
        {
            var context = dashboardContext.GetHttpContext();
-           return context.User.IsInRole("Admin");
+           return !context.User.IsInRole("Admin");
        }
    });
 
