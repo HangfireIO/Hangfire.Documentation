@@ -8,11 +8,6 @@ Hangfire with Redis job storage implementation processes jobs much faster than w
 
 Redis ≥ 2.6.12 is required. Please, see the `downloads page <http://redis.io/download>`_ to obtain latest version of Redis. If you unfamiliar with this great storage, please see its `documentation <http://redis.io/documentation>`_. Binaries for Windows are available through NuGet (`32-bit <https://www.nuget.org/packages/Redis-32/>`_, `64-bit <https://www.nuget.org/packages/Redis-64/>`_) and Chocolatey galleries (`64-bit package <http://chocolatey.org/packages/redis-64>`_ only).
 
-Limitations
-------------
-
-Multiple Redis endpoints are **only supported** in Redis Cluster configuration starting from `Hangfire.Pro.Redis 2.1.0 <https://www.hangfire.io/blog/2017/04/17/hangfire.pro.redis-2.1.0.html>`_. You can't use multiple detached masters or Redis Sentinel configurations.
-
 Redis Configuration
 --------------------
 
