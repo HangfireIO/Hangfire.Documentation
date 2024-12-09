@@ -110,6 +110,16 @@ Since Hangfire requires transactions, and Redis doesn't support ones that span m
        
 This will bind all the keys to a single Redis instance. To be able to fully utilize your Redis cluster, consider using multiple ``JobStorage`` instances and leveraging some load-balancing technique (round-robin is enough for the most cases). To do so, pick different hash tags for different storages and ensure they are using hash slots that live on different masters by using commands ``CLUSTER NODES`` and ``CLUSTER KEYSLOT``.
 
+Redis Sentinel support
+~~~~~~~~~~~~~~~~~~~~~~
+
+Starting from Hangfire.Pro.Redis 3.1.0, it is possible to connect to one or more Redis Sentinel instances, once `serviceName` parameter is specified in the connection string. Once connected, the client will determine the actual nodes for the specified service, and establish corresponding connections. In case of master changes, or connection problems with either Sentinel or regular Redis endpoints, connections will be automatically re-established.
+
+.. code-block:: csharp
+
+   GlobalConfiguration.Configuration.UseRedisStorage(
+       "sentinel1:10000,sentinel2:10000,sentinel3:10000,serviceName=mymaster");
+
 Passing options
 ~~~~~~~~~~~~~~~
 
