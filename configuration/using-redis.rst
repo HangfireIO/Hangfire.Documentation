@@ -120,6 +120,19 @@ Starting from Hangfire.Pro.Redis 3.1.0, it is possible to connect to one or more
    GlobalConfiguration.Configuration.UseRedisStorage(
        "sentinel1:10000,sentinel2:10000,sentinel3:10000,serviceName=mymaster");
 
+ElastiCache Serverless support
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+ElastiCache Serverless platform is supported via the new experimental transactions that are based on a single `EVAL` call to a Redis instance. Default transactions aren't supported by this platform due to a slightly different Redis protocol handling, which is unable to use `EVAL` commands in a `MULTI` blocks. So while the default transaction implementation offers better memory consumption for large transactions, Serverless solution is unable to use them.
+
+.. code-block:: csharp
+
+   GlobalConfiguration.Configuration.UseRedisStorage(
+      "connection_string", new RedisStorageOptions
+      {
+          UseExperimentalTransactions = true
+      });
+
 Passing options
 ~~~~~~~~~~~~~~~
 
