@@ -67,23 +67,7 @@ For ASP.NET Core projects, call the ``UseRedisStorage`` method from the ``AddHan
 
    services.AddHangfire(configuration => configuration.UseRedisStorage());
 
-You can customize the connection string using the StackExchange.Redis' configuration string format. Please read `their documentation <https://stackexchange.github.io/StackExchange.Redis/Configuration>`_ for details. The values for the following options have their own defaults in Hangfire, but can be overridden in the *connection string*:
-
-============================== ===========================
-Option                         Default
-============================== ===========================
-``sslProtocols``               ``tls12``
-``connectTimeout``             ``15000``
-``syncTimeout``                ``30000``
-``responseTimeout``            ``300000``
-``keepAlive``                  ``60``
-``allowAdmin``                 ``true``
-``tieBreaker``                 ``String.Empty``
-``configurationChannel``       ``String.Empty``
-``preferIOCP``                 ``false``
-``connectRetry``               ``0`` (external retries)
-``abortOnConnectFail``         ``true`` (external retries)
-============================== ===========================
+You can customize the connection string using the StackExchange.Redis' configuration string format. Please read `their documentation <https://stackexchange.github.io/StackExchange.Redis/Configuration>`_ for details.
 
 .. code-block:: csharp
 
@@ -170,3 +154,24 @@ If you are using a shared Redis server for multiple environments, you can specif
    };
 
    GlobalConfiguration.Configuration.UseRedisStorage("localhost", 0, options);
+
+Default connection string values
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The values for the following options have their own defaults in Hangfire, but can be overridden in the *connection string*:
+
+============================== ===========================
+Option                         Default
+============================== ===========================
+``sslProtocols``               ``tls12``
+``connectTimeout``             ``15000``
+``syncTimeout``                ``30000``
+``responseTimeout``            ``300000``
+``keepAlive``                  ``60``
+``allowAdmin``                 ``true``
+``tieBreaker``                 ``String.Empty``
+``configurationChannel``       ``String.Empty``
+``preferIOCP``                 ``false``
+``connectRetry``               ``0`` (external retries)
+``abortOnConnectFail``         ``true`` (external retries)
+============================== ===========================
