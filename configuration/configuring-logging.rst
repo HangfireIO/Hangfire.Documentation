@@ -3,7 +3,7 @@ Configuring Logging
 
 Logging plays an important role in background processing, where work is performed behind the scenes. :doc:`Dashboard UI <using-dashboard>` can greatly help to reveal problems with user code, background jobs themselves. But it works by querying the job storage and requires the information is properly written first, before displaying it.
 
-Even if Hangfire itself doesn't contain any errors, there may be connectivity issues, network blips, problems with the storage instance, different timeout issues and so on. And without logging it's very hard to diagnose those problems and understand what to do – exceptions are thrown in background and may get unnoticed.
+Even if Hangfire itself doesn't contain any errors, there may be connectivity issues, network blips, problems with the storage instance, different timeout issues and so on. And without logging it's very hard to diagnose those problems and understand what to do – exceptions are thrown in background and may go unnoticed.
 
 Logging subsystem in Hangfire is abstracted by using the `LibLog <https://github.com/damianh/LibLog>`_ package to allow you to integrate it with any infrastructure. Also, you don't need to configure logging if your application doesn't create any background processing servers – client methods don't log anything, they just throw exceptions on errors.
 
