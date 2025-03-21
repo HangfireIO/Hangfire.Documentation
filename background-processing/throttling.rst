@@ -273,7 +273,7 @@ Throttling Batches
 
 By default background job identifier is used to identify the current owner of a particular mutex or a semaphore. But since version 1.3 for mutexes and 1.4 for semaphores it is possible to use any custom value from a given job parameter.
 
-With this feature we can throttle entire batches, since we can pass the ``BatchId`` job parameter that's used to store the batch identifier. To accomplish this, we need to create two empty methods with ``ThrottlerMode.Acquire`` and ``ThrottlerMode.Release`` semantics that will acquire and release a synchronization primirive:
+With this feature we can throttle entire batches, since we can pass the ``BatchId`` job parameter that's used to store the batch identifier. To accomplish this, we need to create two empty methods with ``ThrottlerMode.Acquire`` and ``ThrottlerMode.Release`` semantics that will acquire and release a synchronization primitive:
 
 .. code-block:: c#
 
