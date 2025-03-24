@@ -104,12 +104,15 @@ ElastiCache Serverless support
 
 ElastiCache Serverless platform is supported via the new experimental transactions that are based on a single `EVAL` call to a Redis instance. Default transactions aren't supported by this platform due to a slightly different Redis protocol handling, which is unable to use `EVAL` commands in a `MULTI` blocks. So while the default transaction implementation offers better memory consumption for large transactions, Serverless solution is unable to use them.
 
+ElastiCache Serverless doesn't support multi-key transactions with no hash tag specified, so the ``Prefix`` option should also be configured with hash tag support (please see Redis Cluster-related configuration above for details):
+
 .. code-block:: csharp
 
    GlobalConfiguration.Configuration.UseRedisStorage(
       "connection_string", new RedisStorageOptions
       {
-          UseExperimentalTransactions = true
+          UseExperimentalTransactions = true,
+          Prefix = "{hangfire}:"
       });
 
 Passing options
