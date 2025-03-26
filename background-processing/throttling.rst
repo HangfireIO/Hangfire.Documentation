@@ -331,7 +331,7 @@ When background job associated with a fixed window is about to execute, the curr
 
 When it's time to stop using the fixed window, we should remove all the corresponding ``FixedWindowAttribute`` filters first from our jobs.
 
-**How is this done? Does this mean editing the code to remove the attribute from above the method?**
+**This is accomplished by editing the code to remove the [FixedWindow("")] attribute from above the methods**
 
 Once that is done, simply call the following method. 
 
