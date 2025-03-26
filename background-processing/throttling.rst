@@ -329,11 +329,17 @@ After creating a fixed window, simply apply the ``FixedWindowAttribute`` filter 
 
 When background job associated with a fixed window is about to execute, the current time interval is queried to see the number of already performed job executions. If it's less than the limit value, then background job is executed. If not, background job is throttled (scheduled to the next interval by default).
 
-When it's time to stop using the fixed window, we should remove all the corresponding ``FixedWindowAttribute`` filters first from our jobs, and simply call the following method. There's no need to use the ``Release`` mode for fixed windows as in `Concurrency Limiters`_, because they don't do anything on this phase.
+When it's time to stop using the fixed window, we should remove all the corresponding ``FixedWindowAttribute`` filters first from our jobs.
+
+**This is accomplished by editing the code to remove the [FixedWindow("")] attribute from above the methods**
+
+Once that is done, simply call the following method. 
 
 .. code-block:: csharp
 
    manager.RemoveFixedWindowIfExists("github");
+
+There's no need to use the ``Release`` mode for fixed windows as in `Concurrency Limiters`_, because they don't do anything on this phase.
 
 Fixed window counter is a special case of the Sliding Window Counter described in the next section, with a single bucket. It does not enforce the limitation that *for any given time interval there will be no more than X executions*. So it is possible for one-hour length interval with maximum 4 executions to have 4 executions at 12:59 and another 4 just in a minute at 13:00, because they fall into different intervals. 
 
