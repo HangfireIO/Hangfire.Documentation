@@ -14,13 +14,13 @@ Overview
 
 Consider you are building a code snippet gallery web application like `GitHub Gists <http://gist.github.com>`_, and want to implement the syntax highlighting feature. To improve user experience, you also want it to work even if a user has disabled JavaScript in her browser.
 
-To support this scenario and to reduce the project development time, you chosen to use a web service for syntax highlighting, such as http://pygments.org/ or http://www.hilite.me.
+To support this scenario and to reduce the project development time, you chose to use a web service for syntax highlighting, such as http://pygments.org/ or http://www.hilite.me.
 
 .. note::
 
    Although this feature can be implemented without web services (using different syntax highlighter libraries for .NET), we are using them just to show some pitfalls regarding to their usage in web applications.
 
-   You can substitute this example with real-world scenario, like using external SMTP server, another services or even long-running CPU-intensive task.
+   You can substitute this example with a real-world scenario, like using an external SMTP server, another service or even a long-running CPU-intensive task.
 
 Setting up the project
 -----------------------
@@ -69,7 +69,7 @@ The view scaffolding process also adds additional components to the project, lik
 
 .. image:: highlighter/solutionafterview.png
 
-Let's test the initial setup of our application. Press the :kbd:`F5` key to start debugging and wait for your browser. If you encounter exceptions or don't see the default page, try to reproduce all the given steps, see the `tutorial sources <https://github.com/odinserj/Hangfire.Highlighter>`_ or ask a question in the comments below.
+Let's test the initial setup of our application. Press the :kbd:`F5` key to start debugging and wait for your browser. If you encounter exceptions or don't see the default page, try to reproduce all the given steps, or see the `tutorial source code <https://github.com/odinserj/Hangfire.Highlighter>`_ to suggest a correction.
 
 Defining a model
 ~~~~~~~~~~~~~~~~
@@ -488,15 +488,15 @@ What can you do with a such problem? `Async controller actions <http://www.asp.n
 
 Ok, great. But there are several difficulties related to these techniques. The former requires us to set some check interval. Shorter interval can abuse our database, longer interval increases latency. 
 
-The latter way solves this problem, but brings another ones. Should the queue be persistent? How many workers do you need? How to coordinate them? Where should they work, inside of ASP.NET application or outside, in Windows Service? The last question is the sore spot of long-running requests processing in ASP.NET application:
+The latter way solves this problem, but brings other ones. Should the queue be persistent? How many workers do you need? How to coordinate them? Where should they work, inside of ASP.NET application or outside, in Windows Service? The last question is the sore spot of long-running requests processing in ASP.NET application:
 
 .. warning::
 
    **DO NOT** run long-running processes inside of your ASP.NET application, unless they are prepared to **die at any instruction** and there is mechanism that can re-run them.
 
-   They will be simple aborted on application shutdown, and can be aborted even if the ``IRegisteredObject`` interface is used due to time out.
+   They will be simply aborted on application shutdown, and can be aborted even if the ``IRegisteredObject`` interface is used due to time out.
 
-Too many questions? Relax, you can use `Hangfire <https://www.hangfire.io>`_. It is based on *persistent queues* to survive on application restarts, uses *reliable fetching* to handle unexpected thread aborts and contains *coordination logic* to allow multiple worker threads. And it is simple enough to use it.
+Too many questions? Relax, you can use `Hangfire <https://www.hangfire.io>`_. It is based on *persistent queues* to survive on application restarts, uses *reliable fetching* to handle unexpected thread aborts and contains *coordination logic* to allow multiple worker threads. And it is simple enough to use.
 
 .. note::
 
@@ -528,7 +528,7 @@ That's all. All database tables will be created automatically on first start-up.
 Moving to background
 ^^^^^^^^^^^^^^^^^^^^^
 
-First, we need to define our background job method that will be called when worker thread catches highlighting job. We'll simply define it as a static method inside the ``HomeController`` class with the ``snippetId`` parameter.
+First, we need to define our background job method that will be called when worker thread catches a highlighting job. We'll simply define it as a static method inside the ``HomeController`` class with the ``snippetId`` parameter.
 
 .. code-block:: c#
 
@@ -551,7 +551,7 @@ First, we need to define our background job method that will be called when work
       }
   }
 
-Note that it is simple method that does not contain any Hangfire-related functionality. It creates a new instance of the ``HighlighterDbContext`` class, looks for the desired snippet and makes a call to a web service.
+Note that it is a simple method that does not contain any Hangfire-related functionality. It creates a new instance of the ``HighlighterDbContext`` class, looks for the desired snippet and makes a call to a web service.
 
 Then, we need to place the invocation of this method on a queue. So, let's modify the ``Create`` action:
 
@@ -593,7 +593,7 @@ Good, 6ms vs ~2s. But there is another problem. Did you notice that sometimes yo
 
 Why the ``Model.HighlightedCode`` returns null instead of highlighted code? This happens because of **latency** of the background job invocation – there is some delay before a worker fetch the job and perform it. You can refresh the page and the highlighted code will appear on your screen.
 
-But empty page can confuse a user. What to do? First, you should take this specific into a place. You can reduce the latency to a minimum, but **you can not avoid it**. So, your application should deal with this specific issue. 
+But an empty page can confuse a user. What to do? First, you should take this specific into a place. You can reduce the latency to a minimum, but **you can not avoid it**. So, your application should deal with this specific issue. 
 
 In our example, we'll simply show the notification to a user and the un-highlighted code, if highlighted one is not available yet:
 
@@ -641,7 +641,7 @@ Or you can also use send a command to users via SignalR channel from your ``High
 
 .. note::
 
-   Please, note that user still waits until its source code will be highlighted. But the application itself became more responsive and he is able to do another things while background job is processed.
+   Please, note that user still waits until its source code will be highlighted. But the application itself became more responsive and he is able to do other things while background job is processed.
 
 Conclusion
 -----------
@@ -649,9 +649,9 @@ Conclusion
 In this tutorial you've seen that:
 
 * Sometimes you can't avoid long-running methods in ASP.NET applications.
-* Long running methods can cause your application to be un-responsible from the users point of view.
+* Long running methods can cause your application to be unresponsive from the users point of view.
 * To remove waits you should place your long-running method invocation into background job.
 * Background job processing is complex itself, but simple with Hangfire.
 * You can process background jobs even inside ASP.NET applications with Hangfire.
 
-Please, ask any questions using the comments form below.
+Please, if you have any problems, you can `rais an issue on github <https://github.com/HangfireIO/Hangfire.Documentation/issues/new>`_ or `suggest a change <https://github.com/HangfireIO/Hangfire.Documentation/edit/main/tutorials/highlight.rst>`_.
