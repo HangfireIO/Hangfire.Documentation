@@ -3,7 +3,7 @@ Configuring Job Queues
 
 Hangfire can process multiple queues. If you want to prioritize your jobs, or split the processing across your servers (some processes for the archive queue, others for the images queue, etc), you can tell Hangfire about your decisions.
 
-To place a job into a different queue, use the ``QueueAttribute`` class on your method:
+To place a job into a different queue, use the ``Queue`` Attribute on your class method:
 
 .. code-block:: c#
 
