@@ -653,5 +653,3 @@ In this tutorial you've seen that:
 * To remove waits you should place your long-running method invocation into background job.
 * Background job processing is complex itself, but simple with Hangfire.
 * You can process background jobs even inside ASP.NET applications with Hangfire.
-
-Please, if you have any problems, you can `rais an issue on github <https://github.com/HangfireIO/Hangfire.Documentation/issues/new>`_ or `suggest a change <https://github.com/HangfireIO/Hangfire.Documentation/edit/main/tutorials/highlight.rst>`_.
