@@ -23,7 +23,8 @@ The ``Cron`` class contains different methods and overloads to run jobs on a min
 .. admonition:: Identifiers should be unique
    :class: warning
 
-   Use unique identifiers for each recurring job, otherwise you'll end with a single job.
+   Use unique identifiers for each recurring job, otherwise you'll end with a single job. 
++ **meaning:** on the 2nd and any subsequent calls it will *update* the job with that identifier rather than create a new one.
 
 .. admonition:: Identifiers may be case sensitive
    :class: note
