@@ -340,7 +340,7 @@ Add a new Nlog.config file into the root of the project.
      </rules>
    </nlog>
 
-run application and new log file could be find on cd %appdata%\HangFire.Mailer\Debug.log 
+run the application and a new log file can be found at: cd %appdata%\HangFire.Mailer\Debug.log 
 
 Fix-deploy-retry
 -----------------
