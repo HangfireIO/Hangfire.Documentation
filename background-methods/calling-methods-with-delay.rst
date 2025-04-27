@@ -22,5 +22,5 @@ Sometimes you may want to postpone a method invocation; for example, to send an 
 
 If you are processing your jobs inside an ASP.NET application, you should perform the following steps to ensure that your scheduled jobs get executed at the correct time:
 
-* `Disable Idle Timeout <http://bradkingsley.com/iis7-application-pool-idle-time-out-settings/>`_ – set its value to ``0``.
+* `Disable Idle Timeout` [*updated link needed*] – set its value to ``0``.
 * Use the `application auto-start <http://weblogs.asp.net/scottgu/auto-start-asp-net-applications-vs-2010-and-net-4-0-series>`_ feature.
