@@ -13,6 +13,8 @@ In the previous paragraph I said that Hangfire *will try* to change its state to
 
 This filter is applied globally to all methods and have 10 retry attempts by default. So, your methods will be retried in case of exception automatically, and you receive warning log messages on every failed attempt. If retry attempts exceeded their maximum, the job will be move to the ``Failed`` state (with an error log message), and you will be able to retry it manually.
 
+The delay between attempts will increase after each exception, ranging from ~15 seconds, up to a maximum of ~2 hours, following the formula ((attempts - 1) ^ 4) + 15 + (random.next(40) * attempts)
+
 If you don't want a job to be retried, place an explicit attribute with 0 maximum retry attempts value:
 
 .. code-block:: c#
