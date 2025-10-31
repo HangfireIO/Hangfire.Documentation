@@ -16,7 +16,7 @@ Batches allow you to create a bunch of background jobs *atomically*. This means 
        // What to do on exception?
    }
 
-But what if storage become unavailable on ``i == 500``? 500 emails may be already sent, because worker threads will pick up and process jobs once they created. If you re-execute this code, some of your clients may receive annoying duplicates. So if you want to handle this correctly, you should write more code to track what emails were sent. 
+But what if storage becomes unavailable on ``i == 500``? 500 emails may be already sent, because worker threads will pick up and process jobs once they created. If you re-execute this code, some of your clients may receive annoying duplicates. So if you want to handle this correctly, you should write more code to track what emails were sent. 
 
 But here is a much simpler method:
 
