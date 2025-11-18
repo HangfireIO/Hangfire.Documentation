@@ -32,7 +32,7 @@ Hangfire.Throttling provides the following primitives, all of them are implement
 Requirements
 ------------
 
-Supported only for :doc:`Hangfire.SqlServer <../configuration/using-sql-server>` (better to use ≥ 1.7) and :doc:`Hangfire.Pro.Redis <../configuration/using-redis>` (recommended ≥ 2.4.0) storages. Community storage support will be denoted later after defining correctness conditions for storages.
+Supported only for :doc:`Hangfire.SqlServer <../configuration/using-sql-server>` (better to use ≥ 1.7), :doc:`Hangfire.Pro.Redis <../configuration/using-redis>` (recommended ≥ 2.4.0), and `Hangfire.InMemory <https://github.com/HangfireIO/Hangfire.InMemory>`_ (recommended ≥ 0.7.0) storages. Community storage support will be denoted later after defining correctness conditions for storages.
 
 Installation
 ------------
