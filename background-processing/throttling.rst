@@ -41,7 +41,7 @@ The package is available on a private Hangfire.Ace NuGet feed (that's different 
 
 .. code-block:: xml
 
-   <PackageReference Include="Hangfire.Throttling" Version="1.0.*" />
+   <PackageReference Include="Hangfire.Throttling" Version="1.*" />
 
 Alternatively we can use Package Manager Console window to install it using the ``Install-Package`` command as shown below.
 
